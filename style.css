@@ -1,0 +1,311 @@
+/* ==========================================================================
+   OFF-WHITE / VIRGIL ABLOH ESTHETIC — PURE CSS
+   ========================================================================== */
+
+:root {
+  --bg-color: #332ab1;
+  --surface-color: #141414;
+  --text-main: #f0f0f0;
+  --text-muted: #ffffff;
+  --accent-yellow: #fffefe;
+  --border-color: #000000;
+  --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Space Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Top Technical Header --- */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  border-bottom: 2px solid var(--text-main);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+/* --- Brand Hero Section --- */
+.brand-hero {
+  padding: 60px 24px 40px 24px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.brand-title {
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  font-weight: 700;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: var(--text-main);
+  word-break: break-word;
+}
+
+.brand-title .ext {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  color: var(--accent-yellow);
+}
+
+.brand-subtitle {
+  margin-top: 16px;
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+}
+
+/* --- External Links / Buttons --- */
+.links-section {
+  padding: 32px 24px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  letter-spacing: 0.1em;
+}
+
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.off-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #000;
+  border: 2px solid var(--text-main);
+  color: var(--text-main);
+  text-decoration: none;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+.off-button::before {
+  content: "“LINK”";
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-muted);
+}
+
+.off-button .btn-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.off-button .btn-sub {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  margin-top: 12px;
+  color: var(--text-muted);
+}
+
+.off-button:hover {
+  background-color: var(--text-main);
+  color: #000;
+}
+
+.off-button:hover .btn-sub,
+.off-button:hover::before {
+  color: #333;
+}
+
+.off-button.yellow {
+  border-color: var(--accent-yellow);
+}
+
+.off-button.yellow:hover {
+  background-color: var(--accent-yellow);
+  color: #000;
+}
+
+/* --- Content Container & Media Grid --- */
+.content-container {
+  padding: 40px 24px;
+  flex: 1;
+}
+
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 40px;
+}
+
+/* Keyframe Animacion Scroll Reveal */
+@keyframes offReveal {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.media-card {
+  background-color: var(--surface-color);
+  border: 1px solid var(--text-main);
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+
+  /* Animación basada en el scroll sin JS */
+  animation: offReveal linear both;
+  animation-timeline: view();
+  animation-range: entry 5% cover 25%;
+}
+
+.media-card:hover {
+  border-color: var(--accent-yellow);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+  background-color: #000;
+}
+
+/* Ajuste de escala para visualizar las fotos sin recortes pequeños */
+.media-frame {
+  width: 100%;
+  min-height: 480px;
+  max-height: 75vh;
+  background-color: #000;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.media-frame img,
+.media-frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.media-card:hover .media-frame img,
+.media-card:hover .media-frame video {
+  transform: scale(1.02);
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  border-top: 1px solid var(--border-color);
+  background-color: #000;
+}
+
+.card-footer .tag {
+  color: var(--accent-yellow);
+}
+
+.card-footer .title {
+  font-weight: 700;
+}
+
+/* --- Industrial Off-White Pattern Footer --- */
+.footer-stripes {
+  margin-top: 60px;
+  border-top: 4px solid var(--text-main);
+  background: repeating-linear-gradient(
+    -45deg,
+    #000,
+    #000 20px,
+    var(--accent-yellow) 20px,
+    var(--accent-yellow) 40px
+  );
+  padding-top: 20px;
+}
+
+.footer-content {
+  background-color: #000;
+  padding: 32px 24px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  border-top: 2px solid var(--text-main);
+}
+
+.manifesto-quote {
+  font-size: clamp(1.2rem, 3.5vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--text-main);
+  border-left: 3px solid var(--accent-yellow);
+  padding-left: 16px;
+}
+
+.footer-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+}
+
+.tech-spec {
+  color: var(--text-muted);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .hide-mobile {
+    display: none;
+  }
+  .brand-hero {
+    padding: 40px 16px 24px 16px;
+  }
+  .links-section, .content-container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .media-grid {
+    grid-template-columns: 1fr;
+  }
+  .media-frame {
+    min-height: 360px;
+  }
+}
