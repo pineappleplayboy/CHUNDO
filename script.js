@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. SCROLL REVEAL CON INTERSECTION OBSERVER
+  // 1. SCROLL REVEAL ANIMATION (INTERSECTION OBSERVER)
   const observerOptions = {
     root: null,
-    threshold: 0.12,
-    rootMargin: "0px 0px -40px 0px"
+    threshold: 0.1,
+    rootMargin: "0px 0px -30px 0px"
   };
 
   const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -15,64 +15,104 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }, observerOptions);
 
-  document.querySelectorAll(".media-card, .off-button").forEach((el) => {
-    revealObserver.observe(el);
-  });
+  function initObserve() {
+    document.querySelectorAll(".interactive-card, .off-button").forEach((el) => {
+      revealObserver.observe(el);
+    });
+  }
+  initObserve();
 
-  // 2. LIGHTBOX CON ANIMACIÓN SMOOTH
-  const modal = document.createElement("div");
-  modal.id = "image-modal";
-  modal.style.cssText = `
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.94);
-    z-index: 9999;
-    justify-content: center;
-    align-items: center;
-    cursor: zoom-out;
-    opacity: 0;
-    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  `;
-  
-  const modalImg = document.createElement("img");
-  modalImg.style.cssText = `
-    max-width: 90vw;
-    max-height: 90vh;
-    border: 2px solid #f0f0f0;
-    object-fit: contain;
-    transform: scale(0.92);
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  `;
+  // 2. FILTRADO INTERACTIVO (TODOS / FOTOGRAFÍA / VIDEO)
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  const mediaBlocks = document.querySelectorAll(".media-block");
 
-  modal.appendChild(modalImg);
-  document.body.appendChild(modal);
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      filterBtns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
 
-  const galleryImages = document.querySelectorAll(".media-block:not(.youtube-block) .media-frame img");
-  galleryImages.forEach((img) => {
-    img.style.cursor = "zoom-in";
-    img.addEventListener("click", () => {
-      modalImg.src = img.src;
-      modal.style.display = "flex";
-      setTimeout(() => {
-        modal.style.opacity = "1";
-        modalImg.style.transform = "scale(1)";
-      }, 10);
+      const filterValue = btn.getAttribute("data-filter");
+
+      mediaBlocks.forEach((block) => {
+        const category = block.getAttribute("data-category");
+        if (filterValue === "all" || category === filterValue) {
+          block.classList.remove("is-hidden");
+        } else {
+          block.classList.add("is-hidden");
+        }
+      });
     });
   });
 
-  modal.addEventListener("click", () => {
-    modal.style.opacity = "0";
-    modalImg.style.transform = "scale(0.92)";
-    setTimeout(() => {
-      modal.style.display = "none";
-    }, 350);
+  // 3. CAMBIO DE VISTA (GRID / LIST)
+  const btnGrid = document.getElementById("btn-grid");
+  const btnList = document.getElementById("btn-list");
+  const grids = document.querySelectorAll(".interactive-grid");
+
+  if (btnGrid && btnList) {
+    btnGrid.addEventListener("click", () => {
+      btnGrid.classList.add("active");
+      btnList.classList.remove("active");
+      grids.forEach((grid) => grid.classList.remove("list-view"));
+    });
+
+    btnList.addEventListener("click", () => {
+      btnList.classList.add("active");
+      btnGrid.classList.remove("active");
+      grids.forEach((grid) => grid.classList.addClass ? grid.classList.addClass("list-view") : grid.classList.add("list-view"));
+    });
+  }
+
+  // 4. INTERACTIVE LIGHTBOX MODAL
+  const modal = document.getElementById("interactive-modal");
+  const modalImg = document.getElementById("modal-image");
+  const modalTitle = document.getElementById("modal-title-text");
+  const modalMeta = document.getElementById("modal-meta-text");
+  const modalClose = document.getElementById("modal-close");
+
+  const photoCards = document.querySelectorAll(".photo-card");
+
+  photoCards.forEach((card) => {
+    card.addEventListener("click", () => {
+      const src = card.getAttribute("data-src");
+      const title = card.getAttribute("data-title");
+      const meta = card.getAttribute("data-meta");
+
+      if (src) {
+        modalImg.src = src;
+        modalTitle.textContent = `“VIEWER” // ${title}`;
+        modalMeta.textContent = meta;
+        modal.classList.add("active");
+      }
+    });
   });
 
-  // 3. RELOJ INDUSTRIAL EN VIVO
+  function closeModal() {
+    modal.classList.remove("active");
+    setTimeout(() => {
+      modalImg.src = "";
+    }, 300);
+  }
+
+  if (modalClose) {
+    modalClose.addEventListener("click", closeModal);
+  }
+
+  if (modal) {
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal || e.target.classList.contains("modal-body")) {
+        closeModal();
+      }
+    });
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal && modal.classList.contains("active")) {
+      closeModal();
+    }
+  });
+
+  // 5. RELOJ EN VIVO
   const topBar = document.querySelector(".top-bar");
   if (topBar) {
     const timeTag = document.createElement("div");

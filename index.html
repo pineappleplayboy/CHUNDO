@@ -21,25 +21,45 @@
   <section class="brand-hero">
     <h1 class="brand-title">CHUNDO</h1>
     <div class="brand-subtitle">“PRODUCTORA AUDIOVISUAL”</div>
+    <div class="brand-description" style="margin-top: 24px; font-family: var(--font-mono); font-size: 0.95rem; max-width: 650px; line-height: 1.6; color: var(--text-main); letter-spacing: 0.05em; text-transform: none;">
+      Archivo digital y casa productora enfocada en la exploración de la identidad juvenil. Desarrollo de narrativas <em>coming-of-age</em>, estética urbana y experimentación audiovisual desde Naucalpan de Juárez.
+    </div>
   </section>
 
   <!-- Main Content Container -->
   <main class="content-container">
 
-    <!-- SECCION 1: ARCHIVO VISUAL (FOTOS Y VIDEOS LOCALES) -->
-    <section class="media-block">
-      <div class="section-label">“ARCHIVO VISUAL” [ 01 - 05 ]</div>
+    <!-- BARRA INTERACTIVA DE NAVEGACIÓN Y FILTRO -->
+    <nav class="archive-nav">
+      <div class="filter-controls">
+        <button class="filter-btn active" data-filter="all">[ SHOW ALL ]</button>
+        <button class="filter-btn" data-filter="photo">[ FOTOGRAFÍA ]</button>
+        <button class="filter-btn" data-filter="video">[ VIDEO ]</button>
+      </div>
+      <div class="layout-controls hide-mobile">
+        <button class="view-btn active" id="btn-grid" title="Vista Retícula">[ GRID ]</button>
+        <button class="view-btn" id="btn-list" title="Vista Lista">[ LIST ]</button>
+      </div>
+    </nav>
 
-      <div class="media-grid">
+    <!-- APARTADO 1: FOTOGRAFÍA (10 ESPACIOS) -->
+    <section class="media-block" data-category="photo">
+      <div class="section-label">
+        <span>“STILL_PHOTOGRAPHY” [ 01 - 10 ]</span>
+        <span class="count-tag">STATUS: ACTIVE</span>
+      </div>
+
+      <div class="interactive-grid">
         
         <!-- PHOTO 01 -->
-        <article class="media-card">
+        <article class="interactive-card photo-card" data-src="assets/foto1.jpg" data-title="STILL_FRAME_01" data-meta="FORMAT: .RAW // RESOLUTION: 4K">
           <div class="card-header">
             <span>“IMAGE_FILE”</span>
-            <span>01 / 05</span>
+            <span>01 / 10</span>
           </div>
           <div class="media-frame">
-            <img src="assets/foto1.png" alt="CHUNDO — Photography 01">
+            <img src="assets/foto1.jpg" alt="CHUNDO — Photography 01" loading="lazy">
+            <div class="hover-overlay"><span class="action-tag">“EXPAND_IMAGE ↗”</span></div>
           </div>
           <div class="card-footer">
             <span class="tag">FORMAT: .RAW</span>
@@ -48,13 +68,14 @@
         </article>
 
         <!-- PHOTO 02 -->
-        <article class="media-card">
+        <article class="interactive-card photo-card" data-src="assets/foto2.jpg" data-title="STILL_FRAME_02" data-meta="FORMAT: .JPEG // COLOR: REC709">
           <div class="card-header">
             <span>“IMAGE_FILE”</span>
-            <span>02 / 05</span>
+            <span>02 / 10</span>
           </div>
           <div class="media-frame">
-            <img src="assets/foto2.png" alt="CHUNDO — Photography 02">
+            <img src="assets/foto2.jpg" alt="CHUNDO — Photography 02" loading="lazy">
+            <div class="hover-overlay"><span class="action-tag">“EXPAND_IMAGE ↗”</span></div>
           </div>
           <div class="card-footer">
             <span class="tag">FORMAT: .JPEG</span>
@@ -63,13 +84,14 @@
         </article>
 
         <!-- PHOTO 03 -->
-        <article class="media-card">
+        <article class="interactive-card photo-card" data-src="assets/foto3.jpg" data-title="STILL_FRAME_03" data-meta="FORMAT: .RAW // ASPECT: 16:9">
           <div class="card-header">
             <span>“IMAGE_FILE”</span>
-            <span>03 / 05</span>
+            <span>03 / 10</span>
           </div>
           <div class="media-frame">
-            <img src="assets/foto3.jpg" alt="CHUNDO — Photography 03">
+            <img src="assets/foto3.jpg" alt="CHUNDO — Photography 03" loading="lazy">
+            <div class="hover-overlay"><span class="action-tag">“EXPAND_IMAGE ↗”</span></div>
           </div>
           <div class="card-footer">
             <span class="tag">FORMAT: .RAW</span>
@@ -78,13 +100,14 @@
         </article>
 
         <!-- PHOTO 04 -->
-        <article class="media-card">
+        <article class="interactive-card photo-card" data-src="assets/foto4.jpg" data-title="STILL_FRAME_04" data-meta="FORMAT: .JPEG // SENSITIVITY: HIGH">
           <div class="card-header">
             <span>“IMAGE_FILE”</span>
-            <span>04 / 05</span>
+            <span>04 / 10</span>
           </div>
           <div class="media-frame">
-            <img src="assets/foto4.jpg" alt="CHUNDO — Photography 04">
+            <img src="assets/foto4.jpg" alt="CHUNDO — Photography 04" loading="lazy">
+            <div class="hover-overlay"><span class="action-tag">“EXPAND_IMAGE ↗”</span></div>
           </div>
           <div class="card-footer">
             <span class="tag">FORMAT: .JPEG</span>
@@ -92,41 +115,152 @@
           </div>
         </article>
 
-        <!-- LOCAL VIDEO 01 -->
-        <article class="media-card">
+        <!-- PHOTO 05 -->
+        <article class="interactive-card photo-card" data-src="assets/foto5.jpg" data-title="STILL_FRAME_05" data-meta="FORMAT: .RAW // LENS: 35MM">
           <div class="card-header">
-            <span>“VIDEO_FILE”</span>
-            <span>05 / 05</span>
+            <span>“IMAGE_FILE”</span>
+            <span>05 / 10</span>
           </div>
           <div class="media-frame">
-            <video controls preload="metadata" poster="assets/foto1.png">
-              <source src="assets/video1.mov" type="video/mp4">
-              Tu navegador no soporta el reproductor de video.
-            </video>
+            <img src="assets/foto5.jpg" alt="CHUNDO — Photography 05" loading="lazy">
+            <div class="hover-overlay"><span class="action-tag">“EXPAND_IMAGE ↗”</span></div>
           </div>
           <div class="card-footer">
-            <span class="tag">FORMAT: .MP4</span>
-            <span class="title">CLIP_SEQUENCE_01</span>
+            <span class="tag">FORMAT: .RAW</span>
+            <span class="title">STILL_FRAME_05</span>
+          </div>
+        </article>
+
+        <!-- PHOTO 06 -->
+        <article class="interactive-card photo-card" data-src="assets/foto6.jpg" data-title="STILL_FRAME_06" data-meta="FORMAT: .JPEG // LENS: 50MM">
+          <div class="card-header">
+            <span>“IMAGE_FILE”</span>
+            <span>06 / 10</span>
+          </div>
+          <div class="media-frame">
+            <img src="assets/foto6.jpg" alt="CHUNDO — Photography 06" loading="lazy">
+            <div class="hover-overlay"><span class="action-tag">“EXPAND_IMAGE ↗”</span></div>
+          </div>
+          <div class="card-footer">
+            <span class="tag">FORMAT: .JPEG</span>
+            <span class="title">STILL_FRAME_06</span>
+          </div>
+        </article>
+
+        <!-- PHOTO 07 -->
+        <article class="interactive-card photo-card" data-src="assets/foto7.jpg" data-title="STILL_FRAME_07" data-meta="FORMAT: .RAW // ENVIRONMENT: URBAN">
+          <div class="card-header">
+            <span>“IMAGE_FILE”</span>
+            <span>07 / 10</span>
+          </div>
+          <div class="media-frame">
+            <img src="assets/foto7.jpg" alt="CHUNDO — Photography 07" loading="lazy">
+            <div class="hover-overlay"><span class="action-tag">“EXPAND_IMAGE ↗”</span></div>
+          </div>
+          <div class="card-footer">
+            <span class="tag">FORMAT: .RAW</span>
+            <span class="title">STILL_FRAME_07</span>
+          </div>
+        </article>
+
+        <!-- PHOTO 08 -->
+        <article class="interactive-card photo-card" data-src="assets/foto8.jpg" data-title="STILL_FRAME_08" data-meta="FORMAT: .JPEG // LIGHTING: NATURAL">
+          <div class="card-header">
+            <span>“IMAGE_FILE”</span>
+            <span>08 / 10</span>
+          </div>
+          <div class="media-frame">
+            <img src="assets/foto8.jpg" alt="CHUNDO — Photography 08" loading="lazy">
+            <div class="hover-overlay"><span class="action-tag">“EXPAND_IMAGE ↗”</span></div>
+          </div>
+          <div class="card-footer">
+            <span class="tag">FORMAT: .JPEG</span>
+            <span class="title">STILL_FRAME_08</span>
+          </div>
+        </article>
+
+        <!-- PHOTO 09 -->
+        <article class="interactive-card photo-card" data-src="assets/foto9.jpg" data-title="STILL_FRAME_09" data-meta="FORMAT: .RAW // COLOR: GRADED">
+          <div class="card-header">
+            <span>“IMAGE_FILE”</span>
+            <span>09 / 10</span>
+          </div>
+          <div class="media-frame">
+            <img src="assets/foto9.jpg" alt="CHUNDO — Photography 09" loading="lazy">
+            <div class="hover-overlay"><span class="action-tag">“EXPAND_IMAGE ↗”</span></div>
+          </div>
+          <div class="card-footer">
+            <span class="tag">FORMAT: .RAW</span>
+            <span class="title">STILL_FRAME_09</span>
+          </div>
+        </article>
+
+        <!-- PHOTO 10 -->
+        <article class="interactive-card photo-card" data-src="assets/foto10.jpg" data-title="STILL_FRAME_10" data-meta="FORMAT: .JPEG // EXPORT: WEB">
+          <div class="card-header">
+            <span>“IMAGE_FILE”</span>
+            <span>10 / 10</span>
+          </div>
+          <div class="media-frame">
+            <img src="assets/foto10.jpg" alt="CHUNDO — Photography 10" loading="lazy">
+            <div class="hover-overlay"><span class="action-tag">“EXPAND_IMAGE ↗”</span></div>
+          </div>
+          <div class="card-footer">
+            <span class="tag">FORMAT: .JPEG</span>
+            <span class="title">STILL_FRAME_10</span>
           </div>
         </article>
 
       </div>
     </section>
 
-    <!-- SECCION 2: YOUTUBE / VIDEO -->
-    <section class="media-block youtube-block">
-      <div class="section-label">“YOUTUBE / VIDEO” [ 01 / 01 ]</div>
+    <!-- APARTADO 2A: VIDEO LOCAL (GITHUB) -->
+    <section class="media-block" data-category="video">
+      <div class="section-label">
+        <span>“VIDEOS”</span>
+        <span class="count-tag">STATUS: COMPRESSED</span>
+      </div>
 
-      <div class="media-grid single-column">
-        <article class="media-card">
+      <div class="interactive-grid video-grid">
+        <!-- LOCAL VIDEO -->
+        <article class="interactive-card video-card">
           <div class="card-header">
-            <span>“YOUTUBE_LINK”</span>
-            <span>VIDEO_FEATURED</span>
+            <span>“MOV_FILE”</span>
+            <span>01 / 01</span>
+          </div>
+          <div class="media-frame video-frame">
+            <video controls preload="metadata" poster="assets/foto1.png">
+              <!-- Asegúrate de poner el nombre correcto de tu video exportado en Handbrake -->
+              <source src="assets/video1.mov" type="video/mp4">
+              Tu navegador no soporta el reproductor de video.
+            </video>
+          </div>
+          <div class="card-footer">
+            <span class="tag">FORMAT: MP4 / H264</span>
+            <span class="title">DEB_01</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- APARTADO 2B: VIDEO EXTERNO (YOUTUBE) -->
+    <section class="media-block" data-category="video">
+      <div class="section-label">
+        <span>“EXTERNAL_STREAM” [ YOUTUBE ]</span>
+        <span class="count-tag">STATUS: ONLINE</span>
+      </div>
+
+      <div class="interactive-grid video-grid">
+        <!-- YOUTUBE FEATURED -->
+        <article class="interactive-card video-card yt-card">
+          <div class="card-header">
+            <span>“STREAM_LINK”</span>
+            <span>01 / 01</span>
           </div>
           <div class="media-frame">
             <a href="https://youtu.be/XlIFuTUK59w" target="_blank" rel="noopener noreferrer" class="yt-cover-link">
               <img src="https://img.youtube.com/vi/XlIFuTUK59w/maxresdefault.jpg" alt="CHUNDO — YouTube Video">
-              <div class="play-overlay">“WATCH ON YOUTUBE ↗”</div>
+              <div class="play-overlay">“PLAY ON YOUTUBE ↗”</div>
             </a>
           </div>
           <div class="card-footer">
@@ -153,6 +287,21 @@
     </section>
 
   </main>
+
+  <!-- MODAL / LIGHTBOX INTERACTIVO DE PANTALLA COMPLETA -->
+  <div id="interactive-modal" class="custom-modal">
+    <div class="modal-top-bar">
+      <span id="modal-title-text">“STILL_VIEWER”</span>
+      <button class="modal-close-btn" id="modal-close">[ CLOSE X ]</button>
+    </div>
+    <div class="modal-body">
+      <img id="modal-image" src="" alt="Enlarged view">
+    </div>
+    <div class="modal-bottom-bar">
+      <span id="modal-meta-text">FORMAT: RAW</span>
+      <span>USE ESC TO EXIT</span>
+    </div>
+  </div>
 
   <!-- Industrial Footer -->
   <footer class="footer-stripes">
