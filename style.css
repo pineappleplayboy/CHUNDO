@@ -227,7 +227,7 @@ body {
   color: var(--accent-yellow);
 }
 
-/* --- External Links Section (At Bottom) --- */
+/* --- External Links Section --- */
 .links-section {
   padding-top: 60px;
   border-top: 1px dashed var(--text-main);

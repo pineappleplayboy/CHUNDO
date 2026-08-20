@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }, observerOptions);
 
-  // Observa tanto las tarjetas de medios como los botones de links
   document.querySelectorAll(".media-card, .off-button").forEach((el) => {
     revealObserver.observe(el);
   });
