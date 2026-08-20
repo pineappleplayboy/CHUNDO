@@ -8,7 +8,7 @@
   --text-main: #f0f0f0;
   --text-muted: #ffffff;
   --accent-yellow: #fffefe;
-  --border-color: #ffffff;
+  --border-color: #000000;
   --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'Space Mono', monospace;
 }
@@ -44,23 +44,16 @@ body {
 
 /* --- Brand Hero Section --- */
 .brand-hero {
-  padding: 60px 24px 40px 24px;
+  padding: 40px 24px 30px 24px;
   border-bottom: 1px solid var(--border-color);
 }
 
 .brand-title {
-  font-size: clamp(3.5rem, 12vw, 9rem);
+  font-size: clamp(3rem, 12vw, 8rem);
   font-weight: 700;
   line-height: 0.85;
   letter-spacing: -0.04em;
   color: var(--text-main);
-  word-break: break-word;
-}
-
-.brand-title .ext {
-  font-family: var(--font-mono);
-  font-weight: 400;
-  color: var(--accent-yellow);
 }
 
 .brand-subtitle {
@@ -95,7 +88,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 10px;
+  padding: 20px;
   background-color: #000;
   border: 2px solid var(--text-main);
   color: var(--text-main);
@@ -146,10 +139,23 @@ body {
   color: #000;
 }
 
-/* --- Content Container & Media Grid --- */
+/* --- Content Container & Section Blocks --- */
 .content-container {
   padding: 40px 24px;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.media-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.youtube-block {
+  padding-top: 40px;
+  border-top: 1px dashed var(--text-main);
 }
 
 .media-grid {
@@ -158,7 +164,11 @@ body {
   gap: 40px;
 }
 
-/* Keyframe Animacion Scroll Reveal */
+.media-grid.single-column {
+  grid-template-columns: minmax(320px, 800px);
+}
+
+/* Keyframe Animación Scroll Reveal */
 @keyframes offReveal {
   from {
     opacity: 0;
@@ -177,7 +187,6 @@ body {
   flex-direction: column;
   transition: border-color 0.25s ease, transform 0.25s ease;
 
-  /* Animación basada en el scroll sin JS */
   animation: offReveal linear both;
   animation-timeline: view();
   animation-range: entry 5% cover 25%;
@@ -197,7 +206,6 @@ body {
   background-color: #000;
 }
 
-/* Ajuste de escala para visualizar las fotos sin recortes pequeños */
 .media-frame {
   width: 100%;
   min-height: 480px;
@@ -207,6 +215,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .media-frame img,
@@ -218,9 +227,39 @@ body {
   transition: transform 0.4s ease;
 }
 
-.media-card:hover .media-frame img,
-.media-card:hover .media-frame video {
-  transform: scale(1.02);
+/* Cover Link para YouTube */
+.yt-cover-link {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-decoration: none;
+}
+
+.play-overlay {
+  position: absolute;
+  background-color: #000;
+  color: var(--text-main);
+  border: 2px solid var(--text-main);
+  padding: 12px 20px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+
+.yt-cover-link:hover .play-overlay {
+  background-color: var(--accent-yellow);
+  color: #000;
+  border-color: var(--accent-yellow);
+}
+
+.yt-cover-link:hover img {
+  transform: scale(1.03);
 }
 
 .card-footer {
@@ -242,7 +281,17 @@ body {
   font-weight: 700;
 }
 
-/* --- Industrial Off-White Pattern Footer --- */
+.yt-btn-link {
+  font-weight: 700;
+  color: var(--text-main);
+  text-decoration: underline;
+}
+
+.yt-btn-link:hover {
+  color: var(--accent-yellow);
+}
+
+/* --- Industrial Footer --- */
 .footer-stripes {
   margin-top: 60px;
   border-top: 4px solid var(--text-main);
@@ -296,7 +345,7 @@ body {
     display: none;
   }
   .brand-hero {
-    padding: 40px 16px 24px 16px;
+    padding: 30px 16px 20px 16px;
   }
   .links-section, .content-container {
     padding-left: 16px;
@@ -306,6 +355,6 @@ body {
     grid-template-columns: 1fr;
   }
   .media-frame {
-    min-height: 360px;
+    min-height: 300px;
   }
 }
