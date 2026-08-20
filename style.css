@@ -8,7 +8,7 @@
   --text-main: #f0f0f0;
   --text-muted: #ffffff;
   --accent-yellow: #fffefe;
-  --border-color: #000000;
+  --border-color: #ffffff;
   --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'Space Mono', monospace;
 }
@@ -95,7 +95,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px;
+  padding: 10px;
   background-color: #000;
   border: 2px solid var(--text-main);
   color: var(--text-main);
