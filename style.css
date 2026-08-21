@@ -456,6 +456,25 @@ body {
   gap: 32px;
 }
 
+.footer-sticker-wrapper {
+  max-width: 320px;
+  margin: 0 auto 12px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-sticker {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.15));
+}
+
+.footer-sticker:hover {
+  transform: rotate(-3deg) scale(1.05);
+}
+
 .manifesto-quote {
   font-size: clamp(1.4rem, 4vw, 2.5rem);
   font-weight: 700;
@@ -516,19 +535,16 @@ body {
     text-align: center;
   }
 
-  /* Grid de 2 columnas en celular para acelerar el scroll */
   .interactive-grid { 
     grid-template-columns: repeat(2, 1fr) !important; 
     gap: 12px; 
   }
 
-  /* Reducción de altura y proporción compacta para imágenes */
   .media-frame { 
     min-height: 160px; 
     height: 180px; 
   }
 
-  /* Textos y etiquetas compactas */
   .card-header, .card-footer {
     padding: 8px 10px;
     font-size: 0.65rem;
@@ -539,7 +555,6 @@ body {
     font-size: 0.65rem;
   }
 
-  /* Formato para videos en celular (1 columna para no apretar el reproductor) */
   .video-grid {
     grid-template-columns: 1fr !important;
   }
@@ -551,5 +566,10 @@ body {
 
   .footer-content { 
     padding: 24px 18px 20px 18px; 
+  }
+
+  .footer-sticker-wrapper {
+    max-width: 220px;
+    margin: 0 auto 8px auto;
   }
 }
