@@ -1,11 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. SCROLL REVEAL ANIMATION (INTERSECTION OBSERVER)
-  const observerOptions = {
-    root: null,
-    threshold: 0.1,
-    rootMargin: "0px 0px -30px 0px"
-  };
 
+  // 1. REVELADO AL SCROLL (OBSERVER CORREGIDO)
   const revealObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -13,16 +8,13 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.unobserve(entry.target);
       }
     });
-  }, observerOptions);
+  }, { threshold: 0.1 });
 
-  function initObserve() {
-    document.querySelectorAll(".interactive-card, .off-button").forEach((el) => {
-      revealObserver.observe(el);
-    });
-  }
-  initObserve();
+  document.querySelectorAll(".interactive-card, .off-button").forEach((el) => {
+    revealObserver.observe(el);
+  });
 
-  // 2. FILTRADO INTERACTIVO (TODOS / FOTOGRAFÍA / VIDEO)
+  // 2. FILTRADO INTERACTIVO (TODOS / PHOTO / VIDEO)
   const filterBtns = document.querySelectorAll(".filter-btn");
   const mediaBlocks = document.querySelectorAll(".media-block");
 
@@ -44,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 3. CAMBIO DE VISTA (GRID / LIST)
+  // 3. VISTA EN GRID O LISTA
   const btnGrid = document.getElementById("btn-grid");
   const btnList = document.getElementById("btn-list");
   const grids = document.querySelectorAll(".interactive-grid");
@@ -59,11 +51,11 @@ document.addEventListener("DOMContentLoaded", () => {
     btnList.addEventListener("click", () => {
       btnList.classList.add("active");
       btnGrid.classList.remove("active");
-      grids.forEach((grid) => grid.classList.addClass ? grid.classList.addClass("list-view") : grid.classList.add("list-view"));
+      grids.forEach((grid) => grid.classList.add("list-view"));
     });
   }
 
-  // 4. INTERACTIVE LIGHTBOX MODAL
+  // 4. MODAL / LIGHTBOX DE FOTOGRAFÍAS
   const modal = document.getElementById("interactive-modal");
   const modalImg = document.getElementById("modal-image");
   const modalTitle = document.getElementById("modal-title-text");
@@ -88,15 +80,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function closeModal() {
-    modal.classList.remove("active");
-    setTimeout(() => {
-      modalImg.src = "";
-    }, 300);
+    if (modal) {
+      modal.classList.remove("active");
+      setTimeout(() => { modalImg.src = ""; }, 300);
+    }
   }
 
-  if (modalClose) {
-    modalClose.addEventListener("click", closeModal);
-  }
+  if (modalClose) modalClose.addEventListener("click", closeModal);
 
   if (modal) {
     modal.addEventListener("click", (e) => {
@@ -112,22 +102,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 5. RELOJ EN VIVO
-  const topBar = document.querySelector(".top-bar");
-  if (topBar) {
-    const timeTag = document.createElement("div");
-    timeTag.className = "meta-tag";
-    topBar.appendChild(timeTag);
-
-    function updateClock() {
-      const now = new Date();
-      const hours = String(now.getHours()).padStart(2, "0");
-      const minutes = String(now.getMinutes()).padStart(2, "0");
-      const seconds = String(now.getSeconds()).padStart(2, "0");
-      timeTag.textContent = `SYS_TIME: [${hours}:${minutes}:${seconds}]`;
-    }
-
-    updateClock();
-    setInterval(updateClock, 1000);
-  }
 });
