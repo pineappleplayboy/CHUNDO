@@ -483,7 +483,25 @@ body {
   .top-bar { padding: 12px 18px; }
   .brand-hero { padding: 40px 18px 30px 18px; }
   .content-container { padding: 30px 18px; gap: 50px; }
-  .archive-nav { flex-direction: column; gap: 12px; padding: 12px; }
+  
+  /* Ajuste compacto de barra navegacional en móviles */
+  .archive-nav {
+    top: 0;
+    padding: 6px 8px;
+  }
+
+  .filter-controls {
+    gap: 4px;
+    width: 100%;
+  }
+
+  .filter-btn {
+    padding: 6px 8px;
+    font-size: 0.72rem;
+    flex: 1;
+    text-align: center;
+  }
+
   .interactive-grid { grid-template-columns: 1fr; gap: 32px; }
   .media-frame { min-height: 320px; }
   .footer-content { padding: 24px 18px 20px 18px; }
