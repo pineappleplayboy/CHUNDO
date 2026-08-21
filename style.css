@@ -478,12 +478,26 @@ body {
   color: var(--text-muted);
 }
 
-/* Responsive */
+/* ==========================================================================
+   RESPONSIVE / AJUSTES PARA MÓVIL
+   ========================================================================== */
 @media (max-width: 768px) {
-  .hide-mobile { display: none; }
-  .top-bar { padding: 12px 18px; }
-  .brand-hero { padding: 40px 18px 30px 18px; }
-  .content-container { padding: 30px 18px; gap: 50px; }
+  .hide-mobile { 
+    display: none; 
+  }
+
+  .top-bar { 
+    padding: 12px 18px; 
+  }
+
+  .brand-hero { 
+    padding: 40px 18px 30px 18px; 
+  }
+
+  .content-container { 
+    padding: 24px 12px; 
+    gap: 40px; 
+  }
   
   .archive-nav {
     top: 0;
@@ -502,7 +516,40 @@ body {
     text-align: center;
   }
 
-  .interactive-grid { grid-template-columns: 1fr; gap: 32px; }
-  .media-frame { min-height: 320px; }
-  .footer-content { padding: 24px 18px 20px 18px; }
+  /* Grid de 2 columnas en celular para acelerar el scroll */
+  .interactive-grid { 
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 12px; 
+  }
+
+  /* Reducción de altura y proporción compacta para imágenes */
+  .media-frame { 
+    min-height: 160px; 
+    height: 180px; 
+  }
+
+  /* Textos y etiquetas compactas */
+  .card-header, .card-footer {
+    padding: 8px 10px;
+    font-size: 0.65rem;
+  }
+
+  .action-tag {
+    padding: 6px 10px;
+    font-size: 0.65rem;
+  }
+
+  /* Formato para videos en celular (1 columna para no apretar el reproductor) */
+  .video-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .video-grid .media-frame {
+    height: auto;
+    min-height: 220px;
+  }
+
+  .footer-content { 
+    padding: 24px 18px 20px 18px; 
+  }
 }
