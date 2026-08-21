@@ -432,6 +432,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 20px;
+  position: relative;
 }
 
 .modal-body img {
@@ -484,7 +485,6 @@ body {
   .brand-hero { padding: 40px 18px 30px 18px; }
   .content-container { padding: 30px 18px; gap: 50px; }
   
-  /* Ajuste compacto de barra navegacional en móviles */
   .archive-nav {
     top: 0;
     padding: 6px 8px;

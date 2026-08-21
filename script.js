@@ -55,29 +55,48 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 4. MODAL / LIGHTBOX DE FOTOGRAFÍAS
+  // 4. MODAL / LIGHTBOX DE FOTOGRAFÍAS (NAVEGACIÓN TECLADO + SWIPE)
   const modal = document.getElementById("interactive-modal");
   const modalImg = document.getElementById("modal-image");
   const modalTitle = document.getElementById("modal-title-text");
   const modalMeta = document.getElementById("modal-meta-text");
   const modalClose = document.getElementById("modal-close");
 
-  const photoCards = document.querySelectorAll(".photo-card");
+  const photoCards = Array.from(document.querySelectorAll(".photo-card"));
+  let currentIndex = 0;
 
-  photoCards.forEach((card) => {
+  function updateModal(index) {
+    if (index < 0 || index >= photoCards.length) return;
+    currentIndex = index;
+    const card = photoCards[currentIndex];
+
+    const src = card.getAttribute("data-src");
+    const title = card.getAttribute("data-title");
+    const meta = card.getAttribute("data-meta");
+
+    if (src) {
+      modalImg.src = src;
+      modalTitle.textContent = `“VIEWER” // ${title}`;
+      modalMeta.textContent = meta;
+    }
+  }
+
+  photoCards.forEach((card, index) => {
     card.addEventListener("click", () => {
-      const src = card.getAttribute("data-src");
-      const title = card.getAttribute("data-title");
-      const meta = card.getAttribute("data-meta");
-
-      if (src) {
-        modalImg.src = src;
-        modalTitle.textContent = `“VIEWER” // ${title}`;
-        modalMeta.textContent = meta;
-        modal.classList.add("active");
-      }
+      updateModal(index);
+      if (modal) modal.classList.add("active");
     });
   });
+
+  function showNext() {
+    const nextIndex = (currentIndex + 1) % photoCards.length;
+    updateModal(nextIndex);
+  }
+
+  function showPrev() {
+    const prevIndex = (currentIndex - 1 + photoCards.length) % photoCards.length;
+    updateModal(prevIndex);
+  }
 
   function closeModal() {
     if (modal) {
@@ -96,10 +115,37 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Navegación con teclado (Flecha Izquierda / Derecha / Escape)
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal && modal.classList.contains("active")) {
-      closeModal();
-    }
+    if (!modal || !modal.classList.contains("active")) return;
+
+    if (e.key === "Escape") closeModal();
+    if (e.key === "ArrowRight") showNext();
+    if (e.key === "ArrowLeft") showPrev();
   });
+
+  // Soporte para gestos táctiles (Swipe en celulares)
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  if (modal) {
+    modal.addEventListener("touchstart", (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    modal.addEventListener("touchend", (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+  }
+
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    if (touchEndX < touchStartX - swipeThreshold) {
+      showNext();
+    } else if (touchEndX > touchStartX + swipeThreshold) {
+      showPrev();
+    }
+  }
 
 });
