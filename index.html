@@ -15,6 +15,7 @@
   <!-- Top Technical Bar -->
   <header class="top-bar">
     <div class="meta-tag">SINCE 2024</div>
+    <button class="cta-top-btn" id="open-contact-btn">[BOOKING / CONTACTO ↗]</button>
     <div class="meta-tag hide-mobile">NAUCALPAN / MEXICO</div>
   </header>
 
@@ -37,12 +38,15 @@
         <button class="filter-btn" data-filter="photo">[FOTOGRAFÍA]</button>
         <button class="filter-btn" data-filter="video">[VIDEO]</button>
       </div>
-      <div class="layout-controls hide-mobile"></div>
+      <div class="layout-controls hide-mobile">
+        <button class="view-btn active" id="btn-grid">[GRID]</button>
+        <button class="view-btn" id="btn-list">[LISTA]</button>
+      </div>
     </nav>
 
     <!-- SECCIÓN 1: FOTOGRAFÍA -->
     <section class="media-block" data-category="photo">
-      <div class="section-label"><span>“FOTOGRAFÍA”</span></div>
+      <div class="section-label"><span>“ARCHIVO FOTOGRÁFICO”</span></div>
       <div class="interactive-grid">
 
         <!-- PHOTO 01 -->
@@ -248,7 +252,7 @@
       </div>
     </section>
 
-    <!-- APARTADO 2A: VIDEO LOCAL (HASTA 4 VIDEOS) -->
+    <!-- APARTADO 2A: VIDEO LOCAL -->
     <section class="media-block" data-category="video">
       <div class="section-label"><span>“VIDEOS”</span></div>
       <div class="interactive-grid video-grid">
@@ -257,7 +261,7 @@
         <article class="interactive-card video-card">
           <div class="card-header"><span>01 / 04</span></div>
           <div class="media-frame video-frame">
-            <video controls preload="metadata" poster="assets/poster1.jpg">
+            <video controls playsinline preload="metadata" poster="assets/poster1.jpg">
               <source src="assets/video1.mov" type="video/mp4">
               Tu navegador no soporta el reproductor de video.
             </video>
@@ -272,7 +276,7 @@
         <article class="interactive-card video-card">
           <div class="card-header"><span>02 / 04</span></div>
           <div class="media-frame video-frame">
-            <video controls preload="metadata" poster="assets/poster2.jpg">
+            <video controls playsinline preload="metadata" poster="assets/poster2.jpg">
               <source src="assets/video2.mp4" type="video/mp4">
               Tu navegador no soporta el reproductor de video.
             </video>
@@ -287,7 +291,7 @@
         <article class="interactive-card video-card">
           <div class="card-header"><span>03 / 04</span></div>
           <div class="media-frame video-frame">
-            <video controls preload="metadata" poster="assets/poster3.jpg">
+            <video controls playsinline preload="metadata" poster="assets/poster3.jpg">
               <source src="assets/video3.mp4" type="video/mp4">
               Tu navegador no soporta el reproductor de video.
             </video>
@@ -302,7 +306,7 @@
         <article class="interactive-card video-card">
           <div class="card-header"><span>04 / 04</span></div>
           <div class="media-frame video-frame">
-            <video controls preload="metadata" poster="assets/poster4.jpg">
+            <video controls playsinline preload="metadata" poster="assets/poster4.jpg">
               <source src="assets/video4.mp4" type="video/mp4">
               Tu navegador no soporta el reproductor de video.
             </video>
@@ -353,6 +357,21 @@
       </div>
     </section>
 
+    <!-- BANNER CTA -->
+    <section class="cta-banner-section">
+      <div class="cta-banner-card">
+        <div class="cta-banner-info">
+          <span class="cta-tag">// DISPONIBILIDAD DE RODAJE</span>
+          <h2 class="cta-heading">¿TIENES UN PROYECTO EN MENTE?</h2>
+          <p class="cta-desc">DESARROLLO NARRATIVO, DIRECCIÓN DE FOTOGRAFÍA Y POSTPRODUCCIÓN AUDIOVISUAL.</p>
+        </div>
+        <button class="off-button cta-trigger-btn" id="open-contact-banner-btn">
+          <span class="btn-text">INICIAR PROYECTO</span>
+          <span class="btn-sub">CONTACTAR AHORA ↗</span>
+        </button>
+      </div>
+    </section>
+
   </main>
 
   <!-- MODAL / LIGHTBOX DE FOTOGRAFÍAS -->
@@ -369,6 +388,46 @@
     <div class="modal-bottom-bar">
       <span id="modal-meta-text">FORMAT: RAW</span>
       <span>USE ARROWS / SWIPE / ESC</span>
+    </div>
+  </div>
+
+  <!-- MODAL DE CONTACTO / BOOKING -->
+  <div id="contact-modal" class="custom-modal">
+    <div class="modal-top-bar">
+      <span>“CONTACTO // WORK_WITH_US”</span>
+      <button class="modal-close-btn" id="contact-modal-close">[CLOSE X]</button>
+    </div>
+
+    <div class="modal-body contact-modal-body">
+      <form class="contact-form" id="contact-form">
+        <div class="form-group">
+          <label for="name">NOMBRE / PRODUCTORA</label>
+          <input type="text" id="name" required placeholder="EJ. JUAN PÉREZ">
+        </div>
+        <div class="form-group">
+          <label for="email">CORREO ELECTRÓNICO</label>
+          <input type="email" id="email" required placeholder="CONTACTO@DOMINIO.COM">
+        </div>
+        <div class="form-group">
+          <label for="service">TIPO DE SERVICIO</label>
+          <select id="service">
+            <option value="CORTOMETRAJE">CORTOMETRAJE / CINE</option>
+            <option value="VIDEO_MUSICAL">VIDEO MUSICAL</option>
+            <option value="FOTOGRAFIA">FOTOGRAFÍA Y STILLS</option>
+            <option value="OTRO">OTRO PROYECTO</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">DETALLES DEL PROYECTO</label>
+          <textarea id="message" rows="4" placeholder="DESCRIBE LA IDEA, FECHAS O PRESUPUESTO ESTIMADO..."></textarea>
+        </div>
+        <button type="submit" class="action-tag submit-btn">“ENVIAR_MENSAJE ↗”</button>
+      </form>
+    </div>
+
+    <div class="modal-bottom-bar">
+      <span>DIRECT EMAIL: ALEX250SUAREZ@GMAIL.COM // CHUNDOWORKSHOPS@GMAIL.COM</span>
+      <span>NAUCALPAN, MX</span>
     </div>
   </div>
 

@@ -498,6 +498,186 @@ body {
 }
 
 /* ==========================================================================
+   MICROINTERACCIONES & EFECTOS ANALÓGICOS (BRUTALIST HOVERS)
+   ========================================================================== */
+
+.media-frame::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.35) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.interactive-card:hover .media-frame::after {
+  opacity: 0.15;
+}
+
+.interactive-card {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.25s ease, 
+              box-shadow 0.25s ease,
+              opacity 0.5s ease;
+}
+
+.interactive-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-accent);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.08);
+}
+
+.interactive-card:active,
+.off-button:active,
+.action-tag:active,
+.filter-btn:active {
+  filter: invert(1);
+}
+
+.filter-btn, .view-btn, .action-tag, .off-button {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+              background-color 0.2s ease, 
+              color 0.2s ease, 
+              border-color 0.2s ease;
+}
+
+.filter-btn:hover, .view-btn:hover {
+  transform: translateY(-1px);
+}
+
+.off-button:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.06);
+}
+
+/* ==========================================================================
+   PUNTOS DE CONTACTO (CTA) & FORMULARIO MODAL
+   ========================================================================== */
+
+.cta-top-btn {
+  background: transparent;
+  border: 1px solid var(--border-accent);
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 6px 14px;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  transition: all 0.2s ease;
+}
+
+.cta-top-btn:hover {
+  background-color: var(--text-main);
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+.cta-banner-section {
+  padding-top: 40px;
+  border-top: 1px solid var(--border-color);
+}
+
+.cta-banner-card {
+  border: 1px solid var(--border-accent);
+  background-color: var(--surface-color);
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.cta-tag {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.cta-heading {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  margin: 12px 0 8px 0;
+  letter-spacing: -0.02em;
+}
+
+.cta-desc {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.cta-trigger-btn {
+  min-width: 260px;
+}
+
+.contact-modal-body {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background-color: #000000;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  padding: 12px;
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--border-accent);
+}
+
+.submit-btn {
+  cursor: pointer;
+  margin-top: 10px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.submit-btn:hover {
+  background-color: var(--text-main);
+  color: #000000;
+}
+
+/* ==========================================================================
    RESPONSIVE / AJUSTES PARA MÓVIL
    ========================================================================== */
 @media (max-width: 768px) {

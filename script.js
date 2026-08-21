@@ -148,4 +148,53 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // LÓGICA DE MODAL DE CONTACTO / BOOKING
+  const contactModal = document.getElementById("contact-modal");
+  const openContactBtn = document.getElementById("open-contact-btn");
+  const openContactBannerBtn = document.getElementById("open-contact-banner-btn");
+  const closeContactBtn = document.getElementById("contact-modal-close");
+  const contactForm = document.getElementById("contact-form");
+
+  function openContactModal() {
+    if (contactModal) contactModal.classList.add("active");
+  }
+
+  function closeContactModal() {
+    if (contactModal) contactModal.classList.remove("active");
+  }
+
+  if (openContactBtn) openContactBtn.addEventListener("click", openContactModal);
+  if (openContactBannerBtn) openContactBannerBtn.addEventListener("click", openContactModal);
+  if (closeContactBtn) closeContactBtn.addEventListener("click", closeContactModal);
+
+  if (contactModal) {
+    contactModal.addEventListener("click", (e) => {
+      if (e.target === contactModal) closeContactModal();
+    });
+  }
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const service = document.getElementById("service").value;
+      const message = document.getElementById("message").value;
+
+      const emails = "alex250suarez@gmail.com,chundoworkshops@gmail.com";
+      const subject = encodeURIComponent(`NUEVO PROYECTO: ${service} - ${name}`);
+      const body = encodeURIComponent(
+        `Nombre/Productora: ${name}\n` +
+        `Correo de contacto: ${email}\n` +
+        `Tipo de servicio: ${service}\n\n` +
+        `Detalles del proyecto:\n${message}`
+      );
+
+      window.location.href = `mailto:${emails}?subject=${subject}&body=${body}`;
+
+      closeContactModal();
+      contactForm.reset();
+    });
+  }
 });
