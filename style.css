@@ -687,29 +687,40 @@ body {
 }
 
 /* ==========================================================================
-   RESPONSIVE / AJUSTES PARA MÓVIL
+   RESPONSIVE / AJUSTES PARA MÓVIL (VERSIÓN REDUCIDA)
    ========================================================================== */
 @media (max-width: 768px) {
   .hide-mobile { 
     display: none; 
   }
 
+  /* Barra superior y Hero */
   .top-bar { 
-    padding: 12px 18px; 
+    padding: 10px 14px; 
+    font-size: 0.7rem;
   }
 
   .brand-hero { 
-    padding: 40px 18px 30px 18px; 
+    padding: 30px 14px 20px 14px; 
+  }
+
+  .brand-title {
+    font-size: clamp(2.5rem, 12vw, 6rem);
+  }
+
+  .brand-subtitle, .brand-description {
+    font-size: 0.8rem;
   }
 
   .content-container { 
-    padding: 24px 12px; 
-    gap: 40px; 
+    padding: 16px 12px; 
+    gap: 30px; 
   }
   
+  /* Navegación y Filtros */
   .archive-nav {
     top: 0;
-    padding: 6px 8px;
+    padding: 4px 6px;
   }
 
   .filter-controls {
@@ -718,30 +729,31 @@ body {
   }
 
   .filter-btn {
-    padding: 6px 8px;
-    font-size: 0.72rem;
+    padding: 6px;
+    font-size: 0.65rem;
     flex: 1;
     text-align: center;
   }
 
+  /* Grillas y Tarjetas */
   .interactive-grid { 
     grid-template-columns: repeat(2, 1fr) !important; 
-    gap: 12px; 
+    gap: 8px; 
   }
 
   .media-frame { 
-    min-height: 160px; 
-    height: 180px; 
+    min-height: 120px; 
+    height: 130px; 
   }
 
   .card-header, .card-footer {
-    padding: 8px 10px;
-    font-size: 0.65rem;
+    padding: 6px 8px;
+    font-size: 0.6rem;
   }
 
   .action-tag {
-    padding: 6px 10px;
-    font-size: 0.65rem;
+    padding: 4px 8px;
+    font-size: 0.6rem;
   }
 
   .video-grid {
@@ -750,18 +762,96 @@ body {
 
   .video-grid .media-frame {
     height: auto;
-    min-height: 220px;
+    min-height: 180px;
   }
 
+  /* Botones de Links y CTAs */
+  .off-button {
+    padding: 16px;
+  }
+
+  .off-button .btn-text {
+    font-size: 1.2rem;
+  }
+
+  .off-button .btn-sub {
+    font-size: 0.75rem;
+    margin-top: 8px;
+  }
+
+  .cta-banner-card {
+    padding: 20px 16px;
+    gap: 20px;
+  }
+
+  .cta-heading {
+    font-size: 1.5rem;
+  }
+
+  .cta-desc {
+    font-size: 0.75rem;
+  }
+
+  .cta-trigger-btn {
+    min-width: 100%;
+  }
+
+  /* Modales (Lightbox y Contacto) */
+  .modal-top-bar, .modal-bottom-bar {
+    padding: 12px 14px;
+    font-size: 0.65rem;
+  }
+
+  .form-group input, .form-group select, .form-group textarea {
+    padding: 10px;
+    font-size: 0.75rem;
+  }
+
+  .contact-form {
+    gap: 12px;
+  }
+
+  /* Footer */
   .footer-content { 
-    padding: 24px 18px 20px 18px; 
+    padding: 24px 16px 16px 16px; 
+    gap: 20px;
   }
 
   .footer-sticker-wrapper {
-    max-width: 220px;
+    max-width: 160px;
     margin: 0 auto 8px auto;
   }
+
+  .manifesto-quote {
+    font-size: 1.2rem;
+    padding-left: 12px;
+  }
+
+  .footer-meta {
+    font-size: 0.65rem;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+  }
+
+  /* Paginación */
+  .pagination-bar {
+    gap: 12px;
+    margin-top: 24px;
+    padding: 12px 0;
+  }
+
+  .pag-btn {
+    padding: 8px 12px;
+    font-size: 0.7rem;
+  }
+
+  .pag-indicator {
+    font-size: 0.75rem;
+  }
 }
+
 /* ==========================================================================
    BARRA DE PAGINACIÓN BRUTALISTA
    ========================================================================== */
