@@ -303,6 +303,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
- 
+ // LÓGICA PARA FORZAR PANTALLA COMPLETA AL DAR PLAY
+  document.querySelectorAll("video").forEach((video) => {
+    videoObserver.observe(video);
+
+    video.addEventListener("play", () => {
+      // iOS / Safari Nativo
+      if (video.webkitEnterFullscreen) {
+        video.webkitEnterFullscreen();
+      } 
+      // Android / Chrome / Estándar HTML5
+      else if (video.requestFullscreen) {
+        video.requestFullscreen();
+      } else if (video.msRequestFullscreen) {
+        video.msRequestFullscreen();
+      }
+    });
+  });
 
 });
