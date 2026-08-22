@@ -302,4 +302,10 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+  // Forzar que el video cargue y muestre el primer fotograma (segundo 0.1)
+document.querySelectorAll("video").forEach((video) => {
+  video.addEventListener("loadedmetadata", () => {
+    video.currentTime = 0.1;
+  });
+});
 });

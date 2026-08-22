@@ -769,7 +769,7 @@ body {
     grid-template-columns: 1fr !important;
   }
 
-  /* Punto 3: Aspect ratio 16:9 fijo en dispositivos móviles para videos */
+  /* Aspect ratio 16:9 fijo en dispositivos móviles para videos */
   .video-grid .media-frame {
     height: auto;
     min-height: auto;
@@ -909,4 +909,16 @@ body {
     font-size: 0.65rem;
     letter-spacing: 0.05em;
   }
+  /* Aspect Ratio 9:16 para videos verticales */
+.video-card.v-916 .media-frame {
+  aspect-ratio: 9 / 16;
+  min-height: auto;
+  height: auto;
+}
+
+.video-card.v-916 video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
 }
