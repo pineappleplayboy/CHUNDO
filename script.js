@@ -303,24 +303,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Forzar que el video cargue y muestre el primer fotograma (segundo 0.1)
-  document.querySelectorAll("video").forEach((video) => {
-    video.addEventListener("loadedmetadata", () => {
-      video.currentTime = 0.1;
-    });
-
-    // 7. PANTALLA COMPLETA AUTOMÁTICA AL REPRODUCIR (PLAY)
-    video.addEventListener("play", () => {
-      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-        if (video.requestFullscreen) {
-          video.requestFullscreen().catch((err) => console.log(err));
-        } else if (video.webkitRequestFullscreen) { /* Safari / iOS */
-          video.webkitRequestFullscreen();
-        } else if (video.msRequestFullscreen) { /* IE11 */
-          video.msRequestFullscreen();
-        }
-      }
-    });
-  });
+ 
 
 });
