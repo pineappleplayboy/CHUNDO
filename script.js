@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
-      // Punto 2: Resetear la página a 1 cuando el usuario cambia de filtro
+      // Resetear la página a 1 cuando el usuario cambia de filtro
       if (currentPage !== 1) {
         currentPage = 1;
         updatePagination();
@@ -262,7 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Punto 2: Procesa el envío del formulario usando AJAX (Formsubmit) sin abrir cliente de correo
+  // Procesa el envío del formulario usando AJAX (Formsubmit) sin abrir cliente de correo
   if (contactForm) {
     contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -302,29 +302,25 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
   // Forzar que el video cargue y muestre el primer fotograma (segundo 0.1)
-document.querySelectorAll("video").forEach((video) => {
-  video.addEventListener("loadedmetadata", () => {
-    video.currentTime = 0.1;
-  });
-});
-// Reproducir a pantalla completa al hacer clic en un video local
-document.querySelectorAll("video").forEach((video) => {
-  video.addEventListener("click", () => {
-    // Si el video está pausado, entra a pantalla completa y lo reproduce
-    if (video.paused) {
-      if (video.requestFullscreen) {
-        video.requestFullscreen();
-      } else if (video.webkitRequestFullscreen) { /* Safari / iOS */
-        video.webkitRequestFullscreen();
-      } else if (video.msRequestFullscreen) { /* IE11 */
-        video.msRequestFullscreen();
+  document.querySelectorAll("video").forEach((video) => {
+    video.addEventListener("loadedmetadata", () => {
+      video.currentTime = 0.1;
+    });
+
+    // 7. PANTALLA COMPLETA AUTOMÁTICA AL REPRODUCIR (PLAY)
+    video.addEventListener("play", () => {
+      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+        if (video.requestFullscreen) {
+          video.requestFullscreen().catch((err) => console.log(err));
+        } else if (video.webkitRequestFullscreen) { /* Safari / iOS */
+          video.webkitRequestFullscreen();
+        } else if (video.msRequestFullscreen) { /* IE11 */
+          video.msRequestFullscreen();
+        }
       }
-      video.play();
-    } else {
-      // Si ya se está reproduciendo y hacen clic, se pausa
-      video.pause();
-    }
+    });
   });
-});
+
 });
