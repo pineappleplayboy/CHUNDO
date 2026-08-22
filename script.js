@@ -1,11 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // 1. REVELADO AL SCROLL (OBSERVER CORREGIDO)
-  const revealObserver = new IntersectionObserver((entries, observer) => {
+  // FUNCIÓN AUXILIAR: BLOQUEAR/PERMITIR SCROLL CUANDO EL MODAL ESTÁ ABIERTO
+  function toggleBodyScroll(disable) {
+    document.body.style.overflow = disable ? "hidden" : "";
+  }
+
+  // 1. REVELADO AL SCROLL Y AUTOPAUSA DE VIDEOS
+  const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.1 });
@@ -14,7 +18,71 @@ document.addEventListener("DOMContentLoaded", () => {
     revealObserver.observe(el);
   });
 
-  // 2. FILTRADO INTERACTIVO (TODOS / PHOTO / VIDEO)
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const video = entry.target;
+      if (!entry.isIntersecting && !video.paused) {
+        video.pause();
+      }
+    });
+  }, { threshold: 0.25 });
+
+  document.querySelectorAll("video").forEach((video) => {
+    videoObserver.observe(video);
+  });
+
+  // 2. SISTEMA DE PAGINACIÓN DE FOTOGRAFÍAS (20 fotos por página)
+  let currentPage = 1;
+  const totalPages = 2;
+  const prevBtn = document.getElementById("prev-page-btn");
+  const nextBtn = document.getElementById("next-page-btn");
+  const pagIndicator = document.getElementById("pag-indicator");
+  const photoCards = Array.from(document.querySelectorAll(".photo-card"));
+
+  function updatePagination() {
+    photoCards.forEach((card) => {
+      const cardPage = parseInt(card.getAttribute("data-page"), 10);
+      if (cardPage === currentPage) {
+        card.style.display = "flex";
+        setTimeout(() => card.classList.add("visible"), 50);
+      } else {
+        card.style.display = "none";
+        card.classList.remove("visible");
+      }
+    });
+
+    if (pagIndicator) {
+      pagIndicator.textContent = `[ PAGE 0${currentPage} / 0${totalPages} ]`;
+    }
+
+    if (prevBtn) prevBtn.disabled = (currentPage === 1);
+    if (nextBtn) nextBtn.disabled = (currentPage === totalPages);
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      if (currentPage > 1) {
+        currentPage--;
+        updatePagination();
+        document.getElementById("photo-grid").scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        updatePagination();
+        document.getElementById("photo-grid").scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  }
+
+  // Inicializar la primera página
+  updatePagination();
+
+  // 3. FILTRADO INTERACTIVO (TODOS / PHOTO / VIDEO)
   const filterBtns = document.querySelectorAll(".filter-btn");
   const mediaBlocks = document.querySelectorAll(".media-block");
 
@@ -36,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 3. VISTA EN GRID O LISTA
+  // 4. VISTA EN GRID O LISTA
   const btnGrid = document.getElementById("btn-grid");
   const btnList = document.getElementById("btn-list");
   const grids = document.querySelectorAll(".interactive-grid");
@@ -55,14 +123,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 4. MODAL / LIGHTBOX DE FOTOGRAFÍAS (NAVEGACIÓN TECLADO + SWIPE)
+  // 5. MODAL / LIGHTBOX DE FOTOGRAFÍAS (NAVEGACIÓN TECLADO + SWIPE)
   const modal = document.getElementById("interactive-modal");
   const modalImg = document.getElementById("modal-image");
   const modalTitle = document.getElementById("modal-title-text");
   const modalMeta = document.getElementById("modal-meta-text");
   const modalClose = document.getElementById("modal-close");
 
-  const photoCards = Array.from(document.querySelectorAll(".photo-card"));
   let currentIndex = 0;
 
   function updateModal(index) {
@@ -84,7 +151,10 @@ document.addEventListener("DOMContentLoaded", () => {
   photoCards.forEach((card, index) => {
     card.addEventListener("click", () => {
       updateModal(index);
-      if (modal) modal.classList.add("active");
+      if (modal) {
+        modal.classList.add("active");
+        toggleBodyScroll(true);
+      }
     });
   });
 
@@ -99,8 +169,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function closeModal() {
-    if (modal) {
+    if (modal && modal.classList.contains("active")) {
       modal.classList.remove("active");
+      toggleBodyScroll(false);
       setTimeout(() => { modalImg.src = ""; }, 300);
     }
   }
@@ -115,16 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Navegación con teclado (Flecha Izquierda / Derecha / Escape)
-  document.addEventListener("keydown", (e) => {
-    if (!modal || !modal.classList.contains("active")) return;
-
-    if (e.key === "Escape") closeModal();
-    if (e.key === "ArrowRight") showNext();
-    if (e.key === "ArrowLeft") showPrev();
-  });
-
-  // Soporte para gestos táctiles (Swipe en celulares)
+  // Gestos táctiles para dispositivos móviles
   let touchStartX = 0;
   let touchEndX = 0;
 
@@ -148,7 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // LÓGICA DE MODAL DE CONTACTO / BOOKING
+  // 6. LÓGICA DE MODAL DE CONTACTO / BOOKING
   const contactModal = document.getElementById("contact-modal");
   const openContactBtn = document.getElementById("open-contact-btn");
   const openContactBannerBtn = document.getElementById("open-contact-banner-btn");
@@ -156,11 +218,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const contactForm = document.getElementById("contact-form");
 
   function openContactModal() {
-    if (contactModal) contactModal.classList.add("active");
+    if (contactModal) {
+      contactModal.classList.add("active");
+      toggleBodyScroll(true);
+    }
   }
 
   function closeContactModal() {
-    if (contactModal) contactModal.classList.remove("active");
+    if (contactModal && contactModal.classList.contains("active")) {
+      contactModal.classList.remove("active");
+      toggleBodyScroll(false);
+    }
   }
 
   if (openContactBtn) openContactBtn.addEventListener("click", openContactModal);
@@ -172,6 +240,19 @@ document.addEventListener("DOMContentLoaded", () => {
       if (e.target === contactModal) closeContactModal();
     });
   }
+
+  // Tecla ESC y flechas de teclado
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeModal();
+      closeContactModal();
+    }
+
+    if (modal && modal.classList.contains("active")) {
+      if (e.key === "ArrowRight") showNext();
+      if (e.key === "ArrowLeft") showPrev();
+    }
+  });
 
   if (contactForm) {
     contactForm.addEventListener("submit", (e) => {
