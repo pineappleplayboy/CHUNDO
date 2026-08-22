@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Inicializar la primera página
   updatePagination();
 
-  // 3. FILTRADO INTERACTIVO (TODOS / PHOTO / VIDEO)
+  // 3. FILTRADO INTERACTIVO (TODOS / PHOTO / VIDEO) + RESETEO DE PAGINACIÓN
   const filterBtns = document.querySelectorAll(".filter-btn");
   const mediaBlocks = document.querySelectorAll(".media-block");
 
@@ -101,6 +101,12 @@ document.addEventListener("DOMContentLoaded", () => {
           block.classList.add("is-hidden");
         }
       });
+
+      // Punto 2: Resetear la página a 1 cuando el usuario cambia de filtro
+      if (currentPage !== 1) {
+        currentPage = 1;
+        updatePagination();
+      }
     });
   });
 
@@ -216,6 +222,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const openContactBannerBtn = document.getElementById("open-contact-banner-btn");
   const closeContactBtn = document.getElementById("contact-modal-close");
   const contactForm = document.getElementById("contact-form");
+  const submitBtnText = document.getElementById("submit-btn-text");
+  const formFeedback = document.getElementById("form-feedback");
 
   function openContactModal() {
     if (contactModal) {
@@ -254,28 +262,44 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Punto 2: Procesa el envío del formulario usando AJAX (Formsubmit) sin abrir cliente de correo
   if (contactForm) {
     contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const service = document.getElementById("service").value;
-      const message = document.getElementById("message").value;
+      if (submitBtnText) submitBtnText.textContent = "“ENVIANDO... ↗”";
 
-      const emails = "alex250suarez@gmail.com,chundoworkshops@gmail.com";
-      const subject = encodeURIComponent(`NUEVO PROYECTO: ${service} - ${name}`);
-      const body = encodeURIComponent(
-        `Nombre/Productora: ${name}\n` +
-        `Correo de contacto: ${email}\n` +
-        `Tipo de servicio: ${service}\n\n` +
-        `Detalles del proyecto:\n${message}`
-      );
+      const formData = new FormData(contactForm);
 
-      window.location.href = `mailto:${emails}?subject=${subject}&body=${body}`;
-
-      closeContactModal();
-      contactForm.reset();
+      fetch(contactForm.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          if (formFeedback) {
+            formFeedback.textContent = "✓ MENSAJE ENVIADO CON ÉXITO";
+            formFeedback.style.color = "#00FF66";
+          }
+          if (submitBtnText) submitBtnText.textContent = "“ENVIADO ↗”";
+          contactForm.reset();
+          setTimeout(() => {
+            closeContactModal();
+            if (formFeedback) formFeedback.textContent = "";
+            if (submitBtnText) submitBtnText.textContent = "“ENVIAR_MENSAJE ↗”";
+          }, 2000);
+        } else {
+          throw new Error("Error en el envío");
+        }
+      }).catch(error => {
+        if (formFeedback) {
+          formFeedback.textContent = "✕ ERROR AL ENVIAR. INTENTA DE NUEVO.";
+          formFeedback.style.color = "#FF3333";
+        }
+        if (submitBtnText) submitBtnText.textContent = "“REINTENTAR ↗”";
+      });
     });
   }
 });

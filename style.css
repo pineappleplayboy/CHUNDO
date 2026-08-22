@@ -686,8 +686,17 @@ body {
   color: var(--bg-color);
 }
 
+.form-feedback-text {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-align: center;
+  letter-spacing: 0.1em;
+  margin-top: 8px;
+  min-height: 1.2em;
+}
+
 /* ==========================================================================
-   RESPONSIVE / AJUSTES PARA MÓVIL (VERSIÓN REDUCIDA)
+   RESPONSIVE / AJUSTES PARA MÓVIL
    ========================================================================== */
 @media (max-width: 768px) {
   .hide-mobile { 
@@ -760,9 +769,11 @@ body {
     grid-template-columns: 1fr !important;
   }
 
+  /* Punto 3: Aspect ratio 16:9 fijo en dispositivos móviles para videos */
   .video-grid .media-frame {
     height: auto;
-    min-height: 180px;
+    min-height: auto;
+    aspect-ratio: 16 / 9;
   }
 
   /* Botones de Links y CTAs */
