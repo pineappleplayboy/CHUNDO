@@ -308,4 +308,23 @@ document.querySelectorAll("video").forEach((video) => {
     video.currentTime = 0.1;
   });
 });
+// Reproducir a pantalla completa al hacer clic en un video local
+document.querySelectorAll("video").forEach((video) => {
+  video.addEventListener("click", () => {
+    // Si el video está pausado, entra a pantalla completa y lo reproduce
+    if (video.paused) {
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      } else if (video.webkitRequestFullscreen) { /* Safari / iOS */
+        video.webkitRequestFullscreen();
+      } else if (video.msRequestFullscreen) { /* IE11 */
+        video.msRequestFullscreen();
+      }
+      video.play();
+    } else {
+      // Si ya se está reproduciendo y hacen clic, se pausa
+      video.pause();
+    }
+  });
+});
 });
