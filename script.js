@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = disable ? "hidden" : "";
   }
 
-  // 1. REVELADO AL SCROLL Y AUTOPAUSA DE VIDEOS
+  // 1. REVELADO AL SCROLL Y GESTIÓN INTEGRADA DE VIDEOS
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     revealObserver.observe(el);
   });
 
+  // Observer para pausar videos que salen de pantalla
   const videoObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       const video = entry.target;
@@ -27,8 +28,37 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }, { threshold: 0.25 });
 
+  // Configuración de videos: Portada automática (fotograma 0.1s), Autopausa y Pantalla Completa
   document.querySelectorAll("video").forEach((video) => {
+    // A) Observar visibilidad para autopausa
     videoObserver.observe(video);
+
+    // B) GENERAR PORTADA AUTOMÁTICA DEL PRIMER FOTOGRAMA
+    video.removeAttribute("poster");
+    video.preload = "metadata";
+
+    const captureFirstFrame = () => {
+      if (video.currentTime === 0) {
+        video.currentTime = 0.1; // Salta al segundo 0.1 para pintar el primer frame real
+      }
+    };
+
+    if (video.readyState >= 1) {
+      captureFirstFrame();
+    } else {
+      video.addEventListener("loadedmetadata", captureFirstFrame, { once: true });
+    }
+
+    // C) PANTALLA COMPLETA AUTOMÁTICA AL DAR PLAY
+    video.addEventListener("play", () => {
+      if (video.webkitEnterFullscreen) {
+        video.webkitEnterFullscreen(); // iOS / Safari
+      } else if (video.requestFullscreen) {
+        video.requestFullscreen(); // Chrome / Firefox / HTML5 Estándar
+      } else if (video.msRequestFullscreen) {
+        video.msRequestFullscreen(); // IE/Edge antiguo
+      }
+    });
   });
 
   // 2. SISTEMA DE PAGINACIÓN DE FOTOGRAFÍAS (20 fotos por página)
@@ -262,7 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Procesa el envío del formulario usando AJAX (Formsubmit) sin abrir cliente de correo
+  // Procesa el envío del formulario usando AJAX (Formsubmit)
   if (contactForm) {
     contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -302,23 +332,5 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
-
- // LÓGICA PARA FORZAR PANTALLA COMPLETA AL DAR PLAY
-  document.querySelectorAll("video").forEach((video) => {
-    videoObserver.observe(video);
-
-    video.addEventListener("play", () => {
-      // iOS / Safari Nativo
-      if (video.webkitEnterFullscreen) {
-        video.webkitEnterFullscreen();
-      } 
-      // Android / Chrome / Estándar HTML5
-      else if (video.requestFullscreen) {
-        video.requestFullscreen();
-      } else if (video.msRequestFullscreen) {
-        video.msRequestFullscreen();
-      }
-    });
-  });
 
 });
