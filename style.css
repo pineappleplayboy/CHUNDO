@@ -521,28 +521,6 @@ body {
    MICROINTERACCIONES & EFECTOS ANALÓGICOS (BRUTALIST HOVERS)
    ========================================================================== */
 
-.media-frame::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    rgba(18, 16, 16, 0) 50%, 
-    rgba(0, 0, 0, 0.35) 50%
-  );
-  background-size: 100% 4px;
-  pointer-events: none;
-  opacity: 0.4;
-  transition: opacity 0.3s ease;
-  z-index: 2;
-}
-
-.interactive-card:hover .media-frame::after {
-  opacity: 0.15;
-}
-
 .interactive-card {
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
               border-color 0.25s ease, 
@@ -1166,6 +1144,7 @@ body {
     grid-template-columns: repeat(4, 1fr) !important;
   }
 }
+
 /* ==========================================================================
    CORRECCIÓN FINAL: SÓLO EN PC (ESCRITORIO)
    ========================================================================== */

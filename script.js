@@ -54,13 +54,13 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.unobserve(video);
       }
     });
-  }, { rootMargin: "200px 0px", threshold: 0.01 }); // Se anticipa 200px antes de que aparezcan en vista
+  }, { rootMargin: "200px 0px", threshold: 0.01 });
 
   // Configuración inicial de los videos locales
   document.querySelectorAll("video").forEach((video) => {
-    video.preload = "none"; // Evita que la PC sature recursos al inicio
-    videoLoadObserver.observe(video);   // Carga diferida de fotograma
-    videoPauseObserver.observe(video);  // Autopausa al salir de pantalla
+    video.preload = "none";
+    videoLoadObserver.observe(video);   
+    videoPauseObserver.observe(video);  
 
     // Pantalla completa automática al dar play
     video.addEventListener("play", () => {
@@ -153,26 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 4. VISTA EN GRID O LISTA
-  const btnGrid = document.getElementById("btn-grid");
-  const btnList = document.getElementById("btn-list");
-  const grids = document.querySelectorAll(".interactive-grid");
-
-  if (btnGrid && btnList) {
-    btnGrid.addEventListener("click", () => {
-      btnGrid.classList.add("active");
-      btnList.classList.remove("active");
-      grids.forEach((grid) => grid.classList.remove("list-view"));
-    });
-
-    btnList.addEventListener("click", () => {
-      btnList.classList.add("active");
-      btnGrid.classList.remove("active");
-      grids.forEach((grid) => grid.classList.add("list-view"));
-    });
-  }
-
-  // 5. MODAL / LIGHTBOX DE FOTOGRAFÍAS (NAVEGACIÓN TECLADO + SWIPE)
+  // 4. MODAL / LIGHTBOX DE FOTOGRAFÍAS (NAVEGACIÓN TECLADO + SWIPE)
   const modal = document.getElementById("interactive-modal");
   const modalImg = document.getElementById("modal-image");
   const modalTitle = document.getElementById("modal-title-text");
@@ -259,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 6. LÓGICA DE MODAL DE CONTACTO / BOOKING
+  // 5. LÓGICA DE MODAL DE CONTACTO / BOOKING
   const contactModal = document.getElementById("contact-modal");
   const openContactBtn = document.getElementById("open-contact-btn");
   const openContactBannerBtn = document.getElementById("open-contact-banner-btn");
