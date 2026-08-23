@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = disable ? "hidden" : "";
   }
 
-  // 1. REVELADO AL SCROLL Y GESTIÓN INTEGRADA DE VIDEOS
+  // 1. REVELADO AL SCROLL Y GESTIÓN OPTIMIZADA DE VIDEOS (LAZY LOADING DE MEDIOS)
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Observer para pausar videos que salen de pantalla
-  const videoObserver = new IntersectionObserver((entries) => {
+  const videoPauseObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       const video = entry.target;
       if (!entry.isIntersecting && !video.paused) {
@@ -28,35 +28,48 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }, { threshold: 0.25 });
 
-  // Configuración de videos: Portada automática (fotograma 0.1s), Autopausa y Pantalla Completa
-  document.querySelectorAll("video").forEach((video) => {
-    // A) Observar visibilidad para autopausa
-    videoObserver.observe(video);
+  // Observer para cargar los videos y extraer su portada SÓLO cuando se acercan a la pantalla
+  const videoLoadObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const video = entry.target;
+        
+        // Activamos la carga del video de forma diferida
+        video.preload = "metadata";
+        video.removeAttribute("poster");
 
-    // B) GENERAR PORTADA AUTOMÁTICA DEL PRIMER FOTOGRAMA
-    video.removeAttribute("poster");
-    video.preload = "metadata";
+        const captureFirstFrame = () => {
+          if (video.currentTime === 0) {
+            video.currentTime = 0.1; // Extrae el primer frame real
+          }
+        };
 
-    const captureFirstFrame = () => {
-      if (video.currentTime === 0) {
-        video.currentTime = 0.1; // Salta al segundo 0.1 para pintar el primer frame real
+        if (video.readyState >= 1) {
+          captureFirstFrame();
+        } else {
+          video.addEventListener("loadedmetadata", captureFirstFrame, { once: true });
+        }
+
+        // De dejamos de observar este video ya que se procesó
+        observer.unobserve(video);
       }
-    };
+    });
+  }, { rootMargin: "200px 0px", threshold: 0.01 }); // Se anticipa 200px antes de que aparezcan en vista
 
-    if (video.readyState >= 1) {
-      captureFirstFrame();
-    } else {
-      video.addEventListener("loadedmetadata", captureFirstFrame, { once: true });
-    }
+  // Configuración inicial de los videos locales
+  document.querySelectorAll("video").forEach((video) => {
+    video.preload = "none"; // Evita que la PC sature recursos al inicio
+    videoLoadObserver.observe(video);   // Carga diferida de fotograma
+    videoPauseObserver.observe(video);  // Autopausa al salir de pantalla
 
-    // C) PANTALLA COMPLETA AUTOMÁTICA AL DAR PLAY
+    // Pantalla completa automática al dar play
     video.addEventListener("play", () => {
       if (video.webkitEnterFullscreen) {
-        video.webkitEnterFullscreen(); // iOS / Safari
+        video.webkitEnterFullscreen();
       } else if (video.requestFullscreen) {
-        video.requestFullscreen(); // Chrome / Firefox / HTML5 Estándar
+        video.requestFullscreen();
       } else if (video.msRequestFullscreen) {
-        video.msRequestFullscreen(); // IE/Edge antiguo
+        video.msRequestFullscreen();
       }
     });
   });
