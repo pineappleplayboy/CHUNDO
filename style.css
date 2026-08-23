@@ -922,3 +922,209 @@ body {
   height: 100%;
 }
 }
+/* ==========================================================================
+   ESTILO EXPEDIENTE INDUSTRIAL (YT INFO & CREW ACCORDION)
+   ========================================================================== */
+.yt-info-block {
+  padding: 24px;
+  background-color: #050505;
+  border-top: 1px solid var(--border-accent);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Sticker de Reconocimiento */
+.award-sticker {
+  background-color: var(--text-main);
+  color: var(--bg-color);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sticker-tag {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  opacity: 0.8;
+}
+
+.award-title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin-top: 2px;
+}
+
+.award-loc {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+/* Ficha Técnica Rápida */
+.tech-sheet {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  padding-top: 4px;
+}
+
+.sheet-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-left: 2px solid var(--border-accent);
+  padding-left: 12px;
+}
+
+.sheet-item .label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+.sheet-item .value {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* --- DESPLEGABLE BOOKING / ACCORDION CREW --- */
+.crew-accordion {
+  border: 1px solid var(--border-accent);
+  background-color: #000000;
+  margin-top: 8px;
+  transition: all 0.2s ease;
+}
+
+.crew-accordion[open] {
+  border-color: var(--text-main);
+}
+
+.accordion-header {
+  padding: 16px 20px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-main);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none; /* Remueve la flecha por defecto de HTML */
+  user-select: none;
+  background-color: var(--surface-color);
+}
+
+.accordion-header::-webkit-details-marker {
+  display: none; /* Remueve la flecha en navegadores Webkit */
+}
+
+.accordion-header:hover {
+  background-color: var(--text-main);
+  color: var(--bg-color);
+}
+
+.accordion-status {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  opacity: 0.8;
+}
+
+.crew-accordion[open] .accordion-title {
+  content: "[ - ] OCULTAR CREW COMPLETO";
+}
+
+/* Red de Datos Técnica */
+.crew-grid {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  border-top: 1px solid var(--border-color);
+  background-color: #080808;
+}
+
+.crew-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.group-title {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 4px;
+}
+
+.crew-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.4;
+  gap: 12px;
+}
+
+.crew-row span:first-child {
+  color: var(--text-muted);
+}
+
+.crew-row span:last-child {
+  color: var(--text-main);
+  font-weight: 700;
+  text-align: right;
+}
+
+/* Responsivo en móviles */
+@media (max-width: 768px) {
+  .yt-info-block {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .tech-sheet {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .accordion-header {
+    padding: 12px 14px;
+    font-size: 0.78rem;
+  }
+
+  .crew-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 14px;
+  }
+
+  .crew-row {
+    font-size: 0.75rem;
+  }
+}
+/* Previene el efecto negativo/inversión al presionar o seleccionar */
+* {
+  -webkit-tap-highlight-color: transparent; /* Quita el resplandor de toque en móviles */
+  user-select: none; /* Evita que el texto/elemento se seleccione al mantener presionado */
+  -webkit-user-select: none;
+}
+
+*:active, *:focus {
+  filter: none !important;
+  outline: none;
+}
