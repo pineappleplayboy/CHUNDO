@@ -1165,3 +1165,11 @@ body {
     aspect-ratio: 4 / 5 !important; 
   }
 }
+/* ==========================================================================
+   FORZAR 4 COLUMNAS EN PC (SOLO FOTOGRAFÍAS)
+   ========================================================================== */
+@media (min-width: 769px) {
+  #photo-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
