@@ -177,6 +177,17 @@ body {
   grid-template-columns: 1fr !important;
 }
 
+/* ==========================================================================
+   SOLO EN PC (DESKTOP): DOS COLUMNAS (VIDEO IZQ / CREW DER)
+   ========================================================================== */
+@media (min-width: 1024px) {
+  .interactive-grid.list-view {
+    grid-template-columns: 1fr 1fr !important;
+    align-items: start;
+    gap: 40px;
+  }
+}
+
 .interactive-card {
   background-color: var(--surface-color);
   border: 1px solid var(--border-color);
@@ -379,8 +390,6 @@ body {
 .off-button:hover .btn-sub {
   color: var(--text-main);
 }
-
-
 
 /* --- Modal Lightbox --- */
 .custom-modal {
@@ -698,14 +707,13 @@ body {
 }
 
 /* ==========================================================================
-   RESPONSIVE / AJUSTES PARA MÓVIL
+   RESPONSIVE / AJUSTES PARA MÓVIL (INTACTO)
    ========================================================================== */
 @media (max-width: 768px) {
   .hide-mobile { 
     display: none; 
   }
 
-  /* Barra superior y Hero */
   .top-bar { 
     padding: 10px 14px; 
     font-size: 0.7rem;
@@ -728,7 +736,6 @@ body {
     gap: 30px; 
   }
   
-  /* Navegación y Filtros */
   .archive-nav {
     top: 0;
     padding: 4px 6px;
@@ -746,15 +753,14 @@ body {
     text-align: center;
   }
 
-  /* Grillas y Tarjetas */
   .interactive-grid { 
     grid-template-columns: repeat(2, 1fr) !important; 
     gap: 8px; 
   }
 
   .media-frame { 
-    min-height: 120px; 
-    height: 130px; 
+    min-height: 50px;  
+    height: 100px;     
   }
 
   .card-header, .card-footer {
@@ -771,14 +777,14 @@ body {
     grid-template-columns: 1fr !important;
   }
 
-  /* Aspect ratio 16:9 fijo en dispositivos móviles para videos */
   .video-grid .media-frame {
+    max-width: 85%;    
+    margin: 0 auto;    
     height: auto;
     min-height: auto;
     aspect-ratio: 16 / 9;
   }
 
-  /* Botones de Links y CTAs */
   .off-button {
     padding: 16px;
   }
@@ -809,7 +815,6 @@ body {
     min-width: 100%;
   }
 
-  /* Modales (Lightbox y Contacto) */
   .modal-top-bar, .modal-bottom-bar {
     padding: 12px 14px;
     font-size: 0.65rem;
@@ -824,7 +829,6 @@ body {
     gap: 12px;
   }
 
-  /* Footer */
   .footer-content { 
     padding: 24px 16px 16px 16px; 
     gap: 20px;
@@ -893,7 +897,6 @@ body {
   letter-spacing: 0.12em;
 }
 
-/* Ajustes compactos específicos para móvil */
 @media (max-width: 768px) {
   .pagination-bar {
     gap: 8px;
@@ -911,19 +914,20 @@ body {
     font-size: 0.65rem;
     letter-spacing: 0.05em;
   }
-  /* Aspect Ratio 9:16 para videos verticales */
-.video-card.v-916 .media-frame {
-  aspect-ratio: 9 / 16;
-  min-height: auto;
-  height: auto;
+  
+  .video-card.v-916 .media-frame {
+    aspect-ratio: 9 / 16;
+    min-height: auto;
+    height: auto;
+  }
+
+  .video-card.v-916 video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
 }
 
-.video-card.v-916 video {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-}
 /* ==========================================================================
    ESTILO EXPEDIENTE INDUSTRIAL (YT INFO & CREW ACCORDION)
    ========================================================================== */
@@ -936,7 +940,6 @@ body {
   gap: 20px;
 }
 
-/* Sticker de Reconocimiento */
 .award-sticker {
   background-color: var(--text-main);
   color: var(--bg-color);
@@ -970,7 +973,6 @@ body {
   letter-spacing: 0.1em;
 }
 
-/* Ficha Técnica Rápida */
 .tech-sheet {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -1022,13 +1024,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  list-style: none; /* Remueve la flecha por defecto de HTML */
+  list-style: none; 
   user-select: none;
   background-color: var(--surface-color);
 }
 
 .accordion-header::-webkit-details-marker {
-  display: none; /* Remueve la flecha en navegadores Webkit */
+  display: none; 
 }
 
 .accordion-header:hover {
@@ -1042,11 +1044,6 @@ body {
   opacity: 0.8;
 }
 
-.crew-accordion[open] .accordion-title {
-  content: "[ - ] OCULTAR CREW COMPLETO";
-}
-
-/* Red de Datos Técnica */
 .crew-grid {
   padding: 20px;
   display: grid;
@@ -1092,7 +1089,6 @@ body {
   text-align: right;
 }
 
-/* Responsivo en móviles */
 @media (max-width: 768px) {
   .yt-info-block {
     padding: 16px;
@@ -1119,10 +1115,10 @@ body {
     font-size: 0.75rem;
   }
 }
-/* Previene el efecto negativo/inversión al presionar o seleccionar */
+
 * {
-  -webkit-tap-highlight-color: transparent; /* Quita el resplandor de toque en móviles */
-  user-select: none; /* Evita que el texto/elemento se seleccione al mantener presionado */
+  -webkit-tap-highlight-color: transparent; 
+  user-select: none; 
   -webkit-user-select: none;
 }
 
@@ -1130,46 +1126,62 @@ body {
   filter: none !important;
   outline: none;
 }
+
 @media (max-width: 768px) {
-  
-  /* Reducimos la altura general de las tarjetas en móvil */
   .media-frame { 
-    min-height: 50px;  /* Antes: 120px */
-    height: 100px;     /* Antes: 130px */
+    min-height: 50px;  
+    height: 100px;     
   }
 
-  /* Para limitar el ancho maximo de los videos verticales/locales */
   .video-grid .media-frame {
-    max-width: 85%;    /* Limita el ancho al 80% del contenedor */
-    margin: 0 auto;    /* Los mantiene centrados */
+    max-width: 85%;    
+    margin: 0 auto;    
     height: auto;
     min-height: auto;
     aspect-ratio: 16 / 9;
   }
-
 }
+
 /* ==========================================================================
    PARCHE MÓVIL: FOTOGRAFÍAS 
    ========================================================================== */
 @media (max-width: 768px) {
-  /* 1. Mantiene 2 columnas y reduce el espacio muerto SOLO en la galería de fotos */
   #photo-grid { 
     grid-template-columns: repeat(2, 1fr) !important; 
     gap: 4px !important; 
   }
 
-  /* 2. Permite que la foto crezca con buena proporción SOLO en la galería de fotos */
   #photo-grid .media-frame { 
     height: auto !important;
     min-height: auto !important;
     aspect-ratio: 4 / 5 !important; 
   }
 }
+
 /* ==========================================================================
    FORZAR 4 COLUMNAS EN PC (SOLO FOTOGRAFÍAS)
    ========================================================================== */
 @media (min-width: 769px) {
   #photo-grid {
     grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+/* ==========================================================================
+   CORRECCIÓN FINAL: SÓLO EN PC (ESCRITORIO)
+   ========================================================================== */
+
+@media (min-width: 1024px) {
+  /* Forzar estrictamente 4 columnas en el archivo de fotografía en PC */
+  #photo-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 40px !important;
+  }
+
+  /* Asegurar que las cuadrículas de video en PC tengan buen flujo */
+  .content-container .video-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)) !important;
+    gap: 40px !important;
   }
 }
