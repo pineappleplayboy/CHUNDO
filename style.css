@@ -169,7 +169,7 @@ body {
 /* --- Grid & Cards --- */
 .interactive-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
   gap: 40px;
 }
 
@@ -379,6 +379,8 @@ body {
 .off-button:hover .btn-sub {
   color: var(--text-main);
 }
+
+
 
 /* --- Modal Lightbox --- */
 .custom-modal {
@@ -1132,17 +1134,34 @@ body {
   
   /* Reducimos la altura general de las tarjetas en móvil */
   .media-frame { 
-    min-height: 90px;  /* Antes: 120px */
+    min-height: 50px;  /* Antes: 120px */
     height: 100px;     /* Antes: 130px */
   }
 
   /* Para limitar el ancho maximo de los videos verticales/locales */
   .video-grid .media-frame {
-    max-width: 80%;    /* Limita el ancho al 80% del contenedor */
+    max-width: 85%;    /* Limita el ancho al 80% del contenedor */
     margin: 0 auto;    /* Los mantiene centrados */
     height: auto;
     min-height: auto;
     aspect-ratio: 16 / 9;
   }
 
+}
+/* ==========================================================================
+   PARCHE MÓVIL: FOTOGRAFÍAS 
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* 1. Mantiene 2 columnas y reduce el espacio muerto SOLO en la galería de fotos */
+  #photo-grid { 
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 4px !important; 
+  }
+
+  /* 2. Permite que la foto crezca con buena proporción SOLO en la galería de fotos */
+  #photo-grid .media-frame { 
+    height: auto !important;
+    min-height: auto !important;
+    aspect-ratio: 4 / 5 !important; 
+  }
 }
