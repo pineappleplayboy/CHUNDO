@@ -1128,3 +1128,21 @@ body {
   filter: none !important;
   outline: none;
 }
+@media (max-width: 768px) {
+  
+  /* Reducimos la altura general de las tarjetas en móvil */
+  .media-frame { 
+    min-height: 90px;  /* Antes: 120px */
+    height: 100px;     /* Antes: 130px */
+  }
+
+  /* Para limitar el ancho maximo de los videos verticales/locales */
+  .video-grid .media-frame {
+    max-width: 80%;    /* Limita el ancho al 80% del contenedor */
+    margin: 0 auto;    /* Los mantiene centrados */
+    height: auto;
+    min-height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+}
