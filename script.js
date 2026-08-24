@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = disable ? "hidden" : "";
   }
 
-  // 1. REVELADO AL SCROLL Y GESTIÓN OPTIMIZADA DE VIDEOS (LAZY LOADING DE MEDIOS)
+// 1. REVELADO AL SCROLL Y GESTIÓN OPTIMIZADA DE VIDEOS (LAZY LOADING DE MEDIOS)
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -50,11 +50,23 @@ document.addEventListener("DOMContentLoaded", () => {
           video.addEventListener("loadedmetadata", captureFirstFrame, { once: true });
         }
 
-        // De dejamos de observar este video ya que se procesó
+        // Dejamos de observar este video ya que se procesó
         observer.unobserve(video);
       }
     });
   }, { rootMargin: "200px 0px", threshold: 0.01 });
+
+  // Escuchar cuando se sale de pantalla completa globalmente para pausar videos activos
+  const handleFullscreenChange = () => {
+    if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+      document.querySelectorAll("video").forEach((v) => {
+        if (!v.paused) v.pause();
+      });
+    }
+  };
+
+  document.addEventListener("fullscreenchange", handleFullscreenChange);
+  document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
 
   // Configuración inicial de los videos locales
   document.querySelectorAll("video").forEach((video) => {
@@ -64,13 +76,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Pantalla completa automática al dar play
     video.addEventListener("play", () => {
-      if (video.webkitEnterFullscreen) {
+      if (video.requestFullscreen) {
+        video.requestFullscreen().catch((err) => console.log(err));
+      } else if (video.webkitEnterFullscreen) {
         video.webkitEnterFullscreen();
-      } else if (video.requestFullscreen) {
-        video.requestFullscreen();
       } else if (video.msRequestFullscreen) {
         video.msRequestFullscreen();
       }
+    });
+
+    // Evento específico para iOS / Safari al cerrar el reproductor nativo
+    video.addEventListener("webkitendfullscreen", () => {
+      video.pause();
     });
   });
 
