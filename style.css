@@ -1164,3 +1164,124 @@ body {
     gap: 40px !important;
   }
 }
+/* ==========================================================================
+   CHUNDO — ACERCA DE & CREW (SAZÓN INDUSTRIAL)
+   ========================================================================== */
+.chundo-about {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border-color);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+/* En PC (Desktop), dividimos en dos columnas */
+@media (min-width: 1024px) {
+  .chundo-about {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.about-story {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.about-story .group-title {
+  font-size: 1.1rem;
+  color: var(--text-main);
+  border-bottom: 2px solid var(--text-main);
+  display: inline-block;
+  width: fit-content;
+  padding-bottom: 8px;
+}
+
+.about-story .brand-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 100%;
+  border-left: 2px solid var(--border-color);
+  padding-left: 16px;
+  transition: border-left-color 0.3s ease, color 0.3s ease;
+  color: var(--text-muted);
+}
+
+/* Efecto al pasar el mouse por la historia */
+.about-story .brand-description:hover {
+  border-left-color: var(--text-main);
+  color: var(--text-main);
+}
+
+/* Caja del crew estilo ficha técnica clasificada */
+.about-crew-box {
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  padding: 32px 24px;
+  position: relative;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-crew-box:hover {
+  transform: translateY(-4px);
+  border-color: var(--text-main);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.05);
+}
+
+/* Etiqueta industrial superpuesta en la esquina superior */
+.about-crew-box::before {
+  content: "DOC. REF: CHUNDO_CREW";
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  background: var(--bg-color);
+  padding: 0 10px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+  letter-spacing: 0.1em;
+}
+
+/* Interacción en las filas de cada miembro */
+.about-crew-box .crew-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px dotted var(--border-color);
+  transition: padding-left 0.2s ease, padding-right 0.2s ease, border-color 0.2s ease;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.about-crew-box .crew-row:last-child {
+  border-bottom: none;
+}
+
+/* El texto de la izquierda (el puesto) */
+.about-crew-box .crew-row span:first-child {
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* El texto de la derecha (el nombre) */
+.about-crew-box .crew-row span:last-child {
+  color: var(--text-main);
+  font-weight: bold;
+}
+
+/* Animación al pasar el mouse sobre un miembro */
+.about-crew-box .crew-row:hover {
+  padding-left: 8px;
+  padding-right: 8px;
+  border-bottom: 1px dotted var(--text-main);
+  background-color: rgba(255,255,255, 0.02);
+}
+
+.about-crew-box .crew-row:hover span:first-child {
+  color: var(--text-main);
+}
