@@ -1285,3 +1285,9 @@ body {
 .about-crew-box .crew-row:hover span:first-child {
   color: var(--text-main);
 }
+.interactive-card:active,
+.off-button:active,
+.action-tag:active,
+.filter-btn:active {
+  filter: none !important;
+}
