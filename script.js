@@ -1,15 +1,51 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // ---------------------------------------------------------------------------
+  // 1. GESTIÓN DEL SCROLL GLOBAL Y ELEMENTOS DEL DOM
+  // ---------------------------------------------------------------------------
+  const state = {
+    currentPage: 1,
+    totalPages: 2,
+    currentIndex: 0,
+    touchStartX: 0,
+    touchEndX: 0
+  };
 
-  // FUNCIÓN AUXILIAR: BLOQUEAR/PERMITIR SCROLL CUANDO EL MODAL ESTÁ ABIERTO
+  const elements = {
+    photoCards: Array.from(document.querySelectorAll(".photo-card")),
+    photoGrid: document.getElementById("photo-grid"),
+    prevBtn: document.getElementById("prev-page-btn"),
+    nextBtn: document.getElementById("next-page-btn"),
+    pagIndicator: document.getElementById("pag-indicator"),
+    filterBtns: document.querySelectorAll(".filter-btn"),
+    mediaBlocks: document.querySelectorAll(".media-block"),
+    // Modal de Visualización
+    interactiveModal: document.getElementById("interactive-modal"),
+    modalImg: document.getElementById("modal-image"),
+    modalTitle: document.getElementById("modal-title-text"),
+    modalMeta: document.getElementById("modal-meta-text"),
+    modalClose: document.getElementById("modal-close"),
+    // Modal de Contacto
+    contactModal: document.getElementById("contact-modal"),
+    openContactBtn: document.getElementById("open-contact-btn"),
+    openContactBannerBtn: document.getElementById("open-contact-banner-btn"),
+    closeContactBtn: document.getElementById("contact-modal-close"),
+    contactForm: document.getElementById("contact-form"),
+    submitBtnText: document.getElementById("submit-btn-text"),
+    formFeedback: document.getElementById("form-feedback")
+  };
+
   function toggleBodyScroll(disable) {
     document.body.style.overflow = disable ? "hidden" : "";
   }
 
-  // 1. REVELADO AL SCROLL Y GESTIÓN OPTIMIZADA DE VIDEOS (LAZY LOADING DE MEDIOS)
-  const revealObserver = new IntersectionObserver((entries) => {
+  // ---------------------------------------------------------------------------
+  // 2. OBSERVADORES DE INTERSECCIÓN (REVELADO Y LAZY LOADING DE VIDEO)
+  // ---------------------------------------------------------------------------
+  const revealObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.1 });
@@ -18,7 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
     revealObserver.observe(el);
   });
 
-  // Observer para pausar videos que salen de pantalla
   const videoPauseObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       const video = entry.target;
@@ -28,20 +63,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }, { threshold: 0.25 });
 
-  // Observer para cargar los videos y extraer su portada SÓLO cuando se acercan a la pantalla
   const videoLoadObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const video = entry.target;
-        
-        // Activamos la carga del video de forma diferida
         video.preload = "metadata";
         video.removeAttribute("poster");
 
         const captureFirstFrame = () => {
-          if (video.currentTime === 0) {
-            video.currentTime = 0.1; // Extrae el primer frame real
-          }
+          if (video.currentTime === 0) video.currentTime = 0.1;
         };
 
         if (video.readyState >= 1) {
@@ -49,282 +79,233 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           video.addEventListener("loadedmetadata", captureFirstFrame, { once: true });
         }
-
-        // De dejamos de observar este video ya que se procesó
         observer.unobserve(video);
       }
     });
   }, { rootMargin: "200px 0px", threshold: 0.01 });
 
-  // Configuración inicial de los videos locales
   document.querySelectorAll("video").forEach((video) => {
     video.preload = "none";
-    videoLoadObserver.observe(video);   
-    videoPauseObserver.observe(video);  
+    videoLoadObserver.observe(video);
+    videoPauseObserver.observe(video);
 
-    // Pantalla completa automática al dar play
     video.addEventListener("play", () => {
-      if (video.webkitEnterFullscreen) {
-        video.webkitEnterFullscreen();
-      } else if (video.requestFullscreen) {
-        video.requestFullscreen();
-      } else if (video.msRequestFullscreen) {
-        video.msRequestFullscreen();
-      }
+      const requestFS = video.webkitEnterFullscreen || video.requestFullscreen || video.msRequestFullscreen;
+      if (requestFS) requestFS.call(video);
     });
   });
 
-  // 2. SISTEMA DE PAGINACIÓN DE FOTOGRAFÍAS (20 fotos por página)
-  let currentPage = 1;
-  const totalPages = 2;
-  const prevBtn = document.getElementById("prev-page-btn");
-  const nextBtn = document.getElementById("next-page-btn");
-  const pagIndicator = document.getElementById("pag-indicator");
-  const photoCards = Array.from(document.querySelectorAll(".photo-card"));
-
+  // ---------------------------------------------------------------------------
+  // 3. PAGINACIÓN DE FOTOGRAFÍAS
+  // ---------------------------------------------------------------------------
   function updatePagination() {
-    photoCards.forEach((card) => {
+    elements.photoCards.forEach((card) => {
       const cardPage = parseInt(card.getAttribute("data-page"), 10);
-      if (cardPage === currentPage) {
-        card.style.display = "flex";
-        setTimeout(() => card.classList.add("visible"), 50);
-      } else {
-        card.style.display = "none";
-        card.classList.remove("visible");
-      }
+      const isCurrentPage = cardPage === state.currentPage;
+
+      card.style.display = isCurrentPage ? "flex" : "none";
+      card.classList.toggle("visible", isCurrentPage);
     });
 
-    if (pagIndicator) {
-      pagIndicator.textContent = `[ PAGE 0${currentPage} / 0${totalPages} ]`;
+    if (elements.pagIndicator) {
+      elements.pagIndicator.textContent = `[ PAGE 0${state.currentPage} / 0${state.totalPages} ]`;
     }
 
-    if (prevBtn) prevBtn.disabled = (currentPage === 1);
-    if (nextBtn) nextBtn.disabled = (currentPage === totalPages);
+    if (elements.prevBtn) elements.prevBtn.disabled = (state.currentPage === 1);
+    if (elements.nextBtn) elements.nextBtn.disabled = (state.currentPage === state.totalPages);
   }
 
-  if (prevBtn) {
-    prevBtn.addEventListener("click", () => {
-      if (currentPage > 1) {
-        currentPage--;
-        updatePagination();
-        document.getElementById("photo-grid").scrollIntoView({ behavior: "smooth" });
+  function changePage(delta) {
+    const newPage = state.currentPage + delta;
+    if (newPage >= 1 && newPage <= state.totalPages) {
+      state.currentPage = newPage;
+      updatePagination();
+      if (elements.photoGrid) {
+        elements.photoGrid.scrollIntoView({ behavior: "smooth" });
       }
-    });
+    }
   }
 
-  if (nextBtn) {
-    nextBtn.addEventListener("click", () => {
-      if (currentPage < totalPages) {
-        currentPage++;
-        updatePagination();
-        document.getElementById("photo-grid").scrollIntoView({ behavior: "smooth" });
-      }
-    });
-  }
+  if (elements.prevBtn) elements.prevBtn.addEventListener("click", () => changePage(-1));
+  if (elements.nextBtn) elements.nextBtn.addEventListener("click", () => changePage(1));
 
-  // Inicializar la primera página
   updatePagination();
 
-  // 3. FILTRADO INTERACTIVO (TODOS / PHOTO / VIDEO) + RESETEO DE PAGINACIÓN
-  const filterBtns = document.querySelectorAll(".filter-btn");
-  const mediaBlocks = document.querySelectorAll(".media-block");
-
-  filterBtns.forEach((btn) => {
+  // ---------------------------------------------------------------------------
+  // 4. FILTRADO INTERACTIVO DE CONTENIDO
+  // ---------------------------------------------------------------------------
+  elements.filterBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
-      filterBtns.forEach((b) => b.classList.remove("active"));
+      elements.filterBtns.forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
 
       const filterValue = btn.getAttribute("data-filter");
 
-      mediaBlocks.forEach((block) => {
+      elements.mediaBlocks.forEach((block) => {
         const category = block.getAttribute("data-category");
-        if (filterValue === "all" || category === filterValue) {
-          block.classList.remove("is-hidden");
-        } else {
-          block.classList.add("is-hidden");
-        }
+        const show = filterValue === "all" || category === filterValue;
+        block.classList.toggle("is-hidden", !show);
       });
 
-      // Resetear la página a 1 cuando el usuario cambia de filtro
-      if (currentPage !== 1) {
-        currentPage = 1;
+      if (state.currentPage !== 1) {
+        state.currentPage = 1;
         updatePagination();
       }
     });
   });
 
-  // 4. MODAL / LIGHTBOX DE FOTOGRAFÍAS (NAVEGACIÓN TECLADO + SWIPE)
-  const modal = document.getElementById("interactive-modal");
-  const modalImg = document.getElementById("modal-image");
-  const modalTitle = document.getElementById("modal-title-text");
-  const modalMeta = document.getElementById("modal-meta-text");
-  const modalClose = document.getElementById("modal-close");
-
-  let currentIndex = 0;
-
+  // ---------------------------------------------------------------------------
+  // 5. MODAL / LIGHTBOX DE FOTOGRAFÍAS
+  // ---------------------------------------------------------------------------
   function updateModal(index) {
-    if (index < 0 || index >= photoCards.length) return;
-    currentIndex = index;
-    const card = photoCards[currentIndex];
+    if (index < 0 || index >= elements.photoCards.length) return;
+    state.currentIndex = index;
+    const card = elements.photoCards[state.currentIndex];
 
     const src = card.getAttribute("data-src");
     const title = card.getAttribute("data-title");
     const meta = card.getAttribute("data-meta");
 
-    if (src) {
-      modalImg.src = src;
-      modalTitle.textContent = `“VIEWER” // ${title}`;
-      modalMeta.textContent = meta;
+    if (src && elements.modalImg) {
+      elements.modalImg.src = src;
+      if (elements.modalTitle) elements.modalTitle.textContent = `“VIEWER” // ${title}`;
+      if (elements.modalMeta) elements.modalMeta.textContent = meta;
     }
   }
 
-  photoCards.forEach((card, index) => {
-    card.addEventListener("click", () => {
-      updateModal(index);
-      if (modal) {
-        modal.classList.add("active");
-        toggleBodyScroll(true);
-      }
-    });
+  function openViewerModal(index) {
+    updateModal(index);
+    if (elements.interactiveModal) {
+      elements.interactiveModal.classList.add("active");
+      toggleBodyScroll(true);
+    }
+  }
+
+  function closeViewerModal() {
+    if (elements.interactiveModal && elements.interactiveModal.classList.contains("active")) {
+      elements.interactiveModal.classList.remove("active");
+      toggleBodyScroll(false);
+      setTimeout(() => { 
+        if (elements.modalImg) elements.modalImg.src = ""; 
+      }, 300);
+    }
+  }
+
+  function showNextPhoto() {
+    updateModal((state.currentIndex + 1) % elements.photoCards.length);
+  }
+
+  function showPrevPhoto() {
+    updateModal((state.currentIndex - 1 + elements.photoCards.length) % elements.photoCards.length);
+  }
+
+  elements.photoCards.forEach((card, index) => {
+    card.addEventListener("click", () => openViewerModal(index));
   });
 
-  function showNext() {
-    const nextIndex = (currentIndex + 1) % photoCards.length;
-    updateModal(nextIndex);
-  }
+  if (elements.modalClose) elements.modalClose.addEventListener("click", closeViewerModal);
 
-  function showPrev() {
-    const prevIndex = (currentIndex - 1 + photoCards.length) % photoCards.length;
-    updateModal(prevIndex);
-  }
-
-  function closeModal() {
-    if (modal && modal.classList.contains("active")) {
-      modal.classList.remove("active");
-      toggleBodyScroll(false);
-      setTimeout(() => { modalImg.src = ""; }, 300);
-    }
-  }
-
-  if (modalClose) modalClose.addEventListener("click", closeModal);
-
-  if (modal) {
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal || e.target.classList.contains("modal-body")) {
-        closeModal();
+  if (elements.interactiveModal) {
+    elements.interactiveModal.addEventListener("click", (e) => {
+      if (e.target === elements.interactiveModal || e.target.classList.contains("modal-body")) {
+        closeViewerModal();
       }
     });
-  }
 
-  // Gestos táctiles para dispositivos móviles
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-  if (modal) {
-    modal.addEventListener("touchstart", (e) => {
-      touchStartX = e.changedTouches[0].screenX;
+    elements.interactiveModal.addEventListener("touchstart", (e) => {
+      state.touchStartX = e.changedTouches[0].screenX;
     }, { passive: true });
 
-    modal.addEventListener("touchend", (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
+    elements.interactiveModal.addEventListener("touchend", (e) => {
+      state.touchEndX = e.changedTouches[0].screenX;
+      const swipeThreshold = 50;
+      if (state.touchEndX < state.touchStartX - swipeThreshold) showNextPhoto();
+      if (state.touchEndX > state.touchStartX + swipeThreshold) showPrevPhoto();
     }, { passive: true });
   }
 
-  function handleSwipe() {
-    const swipeThreshold = 50;
-    if (touchEndX < touchStartX - swipeThreshold) {
-      showNext();
-    } else if (touchEndX > touchStartX + swipeThreshold) {
-      showPrev();
-    }
-  }
-
-  // 5. LÓGICA DE MODAL DE CONTACTO / BOOKING
-  const contactModal = document.getElementById("contact-modal");
-  const openContactBtn = document.getElementById("open-contact-btn");
-  const openContactBannerBtn = document.getElementById("open-contact-banner-btn");
-  const closeContactBtn = document.getElementById("contact-modal-close");
-  const contactForm = document.getElementById("contact-form");
-  const submitBtnText = document.getElementById("submit-btn-text");
-  const formFeedback = document.getElementById("form-feedback");
-
+  // ---------------------------------------------------------------------------
+  // 6. MODAL DE CONTACTO & FORMULARIO
+  // ---------------------------------------------------------------------------
   function openContactModal() {
-    if (contactModal) {
-      contactModal.classList.add("active");
+    if (elements.contactModal) {
+      elements.contactModal.classList.add("active");
       toggleBodyScroll(true);
     }
   }
 
   function closeContactModal() {
-    if (contactModal && contactModal.classList.contains("active")) {
-      contactModal.classList.remove("active");
+    if (elements.contactModal && elements.contactModal.classList.contains("active")) {
+      elements.contactModal.classList.remove("active");
       toggleBodyScroll(false);
     }
   }
 
-  if (openContactBtn) openContactBtn.addEventListener("click", openContactModal);
-  if (openContactBannerBtn) openContactBannerBtn.addEventListener("click", openContactModal);
-  if (closeContactBtn) closeContactBtn.addEventListener("click", closeContactModal);
+  [elements.openContactBtn, elements.openContactBannerBtn].forEach((btn) => {
+    if (btn) btn.addEventListener("click", openContactModal);
+  });
 
-  if (contactModal) {
-    contactModal.addEventListener("click", (e) => {
-      if (e.target === contactModal) closeContactModal();
+  if (elements.closeContactBtn) elements.closeContactBtn.addEventListener("click", closeContactModal);
+
+  if (elements.contactModal) {
+    elements.contactModal.addEventListener("click", (e) => {
+      if (e.target === elements.contactModal) closeContactModal();
     });
   }
 
-  // Tecla ESC y flechas de teclado
+  // ---------------------------------------------------------------------------
+  // 7. EVENTOS GLOBALES DE TECLADO (ESCAPE & NAVEGACIÓN)
+  // ---------------------------------------------------------------------------
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
-      closeModal();
+      closeViewerModal();
       closeContactModal();
     }
 
-    if (modal && modal.classList.contains("active")) {
-      if (e.key === "ArrowRight") showNext();
-      if (e.key === "ArrowLeft") showPrev();
+    if (elements.interactiveModal && elements.interactiveModal.classList.contains("active")) {
+      if (e.key === "ArrowRight") showNextPhoto();
+      if (e.key === "ArrowLeft") showPrevPhoto();
     }
   });
 
-  // Procesa el envío del formulario usando AJAX (Formsubmit)
-  if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
+  // ---------------------------------------------------------------------------
+  // 8. ENVÍO ASÍNCRONO DEL FORMULARIO
+  // ---------------------------------------------------------------------------
+  if (elements.contactForm) {
+    elements.contactForm.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      if (submitBtnText) submitBtnText.textContent = "“ENVIANDO... ↗”";
+      if (elements.submitBtnText) elements.submitBtnText.textContent = "“ENVIANDO... ↗”";
 
-      const formData = new FormData(contactForm);
+      try {
+        const response = await fetch(elements.contactForm.action, {
+          method: "POST",
+          body: new FormData(elements.contactForm),
+          headers: { 'Accept': 'application/json' }
+        });
 
-      fetch(contactForm.action, {
-        method: "POST",
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
+        if (!response.ok) throw new Error("Error en el envío");
+
+        if (elements.formFeedback) {
+          elements.formFeedback.textContent = "✓ MENSAJE ENVIADO CON ÉXITO";
+          elements.formFeedback.style.color = "#00FF66";
         }
-      }).then(response => {
-        if (response.ok) {
-          if (formFeedback) {
-            formFeedback.textContent = "✓ MENSAJE ENVIADO CON ÉXITO";
-            formFeedback.style.color = "#00FF66";
-          }
-          if (submitBtnText) submitBtnText.textContent = "“ENVIADO ↗”";
-          contactForm.reset();
-          setTimeout(() => {
-            closeContactModal();
-            if (formFeedback) formFeedback.textContent = "";
-            if (submitBtnText) submitBtnText.textContent = "“ENVIAR_MENSAJE ↗”";
-          }, 2000);
-        } else {
-          throw new Error("Error en el envío");
+        if (elements.submitBtnText) elements.submitBtnText.textContent = "“ENVIADO ↗”";
+        elements.contactForm.reset();
+
+        setTimeout(() => {
+          closeContactModal();
+          if (elements.formFeedback) elements.formFeedback.textContent = "";
+          if (elements.submitBtnText) elements.submitBtnText.textContent = "“ENVIAR_MENSAJE ↗”";
+        }, 2000);
+
+      } catch (error) {
+        if (elements.formFeedback) {
+          elements.formFeedback.textContent = "✕ ERROR AL ENVIAR. INTENTA DE NUEVO.";
+          elements.formFeedback.style.color = "#FF3333";
         }
-      }).catch(error => {
-        if (formFeedback) {
-          formFeedback.textContent = "✕ ERROR AL ENVIAR. INTENTA DE NUEVO.";
-          formFeedback.style.color = "#FF3333";
-        }
-        if (submitBtnText) submitBtnText.textContent = "“REINTENTAR ↗”";
-      });
+        if (elements.submitBtnText) elements.submitBtnText.textContent = "“REINTENTAR ↗”";
+      }
     });
   }
-
 });
