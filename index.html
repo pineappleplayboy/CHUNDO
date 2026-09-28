@@ -46,11 +46,12 @@
   <!-- Main Content Container -->
   <main class="content-container">
 
-    <!-- BARRA INTERACTIVA DE NAVEGACIÓN Y FILTRO -->
+  <!-- BARRA INTERACTIVA DE NAVEGACIÓN Y FILTRO -->
     <nav class="archive-nav">
       <div class="filter-controls">
         <button class="filter-btn active" data-filter="all">[TODOS]</button>
         <button class="filter-btn" data-filter="photo">[FOTOGRAFÍA]</button>
+        <button class="filter-btn" data-filter="stills">[STILLS]</button>
         <button class="filter-btn" data-filter="video">[VIDEO]</button>
       </div>
       <div class="layout-controls hide-mobile">
@@ -59,11 +60,14 @@
       </div>
     </nav>
 
-    <!-- SECCIÓN 1: FOTOGRAFÍA (GENERADA DINÁMICAMENTE) -->
+  <!-- SECCIÓN 1: FOTOGRAFÍA DE ARCHIVO -->
     <section class="media-block" data-category="photo">
-      <div class="section-label"><span>“ARCHIVO FOTOGRÁFICO”</span></div>
+      <div class="section-label">
+        <span>“ARCHIVO FOTOGRÁFICO”</span>
+        <span class="meta-tag hide-mobile">[PHOTO // RAW & ANALOG]</span>
+      </div>
       
-      <!-- Contenedor dinámico -->
+      <!-- Contenedor dinámico de fotos -->
       <div class="interactive-grid" id="photo-grid"></div>
 
       <!-- CONTROLES DE PAGINACIÓN -->
@@ -72,6 +76,17 @@
         <span class="pag-indicator" id="pag-indicator">[ PAGE 01 / 02 ]</span>
         <button class="pag-btn" id="next-page-btn">[NEXT &gt;]</button>
       </div>
+    </section>
+
+    <!-- SECCIÓN 1B: STILLS DE CORTOS / CINE (DEDICADO) -->
+    <section class="media-block" data-category="stills">
+      <div class="section-label">
+        <span>“STILLS DE CORTOMETRAJES”</span>
+        <span class="meta-tag hide-mobile">[FILM_STILLS // REC.709 & S-LOG3]</span>
+      </div>
+
+      <!-- Contenedor dinámico exclusivo para Stills -->
+      <div class="interactive-grid stills-grid" id="stills-grid"></div>
     </section>
 
     <!-- APARTADO 2A: YOUTUBE -->

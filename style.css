@@ -1426,3 +1426,95 @@ body {
     padding: 18px;
   }
 }
+/* ==========================================================================
+   SECCIÓN SEPARADA: STILLS DE CORTOS
+   ========================================================================== */
+.stills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)) !important;
+  gap: 32px;
+}
+
+.still-card {
+  cursor: pointer;
+}
+
+.still-card .media-frame {
+  aspect-ratio: 16 / 9;
+  min-height: auto;
+  height: auto;
+  background-color: #000000;
+}
+
+.still-card .media-frame img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  filter: contrast(1.05) saturate(0.95);
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.still-card:hover .media-frame img {
+  transform: scale(1.02);
+  filter: contrast(1.1) saturate(1);
+}
+
+@media (max-width: 768px) {
+  .stills-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+
+  .still-card .media-frame {
+    aspect-ratio: 16 / 9 !important;
+  }
+}
+/* ==========================================================================
+   FIX & ESTILOS: STILLS DE CORTOS (CINEMATIC STILLS 16:9)
+   ========================================================================== */
+.still-card {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  cursor: pointer;
+}
+
+.stills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)) !important;
+  gap: 32px;
+  width: 100%;
+}
+
+.still-card .media-frame {
+  aspect-ratio: 16 / 9 !important;
+  width: 100%;
+  min-height: 220px;
+  background-color: #0a0a0a;
+}
+
+.still-card .media-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: contrast(1.05) saturate(0.95);
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.still-card:hover .media-frame img {
+  transform: scale(1.02);
+  filter: contrast(1.1) saturate(1);
+}
+
+@media (max-width: 768px) {
+  .stills-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+
+  .still-card .media-frame {
+    aspect-ratio: 16 / 9 !important;
+    height: auto !important;
+    min-height: auto !important;
+  }
+}
