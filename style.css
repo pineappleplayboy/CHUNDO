@@ -1291,3 +1291,17 @@ body {
 .filter-btn:active {
   filter: none !important;
 }
+/* Estilos  miembros */
+.about-crew-box .member-link {
+  color: var(--text-main);
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.about-crew-box .member-link:hover {
+  text-decoration: underline;
+  color: #FFFFFF;
+  letter-spacing: 0.05em;
+}
