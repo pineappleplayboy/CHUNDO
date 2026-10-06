@@ -1518,3 +1518,18 @@ body {
     min-height: auto !important;
   }
 }
+/* ==========================================================================
+   ALINEACIÓN DE LOGOS SVG EN BOTONES DE REDES
+   ========================================================================== */
+.btn-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.btn-title-wrapper svg {
+  width: 28px;
+  height: 28px;
+  /* La propiedad currentColor es la magia: hereda el color del texto blanco y, al hacer hover, se vuelve negro automáticamente */
+  fill: currentColor; 
+}
