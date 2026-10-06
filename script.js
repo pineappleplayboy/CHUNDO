@@ -46,36 +46,51 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: 40, src: "assets/foto40.jpg", format: ".JPEG", meta: "FORMAT: JPEG // EXPORT: WEB" }
   ];
 
-  const stillsData = [
+ const stillsData = [
     { 
       id: 1, 
       src: "assets/stills/still1.jpg", 
       title: "ADIÓS Y BUENA SUERTE", 
       format: "S-LOG3", 
-      meta: "PROJECT: CORTOMETRAJE // CAM: SONY FX3 // LENS: 50MM // DP: EMILIO BANUET" 
+      meta: "PROJECT: CORTO // CAM: SONY FX3 // LENS: 50MM" 
     },
     { 
       id: 2, 
       src: "assets/stills/still2.jpg", 
-      title: "ADIÓS Y BUENA SUERTE", 
-      format: "S-LOG3", 
-      meta: "PROJECT: CORTOMETRAJE // CAM: SONY FX3 // LENS: 50MM // DP: EMILIO BANUET" 
+      title: "ARANGO Y MILDRED", 
+      format: "C-LOG2", 
+      meta: "PROJECT: VISUAL // CAM: CANON R50 // LENS: 35MM" 
     },
     { 
       id: 3, 
       src: "assets/stills/still3.jpg", 
       title: "PROYECTO NAUCALPAN", 
       format: "S-LOG3", 
-      meta: "PROJECT: CORTOMETRAJE // CAM: SONY FX3 // LENS: 50MM // DP: EMILIO BANUET" 
+      meta: "PROJECT: CORTO // CAM: SONY FX3 // LENS: 50MM" 
     },
     { 
       id: 4, 
       src: "assets/stills/still4.jpg", 
-      title: "NUEVO CORTOMETRAJE", 
-      format: "REC709", 
-      meta: "PROJECT: CORTO 2026 // CAM: SONY FX3 // COLOR: DEHANCER" 
-    }
+      title: "BLONDE", 
+      format: "C-LOG2", 
+      meta: "PROJECT: VISUAL // CAM: CANON R50 // LENS: 35MM" 
+    },
+    { 
+      id: 5, 
+      src: "assets/stills/still5.jpg", 
+      title: "NUEVO STILL 1", 
+      format: "C-LOG2", 
+      meta: "PROJECT: VISUAL // CAM: CANON R50 // LENS: 7.5MM" 
+    },
+    { 
+      id: 6, 
+      src: "assets/stills/still6.jpg", 
+      title: "NUEVO STILL 2", 
+      format: "S-LOG3", 
+      meta: "PROJECT: CORTO // CAM: SONY FX3 // LENS: 50MM" 
+    },
   ];
+  
 
   // FUNCIÓN AUXILIAR: BLOQUEAR/PERMITIR SCROLL
   function toggleBodyScroll(disable) {
