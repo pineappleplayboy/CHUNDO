@@ -977,88 +977,92 @@ html, body {
 }
 
 /* ==========================================================================
-   RESPONSIVO & MÓVIL (TAMAÑOS Y ESCALA AUMENTADOS)
+   RESPONSIVO & MÓVIL (FILTROS APILADOS Y COMPACTOS)
    ========================================================================== */
 @media (max-width: 768px) {
   .hide-mobile { 
     display: none !important; 
   }
 
-  /* Barra superior más legible */
+  /* Top bar compacta */
   .top-bar { 
-    padding: 14px 16px; 
-    font-size: 0.82rem;
-    gap: 10px;
+    padding: 10px 14px; 
+    font-size: 0.7rem;
+    gap: 8px;
   }
 
   .cta-top-btn {
-    padding: 8px 12px;
-    font-size: 0.8rem;
+    padding: 5px 8px;
+    font-size: 0.68rem;
     white-space: nowrap;
   }
 
-  /* Hero / Encabezado principal */
+  /* Hero / Encabezado */
   .brand-hero { 
-    padding: 40px 16px 28px 16px; 
+    padding: 28px 14px 18px 14px; 
   }
 
   .brand-title {
-    font-size: clamp(3.2rem, 15vw, 6rem);
+    font-size: clamp(2.5rem, 12vw, 4.5rem);
   }
 
   .brand-subtitle {
-    font-size: 0.95rem;
-    letter-spacing: 0.15em;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    margin-top: 10px;
   }
 
   .brand-description {
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    margin-top: 10px;
   }
 
   .content-container { 
-    padding: 20px 16px; 
-    gap: 40px; 
+    padding: 14px 10px; 
+    gap: 28px; 
   }
   
-  /* Filtros deslizables y más grandes */
+  /* Filtros apilados en varias filas (sin scroll deslizable) y compactos */
   .archive-nav {
     top: 0;
-    padding: 10px 8px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    padding: 6px;
+    overflow-x: visible;
   }
 
   .filter-controls {
-    gap: 8px;
-    width: max-content;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    width: 100%;
   }
 
   .filter-btn {
-    padding: 10px 14px;
-    font-size: 0.82rem;
-    font-weight: 700;
-    white-space: nowrap;
+    padding: 4px 8px;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    flex: 1 1 auto;
+    text-align: center;
   }
 
   .section-label {
-    font-size: 0.95rem;
-    margin-bottom: 16px;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
   }
 
   .card-header, .card-footer {
-    font-size: 0.82rem;
-    padding: 12px 14px;
+    font-size: 0.7rem;
+    padding: 6px 10px;
   }
 
   .interactive-grid { 
     grid-template-columns: 1fr !important; 
-    gap: 20px; 
+    gap: 14px; 
   }
 
   #photo-grid { 
     grid-template-columns: repeat(2, 1fr) !important; 
-    gap: 8px !important; 
+    gap: 6px !important; 
   }
 
   #photo-grid .media-frame { 
@@ -1069,7 +1073,7 @@ html, body {
 
   .stills-grid {
     grid-template-columns: 1fr !important;
-    gap: 20px;
+    gap: 14px;
   }
 
   .still-card .media-frame {
@@ -1081,14 +1085,14 @@ html, body {
   /* Publicidad 9:16 en móvil */
   .ads-grid {
     grid-template-columns: 1fr !important;
-    gap: 20px;
+    gap: 14px;
   }
 
   .ad-card .media-frame {
     aspect-ratio: 9 / 16 !important;
     height: auto !important;
     min-height: auto !important;
-    max-width: 320px;
+    max-width: 260px;
     margin: 0 auto;
   }
 
@@ -1107,40 +1111,40 @@ html, body {
 
   .video-card.v-916 .media-frame {
     aspect-ratio: 9 / 16 !important;
-    max-width: 300px;
+    max-width: 260px;
     margin: 0 auto;
   }
 
   .chundo-about {
     grid-template-columns: 1fr;
-    padding: 20px 16px;
-    gap: 28px;
+    padding: 14px 10px;
+    gap: 18px;
   }
 
   .cta-banner-card {
     flex-direction: column;
     align-items: flex-start;
-    padding: 24px 20px;
+    padding: 16px 12px;
   }
 
   .cta-heading {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   .cta-desc {
-    font-size: 0.9rem;
+    font-size: 0.78rem;
   }
 
   .modal-top-bar,
   .modal-bottom-bar {
-    padding: 14px 18px;
-    font-size: 0.8rem;
+    padding: 8px 12px;
+    font-size: 0.68rem;
   }
 
   .footer-meta {
     flex-direction: column;
     align-items: center;
-    font-size: 0.82rem;
+    font-size: 0.68rem;
   }
 }
 
