@@ -96,23 +96,23 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       id: 1,
       src: "assets/ads/foto1.jpg",
-      title: "CAMPAÑA URBAN 01",
+      title: "01",
       format: "JPEG",
-      meta: "BRAND: CHUNDO // TYPE: COMMERCIAL // CAM: CANON"
+      meta: "BRAND: DON SALO // TYPE: AD"
     },
     {
       id: 2,
       src: "assets/ads/foto2.jpg",
-      title: "LOOKBOOK VOL. 1",
-      format: "RAW",
-      meta: "BRAND: FASHION // TYPE: LOOKBOOK // CAM: SONY"
+      title: "02",
+      format: "JPEG",
+      meta: "BRAND: DON SALO // TYPE: AD"
     },
     {
       id: 3,
       src: "assets/ads/foto3.jpg",
-      title: "PROMO EDITORIAL",
-      format: "PNG",
-      meta: "BRAND: EDITORIAL // TYPE: ADS // CAM: FUJI"
+      title: "03",
+      format: "JPEG",
+      meta: "BRAND: DON SALO // TYPE: AD"
     }
   ];
 
