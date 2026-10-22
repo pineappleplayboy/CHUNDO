@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CHUNDO — Productora Audiovisual</title>
-  
+
   <!-- Open Graph / Meta etiquetas SEO -->
   <meta name="description" content="Casa productora enfocada en la exploración de la identidad juvenil, desarrollo de narrativas coming-of-age, estética urbana y experimentación audiovisual.">
   <meta property="og:title" content="CHUNDO — Productora Audiovisual">
@@ -53,10 +50,7 @@
         <button class="filter-btn" data-filter="photo">[FOTOGRAFÍA]</button>
         <button class="filter-btn" data-filter="stills">[STILLS]</button>
         <button class="filter-btn" data-filter="video">[VIDEO]</button>
-      </div>
-      <div class="layout-controls hide-mobile">
-        <button class="view-btn active" id="btn-grid">[GRID]</button>
-        <button class="view-btn" id="btn-list">[LISTA]</button>
+        <button class="filter-btn" data-filter="ads">[PUBLICIDAD]</button>
       </div>
     </nav>
 
@@ -278,6 +272,17 @@
 
       </div>
     </section>
+
+    <!-- NUEVA SECCIÓN: IMÁGENES DE PUBLICIDAD -->
+    <section class="media-block" data-category="ads">
+      <div class="section-label">
+        <span>“PUBLICIDAD”</span>
+        <span class="meta-tag hide-mobile">[COMMERCIAL // CAMPAIGNS & BRANDING]</span>
+      </div>
+
+      <!-- Contenedor dinámico exclusivo para Publicidad -->
+      <div class="interactive-grid ads-grid" id="ads-grid"></div>
+    </section>
     
     <!-- SECCIÓN LINKS DE REDES -->
     <section class="links-section">
@@ -307,7 +312,7 @@
         </a>
 
       </div>
-    </section>>
+    </section>
 
     <!-- BANNER CTA -->
     <section class="cta-banner-section">
@@ -402,8 +407,6 @@
       </div>
     </div>
 
-    
-
   </main>
 
   <!-- MODAL / LIGHTBOX DE FOTOGRAFÍAS -->
@@ -452,6 +455,7 @@
             <option value="EDICIÓN">EDICIÓN</option>
             <option value="VIDEO_MUSICAL">VIDEO MUSICAL</option>
             <option value="FOTOGRAFIA">FOTOGRAFÍA Y STILLS</option>
+            <option value="PUBLICIDAD">PUBLICIDAD Y CAMPAÑA</option>
             <option value="OTRO">OTRO PROYECTO</option>
           </select>
         </div>

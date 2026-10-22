@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   // ==========================================================================
-  // DATOS: FOTOGRAFÍAS DE ARCHIVO Y STILLS DE CORTOS
+  // DATOS: FOTOGRAFÍAS DE ARCHIVO, STILLS Y PUBLICIDAD
   // ==========================================================================
   const photoData = [
     { id: 1, src: "assets/foto1.jpg", format: ".RAW", meta: "FORMAT: RAW // RESOLUTION: 4K" },
@@ -90,7 +90,31 @@ document.addEventListener("DOMContentLoaded", () => {
       meta: "PROJECT: CORTO // CAM: SONY FX3 // LENS: 50MM" 
     },
   ];
-  
+
+  // DATOS PARA SECCIÓN DE PUBLICIDAD (Reemplaza las rutas según tus archivos)
+  const adsData = [
+    {
+      id: 1,
+      src: "assets/ads/foto1.jpg",
+      title: "CAMPAÑA URBAN 01",
+      format: "JPEG",
+      meta: "BRAND: CHUNDO // TYPE: COMMERCIAL // CAM: CANON"
+    },
+    {
+      id: 2,
+      src: "assets/ads/foto2.jpg",
+      title: "LOOKBOOK VOL. 1",
+      format: "RAW",
+      meta: "BRAND: FASHION // TYPE: LOOKBOOK // CAM: SONY"
+    },
+    {
+      id: 3,
+      src: "assets/ads/foto3.jpg",
+      title: "PROMO EDITORIAL",
+      format: "PNG",
+      meta: "BRAND: EDITORIAL // TYPE: ADS // CAM: FUJI"
+    }
+  ];
 
   // FUNCIÓN AUXILIAR: BLOQUEAR/PERMITIR SCROLL
   function toggleBodyScroll(disable) {
@@ -298,7 +322,50 @@ document.addEventListener("DOMContentLoaded", () => {
   renderStills();
 
   // ==========================================================================
-  // 4. FILTRADO INTERACTIVO (TODOS / PHOTO / STILLS / VIDEO)
+  // 3B. RENDER DE SECCIÓN PUBLICIDAD
+  // ==========================================================================
+  const adsGrid = document.getElementById("ads-grid");
+
+  function renderAds() {
+    if (!adsGrid) return;
+    adsGrid.innerHTML = "";
+
+    adsData.forEach((item, index) => {
+      const formattedNum = String(item.id || index + 1).padStart(2, "0");
+
+      const card = document.createElement("article");
+      card.className = "interactive-card ad-card visible";
+
+      card.innerHTML = `
+        <div class="card-header">
+          <span>AD_${formattedNum}</span>
+          <span>${item.title}</span>
+        </div>
+        <div class="media-frame">
+          <img src="${item.src}" alt="${item.title}" loading="lazy" decoding="async">
+          <div class="hover-overlay">
+            <span class="action-tag">“EXPAND_AD ↗”</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="tag">FORMAT: ${item.format}</span>
+          <span class="title">COMMERCIAL</span>
+        </div>
+      `;
+
+      card.addEventListener("click", () => {
+        openModalWithList(adsData, index);
+      });
+
+      adsGrid.appendChild(card);
+      revealObserver.observe(card);
+    });
+  }
+
+  renderAds();
+
+  // ==========================================================================
+  // 4. FILTRADO INTERACTIVO (TODOS / PHOTO / STILLS / VIDEO / ADS)
   // ==========================================================================
   const filterBtns = document.querySelectorAll(".filter-btn");
   const mediaBlocks = document.querySelectorAll(".media-block");
@@ -327,7 +394,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ==========================================================================
-  // 5. MODAL / LIGHTBOX UNIVERSAL (Manejo dinámico de listas Fotografía / Stills)
+  // 5. MODAL / LIGHTBOX UNIVERSAL
   // ==========================================================================
   const modal = document.getElementById("interactive-modal");
   const modalImg = document.getElementById("modal-image");

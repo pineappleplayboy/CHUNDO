@@ -108,12 +108,13 @@ body {
   z-index: 100;
 }
 
-.filter-controls, .layout-controls {
+.filter-controls {
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
-.filter-btn, .view-btn {
+.filter-btn {
   background: transparent;
   border: 1px solid transparent;
   color: var(--text-muted);
@@ -125,19 +126,19 @@ body {
   transition: all 0.2s ease;
 }
 
-.filter-btn:hover, .view-btn:hover {
+.filter-btn:hover {
   color: var(--text-main);
   border-color: var(--border-accent);
 }
 
-.filter-btn.active, .view-btn.active {
+.filter-btn.active {
   background-color: var(--text-main);
   color: var(--bg-color);
   font-weight: 700;
   border-color: var(--text-main);
 }
 
-.filter-btn:focus-visible, .view-btn:focus-visible {
+.filter-btn:focus-visible {
   outline: 2px solid var(--text-main);
   outline-offset: 2px;
 }
@@ -171,21 +172,6 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
   gap: 40px;
-}
-
-.interactive-grid.list-view {
-  grid-template-columns: 1fr !important;
-}
-
-/* ==========================================================================
-   SOLO EN PC (DESKTOP): DOS COLUMNAS (VIDEO IZQ / CREW DER)
-   ========================================================================== */
-@media (min-width: 1024px) {
-  .interactive-grid.list-view {
-    grid-template-columns: 1fr 1fr !important;
-    align-items: start;
-    gap: 40px;
-  }
 }
 
 .interactive-card {
@@ -233,7 +219,8 @@ body {
   position: relative;
 }
 
-.photo-card .media-frame {
+.photo-card .media-frame,
+.ad-card .media-frame {
   cursor: pointer;
 }
 
@@ -246,7 +233,8 @@ body {
   transition: transform 0.4s ease, filter 0.4s ease;
 }
 
-.photo-card:hover .media-frame img {
+.photo-card:hover .media-frame img,
+.ad-card:hover .media-frame img {
   transform: scale(1.03);
   filter: brightness(0.8);
 }
@@ -266,7 +254,8 @@ body {
   background: rgba(0, 0, 0, 0.6);
 }
 
-.photo-card:hover .hover-overlay {
+.photo-card:hover .hover-overlay,
+.ad-card:hover .hover-overlay {
   opacity: 1;
 }
 
@@ -310,25 +299,6 @@ body {
   justify-content: center;
   position: relative;
   text-decoration: none;
-}
-
-.play-overlay {
-  position: absolute;
-  background-color: var(--bg-color);
-  color: var(--text-main);
-  border: 1px solid var(--border-accent);
-  padding: 14px 24px;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  transition: all 0.2s ease;
-  z-index: 2;
-}
-
-.yt-cover-link:hover .play-overlay {
-  background-color: var(--text-main);
-  color: var(--bg-color);
 }
 
 .yt-btn-link {
@@ -463,11 +433,6 @@ body {
 }
 
 /* --- Footer --- */
-.footer-stripes {
-  margin-top: 80px;
-  border-top: 1px solid var(--border-color);
-}
-
 .footer-content {
   background-color: var(--bg-color);
   padding: 40px 36px 32px 36px;
@@ -518,7 +483,7 @@ body {
 }
 
 /* ==========================================================================
-   MICROINTERACCIONES & EFECTOS ANALÓGICOS (BRUTALIST HOVERS)
+   MICROINTERACCIONES & EFECTOS BRUTALISTAS
    ========================================================================== */
 
 .interactive-card {
@@ -534,21 +499,14 @@ body {
   box-shadow: 0 8px 24px rgba(255, 255, 255, 0.08);
 }
 
-.interactive-card:active,
-.off-button:active,
-.action-tag:active,
-.filter-btn:active {
-  filter: invert(1);
-}
-
-.filter-btn, .view-btn, .action-tag, .off-button {
+.filter-btn, .action-tag, .off-button {
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
               background-color 0.2s ease, 
               color 0.2s ease, 
               border-color 0.2s ease;
 }
 
-.filter-btn:hover, .view-btn:hover {
+.filter-btn:hover {
   transform: translateY(-1px);
 }
 
@@ -558,7 +516,7 @@ body {
 }
 
 /* ==========================================================================
-   PUNTOS DE CONTACTO (CTA) & FORMULARIO MODAL
+   CTA & FORMULARIO MODAL
    ========================================================================== */
 
 .cta-top-btn {
@@ -594,12 +552,6 @@ body {
   align-items: center;
   gap: 32px;
   flex-wrap: wrap;
-}
-
-.cta-tag {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--text-muted);
 }
 
 .cta-heading {
@@ -685,154 +637,7 @@ body {
 }
 
 /* ==========================================================================
-   RESPONSIVE / AJUSTES PARA MÓVIL (INTACTO)
-   ========================================================================== */
-@media (max-width: 768px) {
-  .hide-mobile { 
-    display: none; 
-  }
-
-  .top-bar { 
-    padding: 10px 14px; 
-    font-size: 0.7rem;
-  }
-
-  .brand-hero { 
-    padding: 30px 14px 20px 14px; 
-  }
-
-  .brand-title {
-    font-size: clamp(2.5rem, 12vw, 6rem);
-  }
-
-  .brand-subtitle, .brand-description {
-    font-size: 0.8rem;
-  }
-
-  .content-container { 
-    padding: 16px 12px; 
-    gap: 30px; 
-  }
-  
-  .archive-nav {
-    top: 0;
-    padding: 4px 6px;
-  }
-
-  .filter-controls {
-    gap: 4px;
-    width: 100%;
-  }
-
-  .filter-btn {
-    padding: 6px;
-    font-size: 0.65rem;
-    flex: 1;
-    text-align: center;
-  }
-
-  .interactive-grid { 
-    grid-template-columns: repeat(2, 1fr) !important; 
-    gap: 8px; 
-  }
-
-  .media-frame { 
-    min-height: 50px;  
-    height: 100px;     
-  }
-
-  .card-header, .card-footer {
-    padding: 6px 8px;
-    font-size: 0.6rem;
-  }
-
-  .action-tag {
-    padding: 4px 8px;
-    font-size: 0.6rem;
-  }
-
-  .video-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  .video-grid .media-frame {
-    max-width: 85%;    
-    margin: 0 auto;    
-    height: auto;
-    min-height: auto;
-    aspect-ratio: 16 / 9;
-  }
-
-  .off-button {
-    padding: 16px;
-  }
-
-  .off-button .btn-text {
-    font-size: 1.2rem;
-  }
-
-  .off-button .btn-sub {
-    font-size: 0.75rem;
-    margin-top: 8px;
-  }
-
-  .cta-banner-card {
-    padding: 20px 16px;
-    gap: 20px;
-  }
-
-  .cta-heading {
-    font-size: 1.5rem;
-  }
-
-  .cta-desc {
-    font-size: 0.75rem;
-  }
-
-  .cta-trigger-btn {
-    min-width: 100%;
-  }
-
-  .modal-top-bar, .modal-bottom-bar {
-    padding: 12px 14px;
-    font-size: 0.65rem;
-  }
-
-  .form-group input, .form-group select, .form-group textarea {
-    padding: 10px;
-    font-size: 0.75rem;
-  }
-
-  .contact-form {
-    gap: 12px;
-  }
-
-  .footer-content { 
-    padding: 24px 16px 16px 16px; 
-    gap: 20px;
-  }
-
-  .footer-sticker-wrapper {
-    max-width: 160px;
-    margin: 0 auto 8px auto;
-  }
-
-  .manifesto-quote {
-    font-size: 1.2rem;
-    padding-left: 12px;
-  }
-
-  .footer-meta {
-    font-size: 0.65rem;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 8px;
-  }
-}
-
-/* ==========================================================================
-   BARRA DE PAGINACIÓN BRUTALISTA
+   PAGINACIÓN
    ========================================================================== */
 .pagination-bar {
   display: flex;
@@ -875,39 +680,8 @@ body {
   letter-spacing: 0.12em;
 }
 
-@media (max-width: 768px) {
-  .pagination-bar {
-    gap: 8px;
-    margin-top: 16px;
-    padding: 10px 0;
-  }
-
-  .pag-btn {
-    padding: 6px 10px;
-    font-size: 0.65rem;
-    letter-spacing: 0.05em;
-  }
-
-  .pag-indicator {
-    font-size: 0.65rem;
-    letter-spacing: 0.05em;
-  }
-  
-  .video-card.v-916 .media-frame {
-    aspect-ratio: 9 / 16;
-    min-height: auto;
-    height: auto;
-  }
-
-  .video-card.v-916 video {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-  }
-}
-
 /* ==========================================================================
-   ESTILO EXPEDIENTE INDUSTRIAL (YT INFO & CREW ACCORDION)
+   INFORMACIÓN EXPEDIENTE CORTOS & ACCORDION
    ========================================================================== */
 .yt-info-block {
   padding: 24px;
@@ -944,13 +718,6 @@ body {
   margin-top: 2px;
 }
 
-.award-loc {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-}
-
 .tech-sheet {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -980,16 +747,11 @@ body {
   color: var(--text-main);
 }
 
-/* --- DESPLEGABLE BOOKING / ACCORDION CREW --- */
 .crew-accordion {
   border: 1px solid var(--border-accent);
   background-color: #000000;
   margin-top: 8px;
   transition: all 0.2s ease;
-}
-
-.crew-accordion[open] {
-  border-color: var(--text-main);
 }
 
 .accordion-header {
@@ -1014,12 +776,6 @@ body {
 .accordion-header:hover {
   background-color: var(--text-main);
   color: var(--bg-color);
-}
-
-.accordion-status {
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  opacity: 0.8;
 }
 
 .crew-grid {
@@ -1067,105 +823,8 @@ body {
   text-align: right;
 }
 
-@media (max-width: 768px) {
-  .yt-info-block {
-    padding: 16px;
-    gap: 16px;
-  }
-
-  .tech-sheet {
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-
-  .accordion-header {
-    padding: 12px 14px;
-    font-size: 0.78rem;
-  }
-
-  .crew-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 14px;
-  }
-
-  .crew-row {
-    font-size: 0.75rem;
-  }
-}
-
-* {
-  -webkit-tap-highlight-color: transparent; 
-  user-select: none; 
-  -webkit-user-select: none;
-}
-
-*:active, *:focus {
-  filter: none !important;
-  outline: none;
-}
-
-@media (max-width: 768px) {
-  .media-frame { 
-    min-height: 50px;  
-    height: 100px;     
-  }
-
-  .video-grid .media-frame {
-    max-width: 85%;    
-    margin: 0 auto;    
-    height: auto;
-    min-height: auto;
-    aspect-ratio: 16 / 9;
-  }
-}
-
 /* ==========================================================================
-   PARCHE MÓVIL: FOTOGRAFÍAS 
-   ========================================================================== */
-@media (max-width: 768px) {
-  #photo-grid { 
-    grid-template-columns: repeat(2, 1fr) !important; 
-    gap: 4px !important; 
-  }
-
-  #photo-grid .media-frame { 
-    height: auto !important;
-    min-height: auto !important;
-    aspect-ratio: 4 / 5 !important; 
-  }
-}
-
-/* ==========================================================================
-   FORZAR 4 COLUMNAS EN PC (SOLO FOTOGRAFÍAS)
-   ========================================================================== */
-@media (min-width: 769px) {
-  #photo-grid {
-    grid-template-columns: repeat(4, 1fr) !important;
-  }
-}
-
-/* ==========================================================================
-   CORRECCIÓN FINAL: SÓLO EN PC (ESCRITORIO)
-   ========================================================================== */
-
-@media (min-width: 1024px) {
-  /* Forzar estrictamente 4 columnas en el archivo de fotografía en PC */
-  #photo-grid {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 40px !important;
-  }
-
-  /* Asegurar que las cuadrículas de video en PC tengan buen flujo */
-  .content-container .video-grid {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)) !important;
-    gap: 40px !important;
-  }
-}
-/* ==========================================================================
-   CHUNDO — ACERCA DE & CREW (SAZÓN INDUSTRIAL)
+   ACERCA DE CHUNDO & CREW
    ========================================================================== */
 .chundo-about {
   margin-top: 60px;
@@ -1177,7 +836,6 @@ body {
   margin-bottom: 40px;
 }
 
-/* En PC (Desktop), dividimos en dos columnas */
 @media (min-width: 1024px) {
   .chundo-about {
     grid-template-columns: 1fr 1fr;
@@ -1210,13 +868,11 @@ body {
   color: var(--text-muted);
 }
 
-/* Efecto al pasar el mouse por la historia */
 .about-story .brand-description:hover {
   border-left-color: var(--text-main);
   color: var(--text-main);
 }
 
-/* Caja del crew estilo ficha técnica clasificada */
 .about-crew-box {
   background-color: var(--surface-color);
   border: 1px solid var(--border-color);
@@ -1231,7 +887,6 @@ body {
   box-shadow: 0 8px 24px rgba(255, 255, 255, 0.05);
 }
 
-/* Etiqueta industrial superpuesta en la esquina superior */
 .about-crew-box::before {
   content: "DOC. REF: CHUNDO_CREW";
   position: absolute;
@@ -1246,7 +901,6 @@ body {
   letter-spacing: 0.1em;
 }
 
-/* Interacción en las filas de cada miembro */
 .about-crew-box .crew-row {
   display: flex;
   justify-content: space-between;
@@ -1262,36 +916,6 @@ body {
   border-bottom: none;
 }
 
-/* El texto de la izquierda (el puesto) */
-.about-crew-box .crew-row span:first-child {
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-/* El texto de la derecha (el nombre) */
-.about-crew-box .crew-row span:last-child {
-  color: var(--text-main);
-  font-weight: bold;
-}
-
-/* Animación al pasar el mouse sobre un miembro */
-.about-crew-box .crew-row:hover {
-  padding-left: 8px;
-  padding-right: 8px;
-  border-bottom: 1px dotted var(--text-main);
-  background-color: rgba(255,255,255, 0.02);
-}
-
-.about-crew-box .crew-row:hover span:first-child {
-  color: var(--text-main);
-}
-.interactive-card:active,
-.off-button:active,
-.action-tag:active,
-.filter-btn:active {
-  filter: none !important;
-}
-/* Estilos  miembros */
 .about-crew-box .member-link {
   color: var(--text-main);
   font-weight: bold;
@@ -1305,194 +929,31 @@ body {
   color: #FFFFFF;
   letter-spacing: 0.05em;
 }
-/* ==========================================================================
-   SERVICIOS Y CAPACIDADES TÉCNICAS (SERVICES BREAKDOWN)
-   ========================================================================== */
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
-}
-
-.service-card {
-  background-color: var(--surface-color);
-  border: 1px solid var(--border-color);
-  padding: 28px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 20px;
-  position: relative;
-  transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--border-accent);
-}
-
-.service-header {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.service-code {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  letter-spacing: 0.1em;
-}
-
-.service-title {
-  font-family: var(--font-heading);
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--text-main);
-}
-
-.service-desc {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  line-height: 1.5;
-  color: var(--text-muted);
-  text-transform: none;
-}
-
-.service-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  list-style: none;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--text-main);
-  border-top: 1px dashed var(--border-color);
-  padding-top: 16px;
-}
 
 /* ==========================================================================
-   EXPEDIENTES DE PRODUCCIÓN & BTS (BEHIND THE SCENES)
+   STILLS & PUBLICIDAD GRID
    ========================================================================== */
-.bts-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-  gap: 32px;
-}
-
-.bts-card {
-  background-color: var(--surface-color);
-  border: 1px solid var(--border-color);
-  display: flex;
-  flex-direction: column;
-  transition: border-color 0.3s ease, transform 0.3s ease;
-}
-
-.bts-card:hover {
-  border-color: var(--border-accent);
-  transform: translateY(-4px);
-}
-
-.bts-body {
-  padding: 24px;
-}
-
-.bts-title {
-  font-family: var(--font-heading);
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin: 10px 0;
-  color: var(--text-main);
-}
-
-.bts-desc {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  line-height: 1.5;
-  color: var(--text-muted);
-  margin-bottom: 20px;
-  text-transform: none;
-}
-
-/* Responsivo para móviles */
-@media (max-width: 768px) {
-  .services-grid, .bts-container {
-    grid-template-columns: 1fr !important;
-    gap: 16px;
-  }
-  
-  .service-card, .bts-body {
-    padding: 18px;
-  }
-}
-/* ==========================================================================
-   SECCIÓN SEPARADA: STILLS DE CORTOS
-   ========================================================================== */
-.stills-grid {
+.stills-grid, .ads-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)) !important;
   gap: 32px;
-}
-
-.still-card {
-  cursor: pointer;
-}
-
-.still-card .media-frame {
-  aspect-ratio: 16 / 9;
-  min-height: auto;
-  height: auto;
-  background-color: #000000;
-}
-
-.still-card .media-frame img {
-  object-fit: cover;
   width: 100%;
-  height: 100%;
-  filter: contrast(1.05) saturate(0.95);
-  transition: transform 0.4s ease, filter 0.4s ease;
 }
 
-.still-card:hover .media-frame img {
-  transform: scale(1.02);
-  filter: contrast(1.1) saturate(1);
-}
-
-@media (max-width: 768px) {
-  .stills-grid {
-    grid-template-columns: 1fr !important;
-    gap: 16px;
-  }
-
-  .still-card .media-frame {
-    aspect-ratio: 16 / 9 !important;
-  }
-}
-/* ==========================================================================
-   FIX & ESTILOS: STILLS DE CORTOS (CINEMATIC STILLS 16:9)
-   ========================================================================== */
-.still-card {
+.still-card, .ad-card {
   opacity: 1 !important;
   transform: translateY(0) !important;
   cursor: pointer;
 }
 
-.stills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)) !important;
-  gap: 32px;
-  width: 100%;
-}
-
-.still-card .media-frame {
-  aspect-ratio: 16 / 9 !important;
+.still-card .media-frame, .ad-card .media-frame {
+  aspect-ratio: 16 / 9;
   width: 100%;
   min-height: 220px;
   background-color: #0a0a0a;
 }
 
-.still-card .media-frame img {
+.still-card .media-frame img, .ad-card .media-frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -1501,25 +962,13 @@ body {
   transition: transform 0.4s ease, filter 0.4s ease;
 }
 
-.still-card:hover .media-frame img {
+.still-card:hover .media-frame img, .ad-card:hover .media-frame img {
   transform: scale(1.02);
   filter: contrast(1.1) saturate(1);
 }
 
-@media (max-width: 768px) {
-  .stills-grid {
-    grid-template-columns: 1fr !important;
-    gap: 16px;
-  }
-
-  .still-card .media-frame {
-    aspect-ratio: 16 / 9 !important;
-    height: auto !important;
-    min-height: auto !important;
-  }
-}
 /* ==========================================================================
-   ALINEACIÓN DE LOGOS SVG EN BOTONES DE REDES
+   REDES SOCIALES SVG
    ========================================================================== */
 .btn-title-wrapper {
   display: flex;
@@ -1530,6 +979,109 @@ body {
 .btn-title-wrapper svg {
   width: 28px;
   height: 28px;
-  /* La propiedad currentColor es la magia: hereda el color del texto blanco y, al hacer hover, se vuelve negro automáticamente */
   fill: currentColor; 
+}
+
+/* ==========================================================================
+   RESPONSIVO & MÓVIL
+   ========================================================================== */
+@media (max-width: 768px) {
+  .hide-mobile { 
+    display: none; 
+  }
+
+  .top-bar { 
+    padding: 10px 14px; 
+    font-size: 0.7rem;
+  }
+
+  .brand-hero { 
+    padding: 30px 14px 20px 14px; 
+  }
+
+  .brand-title {
+    font-size: clamp(2.5rem, 12vw, 6rem);
+  }
+
+  .content-container { 
+    padding: 16px 12px; 
+    gap: 30px; 
+  }
+  
+  .archive-nav {
+    top: 0;
+    padding: 6px;
+  }
+
+  .filter-controls {
+    gap: 4px;
+    width: 100%;
+  }
+
+  .filter-btn {
+    padding: 6px 8px;
+    font-size: 0.65rem;
+    flex: 1;
+    text-align: center;
+  }
+
+  .interactive-grid { 
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 8px; 
+  }
+
+  #photo-grid { 
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 4px !important; 
+  }
+
+  #photo-grid .media-frame { 
+    height: auto !important;
+    min-height: auto !important;
+    aspect-ratio: 4 / 5 !important; 
+  }
+
+  .stills-grid, .ads-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+
+  .still-card .media-frame, .ad-card .media-frame {
+    aspect-ratio: 16 / 9 !important;
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  .video-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .video-grid .media-frame {
+    max-width: 85%;    
+    margin: 0 auto;    
+    height: auto;
+    min-height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  .video-card.v-916 .media-frame {
+    aspect-ratio: 9 / 16;
+  }
+}
+
+/* ==========================================================================
+   DESKTOP (PC)
+   ========================================================================== */
+@media (min-width: 1024px) {
+  #photo-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 40px !important;
+  }
+
+  .content-container .video-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)) !important;
+    gap: 40px !important;
+  }
 }
