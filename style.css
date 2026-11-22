@@ -1131,6 +1131,11 @@ html, body {
     gap: 40px;
   }
 
+  #stills-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+
   .content-container .video-grid {
     grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
     gap: 40px;
