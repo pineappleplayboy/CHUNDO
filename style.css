@@ -11,6 +11,7 @@
   --border-accent: #FFFFFF;
   --status-success: #00FF66;
   --status-error: #FF3333;
+  --font-display: 'Syne', sans-serif;
   --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'Space Mono', monospace;
 }
@@ -39,59 +40,60 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 36px;
+  padding: 20px 48px;
   border-bottom: 1px solid var(--border-color);
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   color: var(--text-muted);
 }
 
 /* --- Hero Section --- */
 .brand-hero {
-  padding: 80px 36px 60px 36px;
+  padding: 130px 48px 110px 48px;
   border-bottom: 1px solid var(--border-color);
 }
 
 .brand-title {
-  font-size: clamp(3.5rem, 14vw, 10rem);
-  font-weight: 700;
-  line-height: 0.85;
-  letter-spacing: -0.04em;
+  font-family: var(--font-display);
+  font-size: clamp(3.6rem, 13.5vw, 9.8rem);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: -0.03em;
   color: var(--text-main);
   transition: transform 0.3s ease;
 }
 
 .brand-title:hover {
-  transform: translateX(6px);
+  transform: translateX(8px);
 }
 
 .brand-subtitle {
-  margin-top: 24px;
+  margin-top: 32px;
   font-family: var(--font-mono);
-  font-size: 1.1rem;
-  letter-spacing: 0.2em;
+  font-size: 1.05rem;
+  letter-spacing: 0.24em;
   color: var(--text-muted);
 }
 
 .brand-description {
-  margin-top: 24px;
+  margin-top: 28px;
   font-family: var(--font-mono);
   font-size: 0.95rem;
-  max-width: 650px;
-  line-height: 1.6;
+  max-width: 660px;
+  line-height: 1.75;
   color: var(--text-main);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   text-transform: none;
 }
 
 /* --- Content Container --- */
 .content-container {
-  padding: 60px 36px;
+  padding: 96px 48px 120px 48px;
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 80px;
+  gap: 130px;
 }
 
 /* --- Controls & Nav --- */
@@ -99,17 +101,17 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 20px;
+  padding: 18px 24px;
   background-color: var(--bg-color);
   border: 1px solid var(--border-color);
   position: sticky;
-  top: 20px;
+  top: 24px;
   z-index: 100;
 }
 
 .filter-controls {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   flex-wrap: wrap;
 }
 
@@ -119,7 +121,7 @@ html, body {
   color: var(--text-muted);
   font-family: var(--font-mono);
   font-size: 0.85rem;
-  padding: 8px 16px;
+  padding: 10px 18px;
   cursor: pointer;
   letter-spacing: 0.1em;
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
@@ -161,19 +163,19 @@ html, body {
   justify-content: space-between;
   align-items: center;
   font-family: var(--font-mono);
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   color: var(--text-main);
-  margin-bottom: 24px;
-  padding-bottom: 12px;
+  margin-bottom: 40px;
+  padding-bottom: 16px;
   border-bottom: 1px solid var(--border-color);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
 }
 
 /* --- Grid & Cards --- */
 .interactive-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-  gap: 40px;
+  gap: 56px;
 }
 
 .interactive-card {
@@ -206,7 +208,7 @@ html, body {
 .card-header {
   display: flex;
   justify-content: space-between;
-  padding: 12px 18px;
+  padding: 14px 20px;
   font-family: var(--font-mono);
   font-size: 0.8rem;
   border-bottom: 1px solid var(--border-color);
@@ -280,7 +282,7 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 18px;
+  padding: 16px 20px;
   font-family: var(--font-mono);
   font-size: 0.8rem;
   border-top: 1px solid var(--border-color);
@@ -339,12 +341,12 @@ html, body {
 
 .cam-hud-overlay {
   position: absolute;
-  top: 16px;
-  left: 18px;
+  top: 18px;
+  left: 20px;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   pointer-events: none;
 }
 
@@ -365,14 +367,14 @@ html, body {
 }
 
 .synopsis-box {
-  padding: 12px 0;
+  padding: 18px 0;
   border-top: 1px dashed rgba(255, 255, 255, 0.2);
   border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
 }
 
 .synopsis-label {
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   font-size: 0.85rem;
   opacity: 0.7;
   border-bottom: none;
@@ -381,28 +383,28 @@ html, body {
 
 .synopsis-text {
   font-size: 0.95rem;
-  line-height: 1.5;
+  line-height: 1.65;
   opacity: 0.9;
   text-transform: none;
 }
 
 /* --- Links Section --- */
 .links-section {
-  padding-top: 60px;
+  padding-top: 80px;
   border-top: 1px solid var(--border-color);
 }
 
 .links-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+  gap: 32px;
 }
 
 .off-button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 28px;
+  padding: 34px;
   background-color: var(--bg-color);
   border: 1px solid var(--border-color);
   color: var(--text-main);
@@ -432,7 +434,7 @@ html, body {
 .off-button .btn-sub {
   font-family: var(--font-mono);
   font-size: 0.85rem;
-  margin-top: 16px;
+  margin-top: 18px;
   color: var(--text-muted);
 }
 
@@ -521,10 +523,10 @@ html, body {
 /* --- Footer --- */
 .footer-content {
   background-color: var(--bg-color);
-  padding: 40px 36px 32px 36px;
+  padding: 64px 48px 44px 48px;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 44px;
 }
 
 .footer-sticker-wrapper {
@@ -547,13 +549,14 @@ html, body {
 }
 
 .manifesto-quote {
-  font-size: clamp(1.4rem, 4vw, 2.5rem);
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3.6vw, 2.3rem);
   font-weight: 700;
   letter-spacing: -0.02em;
-  line-height: 1.1;
+  line-height: 1.2;
   color: var(--text-main);
   border-left: 2px solid var(--text-main);
-  padding-left: 20px;
+  padding-left: 24px;
 }
 
 .footer-meta {
@@ -563,7 +566,7 @@ html, body {
   gap: 16px;
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  padding-top: 20px;
+  padding-top: 24px;
   border-top: 1px solid var(--border-color);
   color: var(--text-muted);
 }
@@ -575,7 +578,7 @@ html, body {
   color: var(--text-main);
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  padding: 6px 14px;
+  padding: 8px 16px;
   cursor: pointer;
   letter-spacing: 0.1em;
   transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
@@ -589,24 +592,25 @@ html, body {
 }
 
 .cta-banner-section {
-  padding-top: 40px;
+  padding-top: 72px;
   border-top: 1px solid var(--border-color);
 }
 
 .cta-banner-card {
   border: 1px solid var(--border-accent);
   background-color: var(--surface-color);
-  padding: 40px;
+  padding: 52px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 32px;
+  gap: 36px;
   flex-wrap: wrap;
 }
 
 .cta-heading {
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  margin: 12px 0 8px 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3.6vw, 2.7rem);
+  margin: 0 0 12px 0;
   letter-spacing: -0.02em;
 }
 
@@ -698,9 +702,9 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 16px;
-  margin-top: 32px;
-  padding: 16px 0;
+  gap: 20px;
+  margin-top: 48px;
+  padding: 24px 0;
   border-top: 1px solid var(--border-color);
 }
 
@@ -710,7 +714,7 @@ html, body {
   color: var(--text-main);
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  padding: 8px 16px;
+  padding: 10px 18px;
   cursor: pointer;
   letter-spacing: 0.1em;
   transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
@@ -737,21 +741,21 @@ html, body {
 
 /* --- Info Cortos & Accordion --- */
 .yt-info-block {
-  padding: 24px;
+  padding: 32px;
   background-color: #050505;
   border-top: 1px solid var(--border-accent);
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 26px;
 }
 
 .award-sticker {
   background-color: var(--text-main);
   color: var(--bg-color);
-  padding: 16px 20px;
+  padding: 18px 22px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .sticker-tag {
@@ -767,23 +771,23 @@ html, body {
   font-size: 1.35rem;
   font-weight: 700;
   letter-spacing: -0.01em;
-  line-height: 1.1;
+  line-height: 1.15;
   margin-top: 2px;
 }
 
 .tech-sheet {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 16px;
+  gap: 20px;
   padding-top: 4px;
 }
 
 .sheet-item {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   border-left: 2px solid var(--border-accent);
-  padding-left: 12px;
+  padding-left: 14px;
 }
 
 .sheet-item .label {
@@ -807,7 +811,7 @@ html, body {
 }
 
 .accordion-header {
-  padding: 16px 20px;
+  padding: 18px 22px;
   font-family: var(--font-mono);
   font-size: 0.85rem;
   font-weight: 700;
@@ -831,10 +835,10 @@ html, body {
 }
 
 .crew-grid {
-  padding: 20px;
+  padding: 24px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px;
+  gap: 28px;
   border-top: 1px solid var(--border-color);
   background-color: #080808;
 }
@@ -842,7 +846,7 @@ html, body {
 .crew-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .group-title {
@@ -851,18 +855,18 @@ html, body {
   font-weight: 700;
   color: var(--text-muted);
   letter-spacing: 0.1em;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   border-bottom: 1px solid var(--border-color);
-  padding-bottom: 4px;
+  padding-bottom: 6px;
 }
 
 .crew-section-title {
   display: block;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .crew-honorary-title {
-  margin-top: 40px;
+  margin-top: 48px;
 }
 
 .crew-row {
@@ -870,8 +874,8 @@ html, body {
   justify-content: space-between;
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  line-height: 1.4;
-  gap: 12px;
+  line-height: 1.5;
+  gap: 14px;
 }
 
 .crew-row span:first-child {
@@ -886,19 +890,19 @@ html, body {
 
 /* --- Acerca de CHUNDO --- */
 .chundo-about {
-  margin-top: 60px;
-  padding-top: 40px;
+  margin-top: 40px;
+  padding-top: 72px;
   border-top: 1px solid var(--border-color);
   display: grid;
   grid-template-columns: 1fr;
-  gap: 40px;
+  gap: 64px;
   margin-bottom: 40px;
 }
 
 .about-story {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .about-story .group-title {
@@ -912,10 +916,10 @@ html, body {
 
 .about-story .brand-description {
   font-size: 0.95rem;
-  line-height: 1.6;
+  line-height: 1.75;
   max-width: 100%;
   border-left: 2px solid var(--border-color);
-  padding-left: 16px;
+  padding-left: 20px;
   transition: border-left-color 0.3s ease, color 0.3s ease;
   color: var(--text-muted);
 }
@@ -928,7 +932,7 @@ html, body {
 .about-crew-box {
   background-color: var(--surface-color);
   border: 1px solid var(--border-color);
-  padding: 32px 24px;
+  padding: 40px 32px;
   position: relative;
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -954,7 +958,7 @@ html, body {
 }
 
 .about-crew-box .crew-row {
-  padding: 12px 0;
+  padding: 14px 0;
   border-bottom: 1px dotted var(--border-color);
   font-size: 0.85rem;
 }
@@ -979,7 +983,7 @@ html, body {
 .stills-grid,
 .ads-grid {
   grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
-  gap: 32px;
+  gap: 48px;
   width: 100%;
 }
 
@@ -1034,54 +1038,54 @@ html, body {
   }
 
   .top-bar {
-    padding: 10px 14px;
+    padding: 14px 18px;
     font-size: 0.7rem;
     gap: 8px;
   }
 
   .cta-top-btn {
-    padding: 5px 8px;
+    padding: 6px 10px;
     font-size: 0.68rem;
     white-space: nowrap;
   }
 
   .brand-hero {
-    padding: 28px 14px 18px 14px;
+    padding: 56px 18px 44px 18px;
   }
 
   .brand-title {
-    font-size: clamp(2.5rem, 12vw, 4.5rem);
+    font-size: clamp(2.4rem, 11.5vw, 4.5rem);
   }
 
   .brand-subtitle {
     font-size: 0.8rem;
-    letter-spacing: 0.12em;
-    margin-top: 10px;
+    letter-spacing: 0.14em;
+    margin-top: 16px;
   }
 
   .brand-description {
-    font-size: 0.82rem;
-    line-height: 1.45;
-    margin-top: 10px;
+    font-size: 0.84rem;
+    line-height: 1.6;
+    margin-top: 16px;
   }
 
   .content-container {
-    padding: 14px 10px;
-    gap: 28px;
+    padding: 36px 16px 64px 16px;
+    gap: 64px;
   }
 
   .archive-nav {
-    top: 0;
-    padding: 6px;
+    top: 8px;
+    padding: 8px;
   }
 
   .filter-controls {
-    gap: 4px;
+    gap: 6px;
     width: 100%;
   }
 
   .filter-btn {
-    padding: 4px 8px;
+    padding: 6px 8px;
     font-size: 0.65rem;
     letter-spacing: 0.05em;
     flex: 1 1 auto;
@@ -1090,13 +1094,13 @@ html, body {
 
   .section-label {
     font-size: 0.8rem;
-    margin-bottom: 12px;
+    margin-bottom: 20px;
   }
 
   .card-header,
   .card-footer {
     font-size: 0.7rem;
-    padding: 6px 10px;
+    padding: 8px 12px;
   }
 
   .hud-line {
@@ -1108,12 +1112,12 @@ html, body {
   .ads-grid,
   .video-grid {
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 24px;
   }
 
   #photo-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 6px;
+    gap: 12px;
   }
 
   #photo-grid .media-frame,
@@ -1141,18 +1145,18 @@ html, body {
   }
 
   .chundo-about {
-    padding: 14px 10px;
-    gap: 18px;
+    padding: 32px 0;
+    gap: 32px;
   }
 
   .cta-banner-card {
     flex-direction: column;
     align-items: flex-start;
-    padding: 16px 12px;
+    padding: 28px 20px;
   }
 
   .cta-heading {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
   }
 
   .cta-desc {
@@ -1161,8 +1165,12 @@ html, body {
 
   .modal-top-bar,
   .modal-bottom-bar {
-    padding: 8px 12px;
+    padding: 12px 16px;
     font-size: 0.68rem;
+  }
+
+  .footer-content {
+    padding: 44px 18px 32px 18px;
   }
 
   .footer-meta {
@@ -1183,17 +1191,17 @@ html, body {
 
   #photo-grid {
     grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
+    gap: 48px;
   }
 
   #stills-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+    gap: 48px;
   }
 
   .content-container .video-grid {
     grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-    gap: 40px;
+    gap: 56px;
   }
 
   /* --- Cortometraje Destacado (Layout Horizontal Widescreen) --- */
