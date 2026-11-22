@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHUNDO — Productora Audiovisual</title>
 
   <!-- Open Graph / Meta etiquetas SEO -->
   <meta name="description" content="Casa productora enfocada en la exploración de la identidad juvenil, desarrollo de narrativas coming-of-age, estética urbana y experimentación audiovisual.">
@@ -16,19 +17,21 @@
   <meta name="twitter:description" content="Exploración de identidad juvenil, estética urbana y narrativa audiovisual.">
   <meta name="twitter:image" content="assets/foto1.jpg">
 
-  <link rel="stylesheet" href="style.css">
+  <!-- Preconnect & Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://www.youtube.com">
   <link rel="preconnect" href="https://img.youtube.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
 
   <!-- Top Technical Bar -->
   <header class="top-bar">
     <div class="meta-tag">SINCE 2024</div>
-    <button class="cta-top-btn" id="open-contact-btn">[BOOKING / CONTACTO ↗]</button>
+    <button type="button" class="cta-top-btn" id="open-contact-btn">[BOOKING / CONTACTO ↗]</button>
     <div class="meta-tag hide-mobile">NAUCALPAN / MEXICO</div>
   </header>
 
@@ -36,52 +39,47 @@
   <section class="brand-hero">
     <h1 class="brand-title">CHUNDO</h1>
     <div class="brand-subtitle">“PRODUCTORA AUDIOVISUAL”</div>
-    <div class="brand-description">
+    <p class="brand-description">
       Productora independiente enfocada en el cine, fotografía, música y cultura.
-    </div>
+    </p>
   </section>
-
 
   <!-- Main Content Container -->
   <main class="content-container">
 
-  <!-- BARRA INTERACTIVA DE NAVEGACIÓN Y FILTRO -->
-    <nav class="archive-nav">
+    <!-- BARRA INTERACTIVA DE NAVEGACIÓN Y FILTRO -->
+    <nav class="archive-nav" aria-label="Filtro de archivo">
       <div class="filter-controls">
-        <button class="filter-btn active" data-filter="all">[TODOS]</button>
-        <button class="filter-btn" data-filter="photo">[FOTOGRAFÍA]</button>
-        <button class="filter-btn" data-filter="stills">[STILLS]</button>
-        <button class="filter-btn" data-filter="video">[VIDEO]</button>
-        <button class="filter-btn" data-filter="ads">[PUBLICIDAD]</button>
+        <button type="button" class="filter-btn active" data-filter="all">[TODOS]</button>
+        <button type="button" class="filter-btn" data-filter="photo">[FOTOGRAFÍA]</button>
+        <button type="button" class="filter-btn" data-filter="stills">[STILLS]</button>
+        <button type="button" class="filter-btn" data-filter="video">[VIDEO]</button>
+        <button type="button" class="filter-btn" data-filter="ads">[PUBLICIDAD]</button>
       </div>
     </nav>
 
-  <!-- SECCIÓN 1: FOTOGRAFÍA DE ARCHIVO -->
+    <!-- SECCIÓN 1: FOTOGRAFÍA DE ARCHIVO -->
     <section class="media-block" data-category="photo">
       <div class="section-label">
         <span>“ARCHIVO FOTOGRÁFICO”</span>
-        <span class="meta-tag hide-mobile">[PHOTO // RAW & ANALOG]</span>
+        <span class="meta-tag hide-mobile">[PHOTO // RAW &amp; ANALOG]</span>
       </div>
       
-      <!-- Contenedor dinámico de fotos -->
       <div class="interactive-grid" id="photo-grid"></div>
 
-      <!-- CONTROLES DE PAGINACIÓN -->
       <div class="pagination-bar">
-        <button class="pag-btn" id="prev-page-btn" disabled>[&lt; PREV]</button>
+        <button type="button" class="pag-btn" id="prev-page-btn" disabled>[&lt; PREV]</button>
         <span class="pag-indicator" id="pag-indicator">[ PAGE 01 / 02 ]</span>
-        <button class="pag-btn" id="next-page-btn">[NEXT &gt;]</button>
+        <button type="button" class="pag-btn" id="next-page-btn">[NEXT &gt;]</button>
       </div>
     </section>
 
-    <!-- SECCIÓN 1B: STILLS DE CORTOS / CINE (DEDICADO) -->
+    <!-- SECCIÓN 1B: STILLS DE CORTOS / CINE -->
     <section class="media-block" data-category="stills">
       <div class="section-label">
         <span>“STILLS”</span>
-        <span class="meta-tag hide-mobile">[FILM_STILLS // REC.709 & S-LOG3]</span>
+        <span class="meta-tag hide-mobile">[FILM_STILLS // REC.709 &amp; S-LOG3]</span>
       </div>
-
-      <!-- Contenedor dinámico exclusivo para Stills -->
       <div class="interactive-grid stills-grid" id="stills-grid"></div>
     </section>
 
@@ -96,21 +94,19 @@
           </div>
           <div class="media-frame">
             <a href="https://youtu.be/XlIFuTUK59w" target="_blank" rel="noopener noreferrer" class="yt-cover-link">
-              <img src="https://img.youtube.com/vi/XlIFuTUK59w/maxresdefault.jpg" alt="CHUNDO — YouTube Video" loading="lazy" decoding="async">
+              <img src="https://img.youtube.com/vi/XlIFuTUK59w/maxresdefault.jpg" alt="CHUNDO — Adiós y Buena Suerte" loading="lazy" decoding="async">
             </a>
           </div>
 
-          <!-- BLOQUE DE INFORMACIÓN EXPEDIENTE Y DESPLEGABLE CREW -->
           <div class="yt-info-block">
             <div class="award-sticker">
               <span class="sticker-tag">[PREMIO PRINCIPAL]</span>
               <p class="award-title">GANADOR DEL CONCURSO "JUVENTUD EN CORTO"</p>
             </div>
 
-            <!-- SINOPSIS DEL CORTOMETRAJE -->
-            <div class="synopsis-box" style="margin-bottom: 20px; padding: 12px 0; border-top: 1px dashed rgba(255,255,255,0.2); border-bottom: 1px dashed rgba(255,255,255,0.2);">
-              <span class="group-title" style="display: block; margin-bottom: 6px; font-size: 0.85rem; opacity: 0.7;">// SINOPSIS</span>
-              <p style="font-size: 0.95rem; line-height: 1.5; margin: 0; opacity: 0.9;">
+            <div class="synopsis-box">
+              <span class="group-title synopsis-label">// SINOPSIS</span>
+              <p class="synopsis-text">
                 Al enterarse de que su exnovia está a punto de irse del país, Alan decide organizar una fiesta para reencontrarse con ella y saldar cuentas pendientes.
               </p>
             </div>
@@ -134,30 +130,29 @@
               </div>
             </div>
 
-            <!-- DESPLEGABLE TIPO BOOKING / CREW TÉCNICO -->
             <details class="crew-accordion">
               <summary class="accordion-header">
-                <span class="accordion-title">[ + ] CREW </span>
+                <span class="accordion-title">[ + ] CREW</span>
                 <span class="accordion-status">DESPLEGAR</span>
               </summary>
               
               <div class="crew-grid">
                 <div class="crew-group">
-                  <span class="group-title">// DIRECCIÓN & PRODUCCIÓN</span>
+                  <span class="group-title">// DIRECCIÓN &amp; PRODUCCIÓN</span>
                   <div class="crew-row"><span>Dirección y Guion:</span> <span>ALEJANDRO PIÑA</span></div>
                   <div class="crew-row"><span>Producción Ejecutiva:</span> <span>FERNANDA BASDOGAN</span></div>
                   <div class="crew-row"><span>Asistente de Dirección:</span> <span>DANIEL CHAPARRO</span></div>
                 </div>
 
                 <div class="crew-group">
-                  <span class="group-title">// CÁMARA & ILUMINACIÓN</span>
+                  <span class="group-title">// CÁMARA &amp; ILUMINACIÓN</span>
                   <div class="crew-row"><span>Dirección de Fotografía:</span> <span>EMILIO BANUET</span></div>
                   <div class="crew-row"><span>Operador de Cámara:</span> <span>IAN CABRERA</span></div>
                   <div class="crew-row"><span>Continuidad:</span> <span>ANDREA JAIMES</span></div>
                 </div>
 
                 <div class="crew-group">
-                  <span class="group-title">// POSTPRODUCCIÓN & SONIDO</span>
+                  <span class="group-title">// POSTPRODUCCIÓN &amp; SONIDO</span>
                   <div class="crew-row"><span>Edición:</span> <span>ALEJANDRO PIÑA</span></div>
                   <div class="crew-row"><span>Corrección de Color:</span> <span>ALEJANDRO PIÑA</span></div>
                   <div class="crew-row"><span>Dirección de Audio:</span> <span>OMAR PORTUGUES</span></div>
@@ -188,11 +183,10 @@
       <div class="section-label"><span>“VIDEOS”</span></div>
       <div class="interactive-grid video-grid">
 
-        <!-- Video 01 -->
         <article class="interactive-card video-card v-916">
           <div class="card-header"><span>01 / 06</span></div>
           <div class="media-frame video-frame">
-            <video controls preload="metadata" poster="assets/poster1.jpg">
+            <video controls preload="none" poster="assets/poster1.jpg">
               <source src="assets/video1.mov" type="video/mp4">
             </video>
           </div>
@@ -202,11 +196,10 @@
           </div>
         </article>
 
-        <!-- Video 02 -->
         <article class="interactive-card video-card v-916">
           <div class="card-header"><span>02 / 06</span></div>
           <div class="media-frame video-frame">
-            <video controls preload="metadata" poster="assets/poster2.jpg">
+            <video controls preload="none" poster="assets/poster2.jpg">
               <source src="assets/video2.mov" type="video/mp4">
             </video>
           </div>
@@ -216,11 +209,10 @@
           </div>
         </article>
 
-        <!-- Video 03 -->
         <article class="interactive-card video-card">
           <div class="card-header"><span>03 / 06</span></div>
           <div class="media-frame video-frame">
-            <video controls preload="metadata" poster="assets/poster3.jpg">
+            <video controls preload="none" poster="assets/poster3.jpg">
               <source src="assets/video3.mp4" type="video/mp4">
             </video>
           </div>
@@ -230,11 +222,10 @@
           </div>
         </article>
 
-        <!-- Video 04 -->
         <article class="interactive-card video-card">
           <div class="card-header"><span>04 / 06</span></div>
           <div class="media-frame video-frame">
-            <video controls preload="metadata" poster="assets/poster4.jpg">
+            <video controls preload="none" poster="assets/poster4.jpg">
               <source src="assets/video4.mp4" type="video/mp4">
             </video>
           </div>
@@ -244,11 +235,10 @@
           </div>
         </article>
 
-        <!-- Video 05 -->
         <article class="interactive-card video-card">
           <div class="card-header"><span>05 / 06</span></div>
           <div class="media-frame video-frame">
-            <video controls preload="metadata" poster="assets/poster5.jpg">
+            <video controls preload="none" poster="assets/poster5.jpg">
               <source src="assets/video5.mp4" type="video/mp4">
             </video>
           </div>
@@ -258,11 +248,10 @@
           </div>
         </article>
 
-        <!-- Video 06 -->
         <article class="interactive-card video-card">
           <div class="card-header"><span>06 / 06</span></div>
           <div class="media-frame video-frame">
-            <video controls preload="metadata" poster="assets/poster6.jpg">
+            <video controls preload="none" poster="assets/poster6.jpg">
               <source src="assets/video6.mp4" type="video/mp4">
             </video>
           </div>
@@ -275,14 +264,12 @@
       </div>
     </section>
 
-    <!-- NUEVA SECCIÓN: IMÁGENES DE PUBLICIDAD -->
+    <!-- SECCIÓN: IMÁGENES DE PUBLICIDAD -->
     <section class="media-block" data-category="ads">
       <div class="section-label">
         <span>“PUBLICIDAD”</span>
-        <span class="meta-tag hide-mobile">[COMMERCIAL // CAMPAIGNS & BRANDING]</span>
+        <span class="meta-tag hide-mobile">[COMMERCIAL // CAMPAIGNS &amp; BRANDING]</span>
       </div>
-
-      <!-- Contenedor dinámico exclusivo para Publicidad -->
       <div class="interactive-grid ads-grid" id="ads-grid"></div>
     </section>
     
@@ -291,10 +278,9 @@
       <div class="section-label">“LINKS”</div>
       <div class="links-grid">
         
-        <!-- INSTAGRAM BUTTON -->
         <a href="https://www.instagram.com/chundo.mp4" target="_blank" rel="noopener noreferrer" class="off-button">
           <div class="btn-title-wrapper">
-            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
             </svg>
             <span class="btn-text">INSTAGRAM</span>
@@ -302,10 +288,9 @@
           <span class="btn-sub">@CHUNDO.MP4 ↗</span>
         </a>
 
-        <!-- YOUTUBE BUTTON -->
         <a href="https://youtube.com/@chundo.mp4?si=HyZudjnaladmAXPj" target="_blank" rel="noopener noreferrer" class="off-button">
           <div class="btn-title-wrapper">
-            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
             </svg>
             <span class="btn-text">YOUTUBE</span>
@@ -323,7 +308,7 @@
           <h2 class="cta-heading">¿TIENES UN PROYECTO EN MENTE?</h2>
           <p class="cta-desc">COBERTURA, EDICIÓN, PRODUCCIÓN AUDIOVISUAL.</p>
         </div>
-        <button class="off-button cta-trigger-btn" id="open-contact-banner-btn">
+        <button type="button" class="off-button cta-trigger-btn" id="open-contact-banner-btn">
           <span class="btn-text">INICIAR PROYECTO</span>
           <span class="btn-sub">CONTACTAR AHORA ↗</span>
         </button>
@@ -331,60 +316,48 @@
     </section>
 
     <!-- ACERCA DE CHUNDO & MIEMBROS -->
-    <div class="chundo-about">
+    <section class="chundo-about">
       <div class="about-story">
         <span class="group-title">// ACERCA DE CHUNDO</span>
-        <div class="brand-description">
+        <p class="brand-description">
           Fundada en noviembre de 2024 por <strong>Alejandro Piña</strong>, <strong>Ian Cabrera</strong> y <strong>Luis Mora</strong>, el proyecto surgió del impulso de retratar la estética urbana y explorar la identidad juvenil a través del quehacer cinematográfico. Lo que empezó documentando nuestras vivencias y el entorno que nos rodea, evolucionó hasta convertirse en una productora independiente enfocada en el cine, fotografía, música y cultura.
-        </div>
+        </p>
       </div>
 
       <div class="about-crew-box">
-        <span class="group-title" style="margin-bottom: 20px; display: block;">// MIEMBROS ACTUALES</span>
+        <span class="group-title crew-section-title">// MIEMBROS ACTUALES</span>
         
         <div class="crew-row">
           <span>Co-fundador / Director Creativo:</span>
-          <a href="https://www.instagram.com/pineappleplayboy/" target="_blank" rel="noopener noreferrer" class="member-link">
-            ALEJANDRO PIÑA ↗
-          </a>
+          <a href="https://www.instagram.com/pineappleplayboy/" target="_blank" rel="noopener noreferrer" class="member-link">ALEJANDRO PIÑA ↗</a>
         </div>
         
         <div class="crew-row">
           <span>Co-fundador / Creativo:</span>
-          <a href="https://www.instagram.com/iandaltonn/" target="_blank" rel="noopener noreferrer" class="member-link">
-            IAN CABRERA ↗
-          </a>
+          <a href="https://www.instagram.com/iandaltonn/" target="_blank" rel="noopener noreferrer" class="member-link">IAN CABRERA ↗</a>
         </div>
         
         <div class="crew-row">
           <span>Creativo / Modelo:</span>
-          <a href="https://www.instagram.com/tyler_durdenx_/" target="_blank" rel="noopener noreferrer" class="member-link">
-            EMILIO BANUET ↗
-          </a>
+          <a href="https://www.instagram.com/tyler_durdenx_/" target="_blank" rel="noopener noreferrer" class="member-link">EMILIO BANUET ↗</a>
         </div>
         
         <div class="crew-row">
           <span>Modelo:</span>
-          <a href="https://www.instagram.com/mildredalvag/" target="_blank" rel="noopener noreferrer" class="member-link">
-            MILDRED ALVA ↗
-          </a>
+          <a href="https://www.instagram.com/mildredalvag/" target="_blank" rel="noopener noreferrer" class="member-link">MILDRED ALVA ↗</a>
         </div>
         
         <div class="crew-row">
           <span>Artista:</span>
-          <a href="https://www.instagram.com/bruce_psp/" target="_blank" rel="noopener noreferrer" class="member-link">
-            BRUNO DE LA VEGA ↗
-          </a>
+          <a href="https://www.instagram.com/bruce_psp/" target="_blank" rel="noopener noreferrer" class="member-link">BRUNO DE LA VEGA ↗</a>
         </div>
         
         <div class="crew-row">
           <span>Productora General:</span>
-          <a href="https://www.instagram.com/ferxxa_flop/" target="_blank" rel="noopener noreferrer" class="member-link">
-            FERNANDA BASDOGAN ↗
-          </a>
+          <a href="https://www.instagram.com/ferxxa_flop/" target="_blank" rel="noopener noreferrer" class="member-link">FERNANDA BASDOGAN ↗</a>
         </div>
-        <!-- SECCIÓN DE MIEMBROS HONORÍFICOS -->
-        <span class="group-title" style="margin-top: 40px; margin-bottom: 20px; display: block;">// MIEMBROS HONORÍFICOS</span>
+
+        <span class="group-title crew-section-title crew-honorary-title">// MIEMBROS HONORÍFICOS</span>
 
         <div class="crew-row">
           <span>Co-fundador:</span>
@@ -401,25 +374,24 @@
           <span>AMAURY NOLASCO</span>
         </div>
 
-       <div class="crew-row">
+        <div class="crew-row">
           <span>FOTÓGRAFO:</span>
           <span>MIKEL FIGUEROA</span>
         </div>
-
       </div>
-    </div>
+    </section>
 
   </main>
 
   <!-- MODAL / LIGHTBOX DE FOTOGRAFÍAS -->
-  <div id="interactive-modal" class="custom-modal">
+  <div id="interactive-modal" class="custom-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-text">
     <div class="modal-top-bar">
       <span id="modal-title-text">“STILL_VIEWER”</span>
-      <button class="modal-close-btn" id="modal-close">[CLOSE X]</button>
+      <button type="button" class="modal-close-btn" id="modal-close">[CLOSE X]</button>
     </div>
 
     <div class="modal-body">
-      <img id="modal-image" src="" alt="Enlarged view">
+      <img id="modal-image" src="" alt="Vista ampliada">
     </div>
 
     <div class="modal-bottom-bar">
@@ -429,15 +401,14 @@
   </div>
 
   <!-- MODAL DE CONTACTO / BOOKING CON FORMSUBMIT -->
-  <div id="contact-modal" class="custom-modal">
+  <div id="contact-modal" class="custom-modal" role="dialog" aria-modal="true" aria-label="Formulario de contacto">
     <div class="modal-top-bar">
       <span>“CONTACTO”</span>
-      <button class="modal-close-btn" id="contact-modal-close">[CLOSE X]</button>
+      <button type="button" class="modal-close-btn" id="contact-modal-close">[CLOSE X]</button>
     </div>
 
     <div class="modal-body contact-modal-body">
       <form class="contact-form" id="contact-form" action="https://formsubmit.co/alex250suarez@gmail.com" method="post">
-        <!-- Configuración de Formsubmit -->
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_cc" value="chundoworkshops@gmail.com">
@@ -453,7 +424,7 @@
         <div class="form-group">
           <label for="service">TIPO DE SERVICIO</label>
           <select id="service" name="servicio">
-            <option value="CORTOMETRAJE">CORTOMETRAJE / CINE </option>
+            <option value="CORTOMETRAJE">CORTOMETRAJE / CINE</option>
             <option value="EDICIÓN">EDICIÓN</option>
             <option value="VIDEO_MUSICAL">VIDEO MUSICAL</option>
             <option value="FOTOGRAFIA">FOTOGRAFÍA Y STILLS</option>
@@ -466,7 +437,7 @@
           <textarea id="message" name="mensaje" rows="4" placeholder="DESCRIBE LA IDEA, FECHAS O PRESUPUESTO ESTIMADO..."></textarea>
         </div>
         <button type="submit" class="action-tag submit-btn" id="submit-btn-text">“ENVIAR_MENSAJE ↗”</button>
-        <div id="form-feedback" class="form-feedback-text"></div>
+        <div id="form-feedback" class="form-feedback-text" aria-live="polite"></div>
       </form>
     </div>
 
@@ -476,12 +447,11 @@
     </div>
   </div>
 
-
   <!-- Footer -->
   <footer>
     <div class="footer-content">
       <div class="footer-sticker-wrapper">
-        <img src="assets/chundo stickers.png" alt="CHUNDO Sticker" class="footer-sticker">
+        <img src="assets/chundo stickers.png" alt="CHUNDO Sticker" class="footer-sticker" loading="lazy">
       </div>
       <div class="manifesto-quote">“VIVIMOS AL DÍA AUNQUE NO SEPAMOS QUÉ DÍA ES HOY”</div>
       <div class="footer-meta">
@@ -491,6 +461,5 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
 </body>
 </html>

@@ -43,91 +43,66 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: 37, src: "assets/foto37.jpg", format: ".RAW", meta: "FORMAT: RAW // ENVIRONMENT: URBAN" },
     { id: 38, src: "assets/foto38.jpg", format: ".JPEG", meta: "FORMAT: JPEG // LIGHTING: NATURAL" },
     { id: 39, src: "assets/foto39.png", format: ".PNG", meta: "FORMAT: PNG // COLOR: GRADED" },
-    { id: 40, src: "assets/foto40.jpg", format: ".JPEG", meta: "FORMAT: JPEG // EXPORT: WEB" }
+    { id: 40, src: "assets/foto40.jpg", format: ".JPEG", meta: "FORMAT: JPEG // EXPORT: WEB" },
+     { id: 41, src: "assets/foto41.jpg", format: ".RAW", meta: "FORMAT: RAW // RESOLUTION: 4K" },
+    { id: 42, src: "assets/foto42.jpg", format: ".JPEG", meta: "FORMAT: JPEG // COLOR: REC709" },
+    { id: 43, src: "assets/foto43.jpg", format: ".RAW", meta: "FORMAT: RAW // ASPECT: 16:9" },
+    { id: 44, src: "assets/foto44.jpg", format: ".JPEG", meta: "FORMAT: JPEG // SENSITIVITY: HIGH" },
+    { id: 45, src: "assets/foto45.jpg", format: ".RAW", meta: "FORMAT: RAW // LENS: 35MM" },
+    { id: 46, src: "assets/foto46.jpg", format: ".JPEG", meta: "FORMAT: JPEG // LENS: 50MM" },
+    { id: 47, src: "assets/foto47.jpg", format: ".RAW", meta: "FORMAT: RAW // ENVIRONMENT: URBAN" },
+    { id: 48, src: "assets/foto48.jpg", format: ".JPEG", meta: "FORMAT: JPEG // LIGHTING: NATURAL" },
+    { id: 49, src: "assets/foto49.jpg", format: ".RAW", meta: "FORMAT: RAW // COLOR: GRADED" },
+    { id: 50, src: "assets/foto50.jpg", format: ".JPEG", meta: "FORMAT: JPEG // EXPORT: WEB" },
+    { id: 51, src: "assets/foto51.jpg", format: ".RAW", meta: "FORMAT: RAW // RESOLUTION: 4K" },
+    { id: 52, src: "assets/foto52.jpg", format: ".JPEG", meta: "FORMAT: JPEG // COLOR: REC709" },
+    { id: 53, src: "assets/foto53.jpg", format: ".RAW", meta: "FORMAT: RAW // ASPECT: 16:9" },
+    { id: 54, src: "assets/foto54.jpg", format: ".JPEG", meta: "FORMAT: JPEG // SENSITIVITY: HIGH" },
+    { id: 55, src: "assets/foto55.jpg", format: ".RAW", meta: "FORMAT: RAW // LENS: 35MM" },
+    { id: 56, src: "assets/foto56.jpg", format: ".JPEG", meta: "FORMAT: JPEG // LENS: 50MM" },
+    { id: 57, src: "assets/foto57.jpg", format: ".RAW", meta: "FORMAT: RAW // ENVIRONMENT: URBAN" },
+    { id: 58, src: "assets/foto58.jpg", format: ".JPEG", meta: "FORMAT: JPEG // LIGHTING: NATURAL" },
+    { id: 59, src: "assets/foto59.jpg", format: ".RAW", meta: "FORMAT: RAW // COLOR: GRADED" },
+    { id: 60, src: "assets/foto60.jpg", format: ".JPEG", meta: "FORMAT: JPEG // EXPORT: WEB" }
   ];
 
  const stillsData = [
-    { 
-      id: 1, 
-      src: "assets/stills/still1.jpg", 
-      title: "ADIÓS Y BUENA SUERTE", 
-      format: "S-LOG3", 
-      meta: "PROJECT: CORTO // CAM: SONY FX3 // LENS: 50MM" 
-    },
-    { 
-      id: 2, 
-      src: "assets/stills/still2.jpg", 
-      title: "ARANGO Y MILDRED", 
-      format: "C-LOG2", 
-      meta: "PROJECT: VISUAL // CAM: CANON R50 // LENS: 35MM" 
-    },
-    { 
-      id: 3, 
-      src: "assets/stills/still3.jpg", 
-      title: "PROYECTO NAUCALPAN", 
-      format: "S-LOG3", 
-      meta: "PROJECT: CORTO // CAM: SONY FX3 // LENS: 50MM" 
-    },
-    { 
-      id: 4, 
-      src: "assets/stills/still4.jpg", 
-      title: "BLONDE", 
-      format: "C-LOG2", 
-      meta: "PROJECT: VISUAL // CAM: CANON R50 // LENS: 35MM" 
-    },
-    { 
-      id: 5, 
-      src: "assets/stills/still5.jpg", 
-      title: "NUEVO STILL 1", 
-      format: "C-LOG2", 
-      meta: "PROJECT: VISUAL // CAM: CANON R50 // LENS: 7.5MM" 
-    },
-    { 
-      id: 6, 
-      src: "assets/stills/still6.jpg", 
-      title: "NUEVO STILL 2", 
-      format: "S-LOG3", 
-      meta: "PROJECT: CORTO // CAM: SONY FX3 // LENS: 50MM" 
-    },
+    { id: 1, src: "assets/stills/still1.jpg", title: "ADIÓS Y BUENA SUERTE", format: "S-LOG3", meta: "PROJECT: CORTO // CAM: SONY FX3 // LENS: 50MM" },
+    { id: 2, src: "assets/stills/still2.jpg", title: "ARANGO Y MILDRED", format: "C-LOG2", meta: "PROJECT: VISUAL // CAM: CANON R50 // LENS: 35MM" },
+    { id: 3, src: "assets/stills/still3.jpg", title: "PROYECTO NAUCALPAN", format: "S-LOG3", meta: "PROJECT: CORTO // CAM: SONY FX3 // LENS: 50MM" },
+    { id: 4, src: "assets/stills/still4.jpg", title: "BLONDE", format: "C-LOG2", meta: "PROJECT: VISUAL // CAM: CANON R50 // LENS: 35MM" },
+    { id: 5, src: "assets/stills/still5.jpg", title: "NUEVO STILL 1", format: "C-LOG2", meta: "PROJECT: VISUAL // CAM: CANON R50 // LENS: 7.5MM" },
+    { id: 6, src: "assets/stills/still6.jpg", title: "NUEVO STILL 2", format: "S-LOG3", meta: "PROJECT: CORTO // CAM: SONY FX3 // LENS: 50MM" },
+    { id: 7, src: "assets/stills/still7.jpg", title: "NUEVO STILL 3", format: "C-LOG2", meta: "PROJECT: VISUAL // CAM: CANON R50 // LENS: 35MM" },
+    { id: 8, src: "assets/stills/still8.jpg", title: "NUEVO STILL 4", format: "S-LOG3", meta: "PROJECT: CORTO // CAM: SONY FX3 // LENS: 50MM" },
+    { id: 9, src: "assets/stills/still9.jpg", title: "NUEVO STILL 5", format: "C-LOG2", meta: "PROJECT: VISUAL // CAM: CANON R50 // LENS: 35MM" },
+    { id: 10, src: "assets/stills/still10.jpg", title: "NUEVO STILL 6", format: "S-LOG3", meta: "PROJECT: CORTO // CAM: SONY FX3 // LENS: 50MM" },
+    { id: 11, src: "assets/stills/still11.jpg", title: "NUEVO STILL 7", format: "C-LOG2", meta: "PROJECT: VISUAL // CAM: CANON R50 // LENS: 35MM" }
   ];
 
-  // DATOS PARA SECCIÓN DE PUBLICIDAD (Reemplaza las rutas según tus archivos)
   const adsData = [
-    {
-      id: 1,
-      src: "assets/ads/foto1.jpg",
-      title: "01",
-      format: "JPEG",
-      meta: "BRAND: DON SALO // TYPE: AD"
-    },
-    {
-      id: 2,
-      src: "assets/ads/foto2.jpg",
-      title: "02",
-      format: "JPEG",
-      meta: "BRAND: DON SALO // TYPE: AD"
-    },
-    {
-      id: 3,
-      src: "assets/ads/foto3.jpg",
-      title: "03",
-      format: "JPEG",
-      meta: "BRAND: DON SALO // TYPE: AD"
-    }
+    { id: 1, src: "assets/ads/foto1.jpg", title: "01", format: "JPEG", meta: "BRAND: DON SALO // TYPE: AD" },
+    { id: 2, src: "assets/ads/foto2.jpg", title: "02", format: "JPEG", meta: "BRAND: DON SALO // TYPE: AD" },
+    { id: 3, src: "assets/ads/foto3.jpg", title: "03", format: "JPEG", meta: "BRAND: DON SALO // TYPE: AD" }
   ];
 
-  // FUNCIÓN AUXILIAR: BLOQUEAR/PERMITIR SCROLL
-  function toggleBodyScroll(disable) {
+  // ==========================================================================
+  // UTILIDADES
+  // ==========================================================================
+  const padZero = (num) => String(num).padStart(2, "0");
+
+  const toggleBodyScroll = (disable) => {
     document.body.style.overflow = disable ? "hidden" : "";
-  }
+  };
 
   // ==========================================================================
-  // 1. REVELADO AL SCROLL Y GESTIÓN OPTIMIZADA DE VIDEOS (LAZY LOADING)
+  // 1. OBSERVERS (REVELADO AL SCROLL Y GESTIÓN DE VIDEOS)
   // ==========================================================================
-  const revealObserver = new IntersectionObserver((entries) => {
+  const revealObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.1 });
@@ -138,34 +113,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const videoPauseObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      const video = entry.target;
-      if (!entry.isIntersecting && !video.paused) {
-        video.pause();
+      if (!entry.isIntersecting && !entry.target.paused) {
+        entry.target.pause();
       }
     });
   }, { threshold: 0.25 });
 
   const videoLoadObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const video = entry.target;
-        video.preload = "metadata";
-        video.removeAttribute("poster");
+      if (!entry.isIntersecting) return;
+      const video = entry.target;
+      video.preload = "metadata";
+      video.removeAttribute("poster");
 
-        const captureFirstFrame = () => {
-          if (video.currentTime === 0) {
-            video.currentTime = 0.1;
-          }
-        };
+      const captureFirstFrame = () => {
+        if (video.currentTime === 0) video.currentTime = 0.1;
+      };
 
-        if (video.readyState >= 1) {
-          captureFirstFrame();
-        } else {
-          video.addEventListener("loadedmetadata", captureFirstFrame, { once: true });
-        }
-
-        observer.unobserve(video);
+      if (video.readyState >= 1) {
+        captureFirstFrame();
+      } else {
+        video.addEventListener("loadedmetadata", captureFirstFrame, { once: true });
       }
+      observer.unobserve(video);
     });
   }, { rootMargin: "200px 0px", threshold: 0.01 });
 
@@ -181,27 +151,24 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
 
   document.querySelectorAll("video").forEach((video) => {
-    video.preload = "none";
-    videoLoadObserver.observe(video);   
-    videoPauseObserver.observe(video);  
+    videoLoadObserver.observe(video);
+    videoPauseObserver.observe(video);
 
     video.addEventListener("play", () => {
-      if (video.requestFullscreen) {
-        video.requestFullscreen().catch((err) => console.log(err));
-      } else if (video.webkitEnterFullscreen) {
-        video.webkitEnterFullscreen();
-      } else if (video.msRequestFullscreen) {
-        video.msRequestFullscreen();
+      const requestFs = video.requestFullscreen || video.webkitEnterFullscreen || video.msRequestFullscreen;
+      if (requestFs) {
+        const result = requestFs.call(video);
+        if (result && typeof result.catch === "function") {
+          result.catch(() => {});
+        }
       }
     });
 
-    video.addEventListener("webkitendfullscreen", () => {
-      video.pause();
-    });
+    video.addEventListener("webkitendfullscreen", () => video.pause());
   });
 
   // ==========================================================================
-  // 2. RENDERS Y PAGINACIÓN DE FOTOGRAFÍA
+  // 2. RENDERIZADORES DE GRIDS CON DOCUMENTFRAGMENT & DELEGACIÓN
   // ==========================================================================
   const itemsPerPage = 20;
   let currentPage = 1;
@@ -214,22 +181,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderPhotos(page) {
     if (!photoGrid) return;
-    photoGrid.innerHTML = "";
-
+    const fragment = document.createDocumentFragment();
     const startIndex = (page - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const currentPhotos = photoData.slice(startIndex, endIndex);
+    const currentPhotos = photoData.slice(startIndex, startIndex + itemsPerPage);
 
     currentPhotos.forEach((item, index) => {
       const globalIndex = startIndex + index;
-      const formattedNum = String(item.id).padStart(2, "0");
-      const title = `STILL_FRAME_${formattedNum}`;
+      const formattedNum = padZero(item.id);
 
       const card = document.createElement("article");
       card.className = "interactive-card photo-card";
-      card.setAttribute("data-src", item.src);
-      card.setAttribute("data-title", title);
-      card.setAttribute("data-meta", item.meta);
+      card.dataset.index = globalIndex;
 
       card.innerHTML = `
         <div class="card-header"><span>${formattedNum} / ${photoData.length}</span></div>
@@ -240,132 +202,99 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="card-footer"><span class="tag">FORMAT: ${item.format}</span></div>
       `;
 
-      card.addEventListener("click", () => {
-        openModalWithList(photoData, globalIndex);
-      });
-
-      photoGrid.appendChild(card);
+      fragment.appendChild(card);
       revealObserver.observe(card);
     });
 
+    photoGrid.replaceChildren(fragment);
+
     if (pagIndicator) {
-      pagIndicator.textContent = `[ PAGE 0${page} / 0${totalPages} ]`;
+      pagIndicator.textContent = `[ PAGE ${padZero(page)} / ${padZero(totalPages)} ]`;
     }
-
-    if (prevBtn) prevBtn.disabled = (page === 1);
-    if (nextBtn) nextBtn.disabled = (page === totalPages);
+    if (prevBtn) prevBtn.disabled = page === 1;
+    if (nextBtn) nextBtn.disabled = page === totalPages;
   }
 
-  if (prevBtn) {
-    prevBtn.addEventListener("click", () => {
-      if (currentPage > 1) {
-        currentPage--;
-        renderPhotos(currentPage);
-        photoGrid.scrollIntoView({ behavior: "smooth" });
-      }
+  function renderShowcaseGrid(containerId, dataList, config) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    const fragment = document.createDocumentFragment();
+
+    dataList.forEach((item, index) => {
+      const formattedNum = padZero(item.id || index + 1);
+      const card = document.createElement("article");
+      card.className = `interactive-card ${config.cardClass} visible`;
+      card.dataset.index = index;
+
+      card.innerHTML = `
+        <div class="card-header">
+          <span>${config.prefix}_${formattedNum}</span>
+          <span>${item.title}</span>
+        </div>
+        <div class="media-frame">
+          <img src="${item.src}" alt="${item.title}" loading="lazy" decoding="async">
+          <div class="hover-overlay">
+            <span class="action-tag">“${config.actionLabel} ↗”</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="tag">FORMAT: ${item.format}</span>
+          <span class="title">${config.footerTitle}</span>
+        </div>
+      `;
+
+      fragment.appendChild(card);
+    });
+
+    container.replaceChildren(fragment);
+
+    container.addEventListener("click", (e) => {
+      const card = e.target.closest(`.${config.cardClass}`);
+      if (card) openModalWithList(dataList, Number(card.dataset.index));
     });
   }
 
-  if (nextBtn) {
-    nextBtn.addEventListener("click", () => {
-      if (currentPage < totalPages) {
-        currentPage++;
-        renderPhotos(currentPage);
-        photoGrid.scrollIntoView({ behavior: "smooth" });
-      }
+  if (photoGrid) {
+    photoGrid.addEventListener("click", (e) => {
+      const card = e.target.closest(".photo-card");
+      if (card) openModalWithList(photoData, Number(card.dataset.index));
     });
   }
+
+  prevBtn?.addEventListener("click", () => {
+    if (currentPage > 1) {
+      currentPage--;
+      renderPhotos(currentPage);
+      photoGrid.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+
+  nextBtn?.addEventListener("click", () => {
+    if (currentPage < totalPages) {
+      currentPage++;
+      renderPhotos(currentPage);
+      photoGrid.scrollIntoView({ behavior: "smooth" });
+    }
+  });
 
   renderPhotos(currentPage);
 
-  // ==========================================================================
-  // 3. RENDER DE STILLS DE CORTOMETRAJES
-  // ==========================================================================
-  const stillsGrid = document.getElementById("stills-grid");
+  renderShowcaseGrid("stills-grid", stillsData, {
+    cardClass: "still-card",
+    prefix: "STILL",
+    actionLabel: "EXPAND_STILL",
+    footerTitle: "CHUNDO FILM"
+  });
 
-  function renderStills() {
-    if (!stillsGrid) return;
-    stillsGrid.innerHTML = "";
-
-    stillsData.forEach((item, index) => {
-      const formattedNum = String(item.id || index + 1).padStart(2, "0");
-
-      const card = document.createElement("article");
-      card.className = "interactive-card still-card visible";
-
-      card.innerHTML = `
-        <div class="card-header">
-          <span>STILL_${formattedNum}</span>
-          <span>${item.title}</span>
-        </div>
-        <div class="media-frame">
-          <img src="${item.src}" alt="${item.title}" loading="lazy" decoding="async">
-          <div class="hover-overlay">
-            <span class="action-tag">“EXPAND_STILL ↗”</span>
-          </div>
-        </div>
-        <div class="card-footer">
-          <span class="tag">FORMAT: ${item.format}</span>
-          <span class="title">CHUNDO FILM</span>
-        </div>
-      `;
-
-      card.addEventListener("click", () => {
-        openModalWithList(stillsData, index);
-      });
-
-      stillsGrid.appendChild(card);
-      revealObserver.observe(card);
-    });
-  }
-
-  renderStills();
+  renderShowcaseGrid("ads-grid", adsData, {
+    cardClass: "ad-card",
+    prefix: "AD",
+    actionLabel: "EXPAND_AD",
+    footerTitle: "COMMERCIAL"
+  });
 
   // ==========================================================================
-  // 3B. RENDER DE SECCIÓN PUBLICIDAD
-  // ==========================================================================
-  const adsGrid = document.getElementById("ads-grid");
-
-  function renderAds() {
-    if (!adsGrid) return;
-    adsGrid.innerHTML = "";
-
-    adsData.forEach((item, index) => {
-      const formattedNum = String(item.id || index + 1).padStart(2, "0");
-
-      const card = document.createElement("article");
-      card.className = "interactive-card ad-card visible";
-
-      card.innerHTML = `
-        <div class="card-header">
-          <span>AD_${formattedNum}</span>
-          <span>${item.title}</span>
-        </div>
-        <div class="media-frame">
-          <img src="${item.src}" alt="${item.title}" loading="lazy" decoding="async">
-          <div class="hover-overlay">
-            <span class="action-tag">“EXPAND_AD ↗”</span>
-          </div>
-        </div>
-        <div class="card-footer">
-          <span class="tag">FORMAT: ${item.format}</span>
-          <span class="title">COMMERCIAL</span>
-        </div>
-      `;
-
-      card.addEventListener("click", () => {
-        openModalWithList(adsData, index);
-      });
-
-      adsGrid.appendChild(card);
-      revealObserver.observe(card);
-    });
-  }
-
-  renderAds();
-
-  // ==========================================================================
-  // 4. FILTRADO INTERACTIVO (TODOS / PHOTO / STILLS / VIDEO / ADS)
+  // 3. FILTRADO INTERACTIVO
   // ==========================================================================
   const filterBtns = document.querySelectorAll(".filter-btn");
   const mediaBlocks = document.querySelectorAll(".media-block");
@@ -375,15 +304,9 @@ document.addEventListener("DOMContentLoaded", () => {
       filterBtns.forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
 
-      const filterValue = btn.getAttribute("data-filter");
-
+      const filterValue = btn.dataset.filter;
       mediaBlocks.forEach((block) => {
-        const category = block.getAttribute("data-category");
-        if (filterValue === "all" || category === filterValue) {
-          block.classList.remove("is-hidden");
-        } else {
-          block.classList.add("is-hidden");
-        }
+        block.classList.toggle("is-hidden", filterValue !== "all" && block.dataset.category !== filterValue);
       });
 
       if (currentPage !== 1) {
@@ -394,7 +317,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ==========================================================================
-  // 5. MODAL / LIGHTBOX UNIVERSAL
+  // 4. MODAL / LIGHTBOX UNIVERSAL
   // ==========================================================================
   const modal = document.getElementById("interactive-modal");
   const modalImg = document.getElementById("modal-image");
@@ -406,8 +329,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentIndex = 0;
 
   function openModalWithList(list, index) {
-    if (!list || list.length === 0 || index < 0 || index >= list.length) return;
-    
+    if (!list?.length || index < 0 || index >= list.length) return;
     activeModalList = list;
     currentIndex = index;
     updateModalContent();
@@ -419,91 +341,57 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateModalContent() {
-    if (!activeModalList || activeModalList.length === 0) return;
     const item = activeModalList[currentIndex];
+    if (!item?.src) return;
 
-    if (item && item.src) {
-      modalImg.src = item.src;
-      
-      const formattedNum = String(item.id || currentIndex + 1).padStart(2, "0");
-      const displayTitle = item.title ? item.title : `STILL_FRAME_${formattedNum}`;
-      
-      modalTitle.textContent = `“VIEWER” // ${displayTitle}`;
-      modalMeta.textContent = item.meta || `FORMAT: ${item.format || "RAW"}`;
-    }
+    modalImg.src = item.src;
+    const formattedNum = padZero(item.id || currentIndex + 1);
+    const displayTitle = item.title || `STILL_FRAME_${formattedNum}`;
+
+    modalTitle.textContent = `“VIEWER” // ${displayTitle}`;
+    modalMeta.textContent = item.meta || `FORMAT: ${item.format || "RAW"}`;
   }
 
-  function showNext() {
-    if (activeModalList.length === 0) return;
+  const showNext = () => {
+    if (!activeModalList.length) return;
     currentIndex = (currentIndex + 1) % activeModalList.length;
     updateModalContent();
-  }
+  };
 
-  function showPrev() {
-    if (activeModalList.length === 0) return;
+  const showPrev = () => {
+    if (!activeModalList.length) return;
     currentIndex = (currentIndex - 1 + activeModalList.length) % activeModalList.length;
     updateModalContent();
-  }
+  };
 
   function closeModal() {
-    if (modal && modal.classList.contains("active")) {
-      modal.classList.remove("active");
-      toggleBodyScroll(false);
-      setTimeout(() => { 
-        if (modalImg) modalImg.src = ""; 
-      }, 300);
-    }
+    if (!modal?.classList.contains("active")) return;
+    modal.classList.remove("active");
+    toggleBodyScroll(false);
+    setTimeout(() => {
+      if (modalImg) modalImg.src = "";
+    }, 300);
   }
 
-  if (modalClose) modalClose.addEventListener("click", closeModal);
+  modalClose?.addEventListener("click", closeModal);
 
-  if (modal) {
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal || e.target.classList.contains("modal-body")) {
-        closeModal();
-      }
-    });
-  }
-
-  // Gestos táctiles en móvil
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-  if (modal) {
-    modal.addEventListener("touchstart", (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    modal.addEventListener("touchend", (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, { passive: true });
-  }
-
-  function handleSwipe() {
-    const swipeThreshold = 50;
-    if (touchEndX < touchStartX - swipeThreshold) {
-      showNext();
-    } else if (touchEndX > touchStartX + swipeThreshold) {
-      showPrev();
-    }
-  }
-
-  // Tecla ESC y flechas de navegación
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      closeModal();
-      closeContactModal();
-    }
-
-    if (modal && modal.classList.contains("active")) {
-      if (e.key === "ArrowRight") showNext();
-      if (e.key === "ArrowLeft") showPrev();
-    }
+  modal?.addEventListener("click", (e) => {
+    if (e.target === modal || e.target.classList.contains("modal-body")) closeModal();
   });
 
+  let touchStartX = 0;
+  modal?.addEventListener("touchstart", (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  modal?.addEventListener("touchend", (e) => {
+    const deltaX = e.changedTouches[0].screenX - touchStartX;
+    if (deltaX < -50) showNext();
+    else if (deltaX > 50) showPrev();
+  }, { passive: true });
+
   // ==========================================================================
-  // 6. MODAL DE CONTACTO / BOOKING Y ENVÍO AJAX
+  // 5. MODAL DE CONTACTO / BOOKING Y ENVÍO AJAX
   // ==========================================================================
   const contactModal = document.getElementById("contact-modal");
   const openContactBtn = document.getElementById("open-contact-btn");
@@ -513,68 +401,71 @@ document.addEventListener("DOMContentLoaded", () => {
   const submitBtnText = document.getElementById("submit-btn-text");
   const formFeedback = document.getElementById("form-feedback");
 
-  function openContactModal() {
-    if (contactModal) {
-      contactModal.classList.add("active");
-      toggleBodyScroll(true);
+  const openContactModal = () => {
+    if (!contactModal) return;
+    contactModal.classList.add("active");
+    toggleBodyScroll(true);
+  };
+
+  const closeContactModal = () => {
+    if (!contactModal?.classList.contains("active")) return;
+    contactModal.classList.remove("active");
+    toggleBodyScroll(false);
+  };
+
+  openContactBtn?.addEventListener("click", openContactModal);
+  openContactBannerBtn?.addEventListener("click", openContactModal);
+  closeContactBtn?.addEventListener("click", closeContactModal);
+
+  contactModal?.addEventListener("click", (e) => {
+    if (e.target === contactModal) closeContactModal();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeModal();
+      closeContactModal();
+    } else if (modal?.classList.contains("active")) {
+      if (e.key === "ArrowRight") showNext();
+      if (e.key === "ArrowLeft") showPrev();
     }
-  }
+  });
 
-  function closeContactModal() {
-    if (contactModal && contactModal.classList.contains("active")) {
-      contactModal.classList.remove("active");
-      toggleBodyScroll(false);
-    }
-  }
+  contactForm?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (submitBtnText) submitBtnText.textContent = "“ENVIANDO... ↗”";
 
-  if (openContactBtn) openContactBtn.addEventListener("click", openContactModal);
-  if (openContactBannerBtn) openContactBannerBtn.addEventListener("click", openContactModal);
-  if (closeContactBtn) closeContactBtn.addEventListener("click", closeContactModal);
-
-  if (contactModal) {
-    contactModal.addEventListener("click", (e) => {
-      if (e.target === contactModal) closeContactModal();
-    });
-  }
-
-  if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      if (submitBtnText) submitBtnText.textContent = "“ENVIANDO... ↗”";
-
-      const formData = new FormData(contactForm);
-
-      fetch(contactForm.action, {
+    try {
+      const response = await fetch(contactForm.action, {
         method: "POST",
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      }).then(response => {
-        if (response.ok) {
-          if (formFeedback) {
-            formFeedback.textContent = "✓ MENSAJE ENVIADO CON ÉXITO";
-            formFeedback.style.color = "#00FF66";
-          }
-          if (submitBtnText) submitBtnText.textContent = "“ENVIADO ↗”";
-          contactForm.reset();
-          setTimeout(() => {
-            closeContactModal();
-            if (formFeedback) formFeedback.textContent = "";
-            if (submitBtnText) submitBtnText.textContent = "“ENVIAR_MENSAJE ↗”";
-          }, 2000);
-        } else {
-          throw new Error("Error en el envío");
-        }
-      }).catch(error => {
-        if (formFeedback) {
-          formFeedback.textContent = "✕ ERROR AL ENVIAR. INTENTA DE NUEVO.";
-          formFeedback.style.color = "#FF3333";
-        }
-        if (submitBtnText) submitBtnText.textContent = "“REINTENTAR ↗”";
+        body: new FormData(contactForm),
+        headers: { Accept: "application/json" }
       });
-    });
-  }
+
+      if (!response.ok) throw new Error("Error en el envío");
+
+      if (formFeedback) {
+        formFeedback.textContent = "✓ MENSAJE ENVIADO CON ÉXITO";
+        formFeedback.className = "form-feedback-text is-success";
+      }
+      if (submitBtnText) submitBtnText.textContent = "“ENVIADO ↗”";
+      contactForm.reset();
+
+      setTimeout(() => {
+        closeContactModal();
+        if (formFeedback) {
+          formFeedback.textContent = "";
+          formFeedback.className = "form-feedback-text";
+        }
+        if (submitBtnText) submitBtnText.textContent = "“ENVIAR_MENSAJE ↗”";
+      }, 2000);
+    } catch {
+      if (formFeedback) {
+        formFeedback.textContent = "✕ ERROR AL ENVIAR. INTENTA DE NUEVO.";
+        formFeedback.className = "form-feedback-text is-error";
+      }
+      if (submitBtnText) submitBtnText.textContent = "“REINTENTAR ↗”";
+    }
+  });
 
 });
