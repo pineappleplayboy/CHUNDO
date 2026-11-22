@@ -1140,4 +1140,42 @@ html, body {
     grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
     gap: 40px;
   }
+
+  /* --- Cortometraje Destacado (Layout Horizontal Widescreen) --- */
+  .yt-card {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "header header"
+      "media  info"
+      "footer footer";
+  }
+
+  .yt-card .card-header {
+    grid-area: header;
+  }
+
+  .yt-card .media-frame {
+    grid-area: media;
+    min-height: auto;
+    aspect-ratio: 16 / 9;
+    align-self: stretch;
+  }
+
+  .yt-card .yt-cover-link img {
+    object-fit: cover;
+  }
+
+  .yt-card .yt-info-block {
+    grid-area: info;
+    border-top: none;
+    border-left: 1px solid var(--border-accent);
+    justify-content: space-between;
+  }
+
+  .yt-card .yt-footer {
+    grid-area: footer;
+  }
 }
