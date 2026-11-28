@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: 38, src: "assets/foto38.jpg", format: ".JPEG", meta: "FORMAT: JPEG // LIGHTING: NATURAL" },
     { id: 39, src: "assets/foto39.png", format: ".PNG", meta: "FORMAT: PNG // COLOR: GRADED" },
     { id: 40, src: "assets/foto40.jpg", format: ".JPEG", meta: "FORMAT: JPEG // EXPORT: WEB" },
-     { id: 41, src: "assets/foto41.jpg", format: ".RAW", meta: "FORMAT: RAW // RESOLUTION: 4K" },
+    { id: 41, src: "assets/foto41.jpg", format: ".RAW", meta: "FORMAT: RAW // RESOLUTION: 4K" },
     { id: 42, src: "assets/foto42.jpg", format: ".JPEG", meta: "FORMAT: JPEG // COLOR: REC709" },
     { id: 43, src: "assets/foto43.jpg", format: ".RAW", meta: "FORMAT: RAW // ASPECT: 16:9" },
     { id: 44, src: "assets/foto44.jpg", format: ".JPEG", meta: "FORMAT: JPEG // SENSITIVITY: HIGH" },
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: 60, src: "assets/foto60.jpg", format: ".JPEG", meta: "FORMAT: JPEG // EXPORT: WEB" }
   ];
 
- const stillsData = [
+  const stillsData = [
     { id: 1, src: "assets/stills/still1.jpg", title: "ADIÓS Y BUENA SUERTE", format: "S-LOG3", meta: "PROJECT: CORTO // CAM: SONY FX3 // LENS: 50MM" },
     { id: 2, src: "assets/stills/still2.jpg", title: "ARANGO Y MILDRED", format: "C-LOG2", meta: "PROJECT: VISUAL // CAM: CANON R50 // LENS: 35MM" },
     { id: 3, src: "assets/stills/still3.jpg", title: "PROYECTO NAUCALPAN", format: "S-LOG3", meta: "PROJECT: CORTO // CAM: SONY FX3 // LENS: 50MM" },
@@ -90,13 +90,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // UTILIDADES
   // ==========================================================================
   const padZero = (num) => String(num).padStart(2, "0");
+  const isDesktop = () => window.innerWidth >= 1024;
 
   const toggleBodyScroll = (disable) => {
     document.body.style.overflow = disable ? "hidden" : "";
   };
 
   // ==========================================================================
-  // 1. OBSERVERS (REVELADO AL SCROLL Y GESTIÓN DE VIDEOS)
+  // 1. OBSERVERS (REVELADO AL SCROLL Y GESTIÓN DE VIDEOS SIN BLOQUEO EN PC)
   // ==========================================================================
   const revealObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
@@ -105,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.05, rootMargin: "100px 0px" });
 
   document.querySelectorAll(".interactive-card, .off-button").forEach((el) => {
     revealObserver.observe(el);
@@ -119,26 +120,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }, { threshold: 0.25 });
 
-  const videoLoadObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      const video = entry.target;
-      video.preload = "metadata";
-      video.removeAttribute("poster");
-
-      const captureFirstFrame = () => {
-        if (video.currentTime === 0) video.currentTime = 0.1;
-      };
-
-      if (video.readyState >= 1) {
-        captureFirstFrame();
-      } else {
-        video.addEventListener("loadedmetadata", captureFirstFrame, { once: true });
-      }
-      observer.unobserve(video);
-    });
-  }, { rootMargin: "200px 0px", threshold: 0.01 });
-
   const handleFullscreenChange = () => {
     if (!document.fullscreenElement && !document.webkitFullscreenElement) {
       document.querySelectorAll("video").forEach((v) => {
@@ -150,9 +131,14 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("fullscreenchange", handleFullscreenChange);
   document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
 
+  // Evita que PC descargue y decodifique los 6 videos al abrir la página
   document.querySelectorAll("video").forEach((video) => {
-    videoLoadObserver.observe(video);
+    video.preload = "none";
     videoPauseObserver.observe(video);
+
+    video.addEventListener("pointerenter", () => {
+      if (video.preload === "none") video.preload = "metadata";
+    }, { once: true });
 
     video.addEventListener("play", () => {
       const requestFs = video.requestFullscreen || video.webkitEnterFullscreen || video.msRequestFullscreen;
@@ -168,9 +154,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ==========================================================================
-  // 2. RENDERIZADORES DE GRIDS CON DOCUMENTFRAGMENT & DELEGACIÓN
+  // 2. RENDERIZADORES DE GRIDS OPTIMIZADOS PARA PC Y MÓVIL
   // ==========================================================================
-  const itemsPerPage = 20;
+  const itemsPerPage = isDesktop() ? 12 : 20;
   let currentPage = 1;
   const totalPages = Math.ceil(photoData.length / itemsPerPage);
 
@@ -188,22 +174,23 @@ document.addEventListener("DOMContentLoaded", () => {
     currentPhotos.forEach((item, index) => {
       const globalIndex = startIndex + index;
       const formattedNum = padZero(item.id);
+      const isPriority = page === 1 && index < 4;
 
       const card = document.createElement("article");
-      card.className = "interactive-card photo-card";
+      card.className = isPriority ? "interactive-card photo-card visible" : "interactive-card photo-card";
       card.dataset.index = globalIndex;
 
       card.innerHTML = `
         <div class="card-header"><span>${formattedNum} / ${photoData.length}</span></div>
         <div class="media-frame">
-          <img src="${item.src}" alt="CHUNDO — Photography ${formattedNum}" width="1920" height="1280" loading="lazy" decoding="async">
+          <img src="${item.src}" alt="CHUNDO — Photography ${formattedNum}" width="1200" height="1600" ${isPriority ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">
           <div class="hover-overlay"><span class="action-tag">“EXPAND_IMAGE ↗”</span></div>
         </div>
         <div class="card-footer"><span class="tag">FORMAT: ${item.format}</span></div>
       `;
 
       fragment.appendChild(card);
-      revealObserver.observe(card);
+      if (!isPriority) revealObserver.observe(card);
     });
 
     photoGrid.replaceChildren(fragment);
@@ -277,20 +264,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Render inmediato de la primera cuadrícula
   renderPhotos(currentPage);
 
-  renderShowcaseGrid("stills-grid", stillsData, {
-    cardClass: "still-card",
-    prefix: "STILL",
-    actionLabel: "EXPAND_STILL",
-    footerTitle: "CHUNDO FILM"
-  });
+  // Diferir secciones secundarias para no saturar el hilo principal en PC
+  const scheduleSecondaryRenders = window.requestIdleCallback || ((cb) => setTimeout(cb, 80));
+  scheduleSecondaryRenders(() => {
+    renderShowcaseGrid("stills-grid", stillsData, {
+      cardClass: "still-card",
+      prefix: "STILL",
+      actionLabel: "EXPAND_STILL",
+      footerTitle: "CHUNDO FILM"
+    });
 
-  renderShowcaseGrid("ads-grid", adsData, {
-    cardClass: "ad-card",
-    prefix: "AD",
-    actionLabel: "EXPAND_AD",
-    footerTitle: "COMMERCIAL"
+    renderShowcaseGrid("ads-grid", adsData, {
+      cardClass: "ad-card",
+      prefix: "AD",
+      actionLabel: "EXPAND_AD",
+      footerTitle: "COMMERCIAL"
+    });
   });
 
   // ==========================================================================
