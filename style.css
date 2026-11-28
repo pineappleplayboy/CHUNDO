@@ -1019,7 +1019,7 @@ html, body {
   }
 
   .content-container {
-    padding: 36px 16px 64px 16px;
+    padding: 36px 10px 64px 10px;
     gap: 64px;
   }
 
@@ -1048,8 +1048,8 @@ html, body {
 
   .card-header,
   .card-footer {
-    font-size: 0.7rem;
-    padding: 8px 12px;
+    font-size: 0.68rem;
+    padding: 7px 10px;
   }
 
   .interactive-grid,
@@ -1062,7 +1062,7 @@ html, body {
 
   #photo-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 8px;
   }
 
   #photo-grid .media-frame,
@@ -1074,7 +1074,13 @@ html, body {
   }
 
   #photo-grid .media-frame {
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 3 / 4;
+  }
+
+  #photo-grid .media-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .still-card .media-frame,
